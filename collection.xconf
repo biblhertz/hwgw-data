@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://exist-db.org/collection-config/1.0">
+    <index xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dbk="http://docbook.org/ns/docbook">
+        <fulltext default="none" attributes="false"/>
+        <lucene diacritics="no">
+            <module uri="http://teipublisher.com/index" prefix="nav" at="index.xql"/>
+            <text match="/tei:TEI/tei:text">
+                <ignore qname="tei:div"/>
+                <field name="title" expression="nav:get-metadata(ancestor::tei:TEI, 'title')"/>
+                <field name="author" expression="nav:get-metadata(ancestor::tei:TEI, 'author')"/>
+                <field name="language" expression="nav:get-metadata(ancestor::tei:TEI, 'language')"/>
+                <field name="date" expression="nav:get-metadata(ancestor::tei:TEI, 'date')"/>
+                <field name="file" expression="util:document-name(.)"/>
+                <field name="key" expression="ancestor::tei:TEI/@n"/>
+                <ignore qname="tei:listBibl"/>
+                <ignore qname="tei:listObject"/>
+                <ignore qname="tei:listOrg"/>
+                <ignore qname="tei:listPerson"/>
+                <ignore qname="tei:listPlace"/>
+                <facet dimension="volume" expression="ancestor::tei:TEI/tei:teiHeader//tei:titleStmt/tei:title[@type = 'volume']/@n"/>
+                <facet dimension="context" expression="nav:get-text-context(., ancestor::tei:TEI)" hierarchical="yes"/>
+                <facet dimension="language" expression="nav:get-metadata(ancestor::tei:TEI, 'language')"/>
+                <facet dimension="person" expression=".//tei:rs[@type='person']/@ref"/>
+                <facet dimension="object" expression=".//tei:rs[@type='object']/@ref"/>
+                <facet dimension="occurrences" expression="0"/>
+                <facet dimension="environment" expression="'Text'"/>
+                <facet dimension="sortstring" expression="ancestor::tei:TEI/tei:header/tei:title[@level='a'][1]"/>
+            </text>
+            <text qname="tei:note">
+                <ignore qname="tei:note"/>
+                <facet dimension="volume" expression="ancestor::tei:TEI/tei:teiHeader//tei:titleStmt/tei:title[@type = 'volume']/@n"/>
+                <facet dimension="context" expression="nav:get-note-context(., ancestor::tei:TEI)" hierarchical="yes"/>
+                <facet dimension="language" expression="nav:get-metadata(ancestor::tei:TEI, 'language')"/>
+                <facet dimension="person" expression=".//tei:rs[@type='person']/@ref"/>
+                <facet dimension="object" expression=".//tei:rs[@type='object']/@ref"/>
+                <facet dimension="direct-indexing" expression=".//tei:rs/@ref except .//tei:div//@ref | .//tei:bibl/@corresp except .//tei:div//@corresp"/>
+                <facet dimension="occurrences" expression="0"/>
+                <facet dimension="environment" expression="'Text'"/>
+                <facet dimension="sortstring" expression="ancestor::tei:div[1]/tei:head"/>
+            </text>
+            <text qname="tei:div">
+                <ignore qname="tei:div"/>
+                <ignore qname="tei:note"/>
+                <ignore qname="tei:floatingText"/>
+                <ignore qname="tei:figure"/>
+                <ignore qname="tei:listBibl"/>
+                <ignore qname="tei:listObject"/>
+                <ignore qname="tei:listOrg"/>
+                <ignore qname="tei:listPerson"/>
+                <ignore qname="tei:listPlace"/>
+                <facet dimension="volume" expression="ancestor::tei:TEI/tei:teiHeader//tei:titleStmt/tei:title[@type = 'volume']/@n"/>
+                <facet dimension="context" expression="nav:get-div-context(., ancestor::tei:TEI)" hierarchical="yes"/>
+                <facet dimension="language" expression="nav:get-metadata(ancestor::tei:TEI, 'language')"/>
+                <facet dimension="person" expression=".//tei:rs[@type='person']/@ref"/>
+                <facet dimension="object" expression=".//tei:rs[@type='object']/@ref"/>
+                <facet dimension="direct-indexing" expression=".//tei:rs/@ref except .//tei:div//@ref | .//tei:bibl/@corresp except .//tei:div//@corresp"/>
+                <facet dimension="direct-indexing-no-notes" expression=".//tei:rs[@type]/@ref except ( .//tei:div//@ref | .//tei:note[@type='comment']//@ref ) | .//tei:bibl/@corresp except ( .//tei:div//tei:bibl/@corresp | .//tei:note[@type='comment']//tei:bibl/@corresp )"/>
+                <facet dimension="occurrences" expression="0"/>
+                <facet dimension="environment" expression="'Text'"/>
+                <facet dimension="sortstring" expression="./tei:head"/>
+            </text>
+            <text qname="tei:floatingText">
+                <ignore qname="tei:note"/>
+                <ignore qname="tei:floatingText"/>
+                <facet dimension="volume" expression="ancestor::tei:TEI/tei:teiHeader//tei:titleStmt/tei:title[@type = 'volume']/@n"/>
+                <facet dimension="context" expression="('Apparat', 'Dokumente', 'Primärtext')" hierarchical="yes"/>
+                <facet dimension="language" expression="nav:get-metadata(ancestor::tei:TEI, 'language')"/>
+                <facet dimension="person" expression=".//tei:rs[@type='person']/@ref"/>
+                <facet dimension="object" expression=".//tei:rs[@type='object']/@ref"/>
+                <facet dimension="occurrences" expression="0"/>
+                <facet dimension="environment" expression="'Text'"/>
+                <facet dimension="sortstring" expression="ancestor::tei:div[1]/tei:head"/>
+            </text>
+            <text qname="tei:head">
+                <ignore qname="tei:div"/>
+            </text>
+            <text match="//tei:listBibl/tei:bibl" boost="0.4">
+                <ignore qname="tei:div"/>
+                <field name="label" expression="./tei:title[@type='short']"/>
+                <field name="description"/>
+                <facet dimension="author" expression=".//tei:author/@ref"/>
+                <facet dimension="person" expression=".//tei:author/@ref"/>
+                <facet dimension="type" expression="'Bibliografie'" hierarchical="yes"/>
+                <facet dimension="volume" expression="for $n in ./@xml:id let $ref := $n return collection(/db/apps/hwgw-data/data)//tei:TEI[.//tei:bibl[@corresp=$ref]]/tei:teiHeader//tei:titleStmt/tei:title[@type = 'volume']/@n"/>
+                <facet dimension="occurrences" expression="nav:occurrences(@xml:id)"/>
+                <facet dimension="environment" expression="'Index'"/>
+                <facet dimension="sortstring" expression="./tei:title[@type='short']"/>
+            </text>
+            <text match="//tei:listObject/tei:object" boost="0.4">
+                <ignore qname="tei:div"/>
+                <field name="label" expression="./tei:head"/>
+                <field name="description"/>
+                <facet dimension="author" expression="./tei:note/tei:persName[@type='author']/@ref"/>
+                <facet dimension="person" expression="./tei:note/tei:persName[@type='author']/@ref"/>
+                <!-- <facet dimension="type" expression="'Objekte'" hierarchical="yes"/> -->
+                <facet dimension="type" expression="nav:get-object-provenience(.)" hierarchical="yes"/>
+                <facet dimension="volume" expression="for $n in ./@xml:id let $ref := $n return collection(/db/apps/hwgw-data/data)//tei:TEI[.//tei:rs[@ref=$ref]]/tei:teiHeader//tei:titleStmt/tei:title[@type = 'volume']/@n"/>
+                <facet dimension="provenience" expression="nav:get-object-provenience(.)" hierarchical="yes"/>
+                <facet dimension="occurrences" expression="nav:occurrences(@xml:id)"/>
+                <facet dimension="environment" expression="'Index'"/>
+                <facet dimension="sortstring" expression="./tei:head"/>
+            </text>
+            <text match="//tei:listOrg/tei:org" boost="0.4">
+                <ignore qname="tei:div"/>
+                <field name="label" expression="./tei:orgName"/>
+                <field name="description"/>
+                <facet dimension="type" expression="'Organisationen'" hierarchical="yes"/>
+                <facet dimension="volume" expression="for $n in ./@xml:id let $ref := $n return collection(/db/apps/hwgw-data/data)//tei:TEI[.//tei:rs[@ref=$ref]]/tei:teiHeader//tei:titleStmt/tei:title[@type = 'volume']/@n"/>
+                <facet dimension="occurrences" expression="nav:occurrences(@xml:id)"/>
+                <facet dimension="environment" expression="'Index'"/>
+                <facet dimension="sortstring" expression="./tei:orgName"/>
+            </text>
+            <text match="//tei:listPerson/tei:person" boost="0.4">
+                <ignore qname="tei:div"/>
+                <field name="label" expression="./tei:persName"/>
+                <field name="description"/>
+                <facet dimension="type" expression="'Personen'" hierarchical="yes"/>
+                <facet dimension="volume" expression="for $n in ./@xml:id let $ref := $n return collection(/db/apps/hwgw-data/data)//tei:TEI[.//tei:rs[@ref=$ref]]/tei:teiHeader//tei:titleStmt/tei:title[@type = 'volume']/@n"/>
+                <facet dimension="occurrences" expression="nav:occurrences(@xml:id)"/>
+                <facet dimension="environment" expression="'Index'"/>
+                <facet dimension="sortstring" expression="./tei:persName"/>
+            </text>
+            <text match="//tei:listPlace/tei:place" boost="0.4">
+                <ignore qname="tei:div"/>
+                <field name="label" expression="./tei:placeName"/>
+                <field name="description"/>
+                <facet dimension="type" expression="'Orte'" hierarchical="yes"/>
+                <facet dimension="volume" expression="for $n in ./@xml:id let $ref := $n return collection(/db/apps/hwgw-data/data)//tei:TEI[.//tei:rs[@ref=$ref]]/tei:teiHeader//tei:titleStmt/tei:title[@type = 'volume']/@n"/>
+                <facet dimension="occurrences" expression="nav:occurrences(@xml:id)"/>
+                <facet dimension="environment" expression="'Index'"/>
+                <facet dimension="sortstring" expression="./tei:placeName"/>
+            </text>
+            <text match="//tei:titleStmt/tei:title"/>
+            <text match="//tei:msDesc/tei:head"/>
+            <!-- global settings -->
+            <inline qname="tei:choice"/>
+            <inline qname="tei:corr"/>
+            <inline qname="tei:emph"/>
+            <inline qname="tei:hi"/>
+            <inline qname="tei:ref"/>
+            <inline qname="tei:rs"/>
+            <inline qname="tei:unclear"/>
+            <ignore qname="tei:divGen"/>
+            <ignore qname="tei:sic"/>
+        </lucene>
+    </index>
+</collection>
