@@ -1,0 +1,16 @@
+on:
+  release:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send data to Edmond
+        uses: IQSS/dataverse-uploader@v1.6
+        with:
+          DATAVERSE_TOKEN: ${{secrets.DATAVERSE_TOKEN}}
+          DATAVERSE_SERVER: https://edmond.mpg.de
+          DATAVERSE_DATASET_DOI: doi:10.17617/3.QHJW4D
+          GITHUB_DIR: data
+          PUBLISH: False
