@@ -2,7 +2,7 @@
 <?teipublisher template="s03-ed.html"?><TEI xmlns="http://www.tei-c.org/ns/1.0" n="03.02">
     <teiHeader>
         <fileDesc>
-            <titleStmt>
+         <titleStmt>
                 <title level="m" type="full">Salomon Gessner</title>
                 <title level="a" type="short">Heinrich Wölfflin: Geßner</title>
                 <title type="volume" n="s03">Schriften 3</title>
@@ -12,39 +12,39 @@
                     <resp>Kommentiert von</resp>
                     <name>Elisabeth-Christine Gamer</name>
                 </respStmt>
-                <funder ref="http://p3.snf.ch/Project-198243">Schweizerischer Nationalfonds zur Förderung der wissenschaftlichen Forschung</funder>
             </titleStmt>
-            <editionStmt>
-                <edition>
-                    <title>Online-Edition</title>
-                </edition>
-            </editionStmt>
-            <publicationStmt>
-                <publisher>Universität Zürich: Kunsthistorisches Institut</publisher>
-                <pubPlace>Zürich</pubPlace>
-                <availability>Lizenz zu definieren</availability>
-                <date when="2021-12"/>
-            </publicationStmt>
-            <seriesStmt>
-                <title>Heinrich Wölfflin: Gesammelte Werke</title>
-                <respStmt>
-                    <resp>Herausgegeben von</resp>
-                    <name>Tristan Weddigen</name>
-                    <name>Oskar Bätschmann</name>
-                </respStmt>
-                <biblScope unit="volume">3</biblScope>
-                <biblScope unit="part">2</biblScope>
-            </seriesStmt>
-            <sourceDesc>
-                <bibl>
-                    <author>Heinrich Wölfflin</author>:
-                    <title>Salomon Geßner</title>.
-                    <title>Mit ungedruckten Briefen</title>.
-                    <publisher>Verlag von J. Huber</publisher>,
-                    <pubPlace>Frauenfeld</pubPlace>
-                    <date>1889</date>.
-                </bibl>
+         <editionStmt>
+            <edition>
+               <title>Online-Edition</title>
+            </edition>
+            <funder ref="https://data.snf.ch/grants/grant/157979">Schweizerischer Nationalfonds zur Förderung der wissenschaftlichen Forschung</funder>
+            <funder ref="https://data.snf.ch/grants/grant/198243">Schweizerischer Nationalfonds zur Förderung der wissenschaftlichen Forschung</funder>
+            <funder>Bibliotheca Hertziana – Max-Planck-Institut für Kunstgeschichte</funder>
+         </editionStmt>
+         <publicationStmt>
+            <publisher>Universität Zürich: Kunsthistorisches Institut</publisher>
+            <publisher>Bibliotheca Hertziana – Max-Planck-Institut für Kunstgeschichte</publisher>
+            <pubPlace>Zürich und Rom</pubPlace>
+            <availability>
+                <licence target="http://creativecommons.org/licenses/by/4.0/" date="2024">
+                  <p>The Creative Commons Attribution 4.0 International (CC BY 4.0) Licence applies to this document.</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <seriesStmt>
+            <title level="s">Heinrich Wölfflin – Gesammelte Werke</title>
+            <respStmt>
+               <resp>Herausgegeben von</resp>
+               <name>Tristan Weddigen</name>
+               <name>Oskar Bätschmann</name>
+            </respStmt>
+            <biblScope unit="volume">3</biblScope>
+            <biblScope unit="part">2</biblScope>
+         </seriesStmt>
+         <sourceDesc>
+            <bibl xml:space="preserve" type="printed_edition"><author>Heinrich Wölfflin</author>. <title level="m">Salomon Geßner</title> (<date>1889</date>). <respStmt><resp>Einleitung</resp> von <name>Wolfgang Proß</name>.</respStmt> <respStmt><resp>Bearbeitung und Kommentar</resp> von <name>Elisabeth-Christine Gamer</name>.</respStmt> Hg. v. <editor><name>Tristan Weddigen</name></editor> und <editor><name>Oskar Bätschmann</name></editor>. <title level="s">Heinrich Wölfflin Gesammelte Werke</title>. Schriften <biblScope unit="volume">3</biblScope>. <pubPlace>Basel</pubPlace>: <publisher>Schwabe</publisher>, <date>2020</date></bibl>
             </sourceDesc>
+            <bibl xml:space="preserve"><author>Heinrich Wölfflin</author>: <title>Salomon Geßner</title>. <title>Mit ungedruckten Briefen</title>. <publisher>Verlag von J. Huber</publisher>, <pubPlace>Frauenfeld</pubPlace> <date>1889</date>.</bibl>
         </fileDesc>
         <profileDesc>
             <textClass>
@@ -86,6 +86,7 @@
         </encodingDesc>
         <revisionDesc>
             <listChange>
+                <change when="2025-01-20" who="Reto Baumgartner">Metadata in teiHeader</change>
                 <change when="2024-11-06" who="Reto Baumgartner">Change hw_facs_order for s03-ed-pgI</change>
                 <change notAfter="2024-10-16" who="Sven Meier">Annotationen, Inhaltsbereiningung</change>
                 <change when="2021-01-26" who="Conversion"/>

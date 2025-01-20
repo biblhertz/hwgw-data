@@ -9,22 +9,37 @@
                 <title type="volume" n="s04">Schriften 4</title>
                 <title type="year">1891</title>
                 <author>Joseph Imorde</author>
-                <funder ref="http://p3.snf.ch/Project-198243">Schweizerischer Nationalfonds zur Förderung der wissenschaftlichen Forschung</funder>
             </titleStmt>
             <editionStmt>
                 <edition>
                     <title>Online-Edition</title>
                 </edition>
+                <funder ref="https://data.snf.ch/grants/grant/157979">Schweizerischer Nationalfonds zur Förderung der wissenschaftlichen Forschung</funder>
+                <funder ref="https://data.snf.ch/grants/grant/198243">Schweizerischer Nationalfonds zur Förderung der wissenschaftlichen Forschung</funder>
+                <funder>Bibliotheca Hertziana – Max-Planck-Institut für Kunstgeschichte</funder>
             </editionStmt>
             <publicationStmt>
                 <publisher>Universität Zürich: Kunsthistorisches Institut</publisher>
-                <pubPlace>Zürich</pubPlace>
-                <availability>Lizenz zu definieren</availability>
-                <date when="2021-12"/>
-            </publicationStmt>
-            <seriesStmt xml:space="preserve"><author>Heinrich Wölfflin</author>. <title level="m">Die Jugendwerke des Michelangelo</title> (<date>1891</date>). <respStmt><resp>Einleitung</resp> von <name>Joseph Imorde</name>.</respStmt> <respStmt><resp>Bearbeitung und Kommentar</resp> von <name>Karolina Zgraja</name>.</respStmt> Hg. v. <editor><name>Tristan Weddigen</name></editor> und <editor><name>Oskar Bätschmann</name></editor>. <title level="s">Heinrich Wölfflin Gesammelte Werke</title>. Schriften <biblScope unit="volume">4</biblScope>. <pubPlace>Basel</pubPlace>: <publisher>Schwabe</publisher>, <date>2020</date></seriesStmt>
+                <publisher>Bibliotheca Hertziana – Max-Planck-Institut für Kunstgeschichte</publisher>
+                <pubPlace>Zürich und Rom</pubPlace>
+                <availability>
+                    <licence target="http://creativecommons.org/licenses/by/4.0/" date="2022">
+                      <p>The Creative Commons Attribution 4.0 International (CC BY 4.0) Licence applies to this document.</p>
+                   </licence>
+                </availability>
+             </publicationStmt>
+             <seriesStmt>
+                <title level="s">Heinrich Wölfflin – Gesammelte Werke</title>
+                <respStmt>
+                   <resp>Herausgegeben von</resp>
+                   <name>Tristan Weddigen</name>
+                   <name>Oskar Bätschmann</name>
+                </respStmt>
+                <biblScope unit="volume">4</biblScope>
+                <biblScope unit="part">1</biblScope>
+             </seriesStmt>
             <sourceDesc>
-                <p>Born digital</p>
+                <bibl xml:space="preserve" type="printed_edition"><author>Heinrich Wölfflin</author>. <title level="m">Die Jugendwerke des Michelangelo</title> (<date>1891</date>). <respStmt><resp>Einleitung</resp> von <name>Joseph Imorde</name>.</respStmt> <respStmt><resp>Bearbeitung und Kommentar</resp> von <name>Karolina Zgraja</name>.</respStmt> Hg. v. <editor><name>Tristan Weddigen</name></editor> und <editor><name>Oskar Bätschmann</name></editor>. <title level="s">Heinrich Wölfflin Gesammelte Werke</title>. Schriften <biblScope unit="volume">4</biblScope>. <pubPlace>Basel</pubPlace>: <publisher>Schwabe</publisher>, <date>2020</date></bibl>
             </sourceDesc>
         </fileDesc>
         <profileDesc>
@@ -47,6 +62,7 @@
         </encodingDesc>
         <revisionDesc>
             <listChange>
+                <change when="2025-01-20" who="Reto Baumgartner">Metadata in teiHeader</change>
                 <change when="2024-12-10" who="Reto Baumgartner">Replace divGen with ab for collected comments</change>
                 <change notAfter="2024-10-16" who="Reto Baumgartner">Missing Rendition, Graphics number</change>
                 <change notAfter="2024-10-16" who="Sven Meier">Annotationen, Inhaltsbereiningung</change>
