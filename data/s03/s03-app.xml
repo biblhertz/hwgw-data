@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?teipublisher template="s03-app.html" depth="2" fill="1"?><TEI xmlns="http://www.tei-c.org/ns/1.0" n="03.03">
+<?teipublisher template="s03-app.html" depth="2" fill="1"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.tei-c.org/ns/1.0 ../../schema/apparat-schema.xsd"
+     n="03.03">
    <teiHeader>
       <fileDesc>
          <titleStmt>
@@ -489,7 +493,6 @@
          <div type="chapter" xml:id="s03-app-ch-3">
             <pb ed="2020" n="245" xml:id="s03-pg245"/>
             <head n="Kommentar" xml:space="preserve">Kommentar</head>
-            <!-- TODO links to comments in original text -->
             <ab type="collected-comments">
             <ptr type="endnote-external" n="1" target="#s03-ed-comment-1"/>
 <ptr type="endnote-external" n="2" target="#s03-ed-comment-2"/>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Stand: 12.03.2016 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/XML/1998/namespace" >
+  <xs:attribute name="id">
+    <xs:annotation>
+      <xs:documentation>(identifier) provides a unique identifier for the element bearing the attribute.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+        <xs:restriction base="xs:ID">
+            <!-- modern page numbers -->
+            <xs:pattern value="s\d\d-pg\d+"/>
+            <!-- original page numbers -->
+            <xs:pattern value="s\d\d-ed-pg\d+"/>
+            <xs:pattern value="s\d\d-ed-pg[IVXL]+"/>
+
+            <!-- chapters and paragraphs -->
+            <xs:pattern value="s\d\d-(app|ed|in)-ch(-\d+)+(-p-\d+)?"/>
+
+            <!-- comments and paragraphs in comments -->
+            <xs:pattern value="s\d\d-(app|ed|in)-comment-\d+(-p-\d+)?"/>
+
+            <!-- images -->
+            <xs:pattern value="s\d\d-(app|ed|in)-img-\d+(-desc)?"/>
+
+            <!-- original footnotes -->
+            <xs:pattern value="s\d\d-ed-pg\d+-note-\d+(-p-\d+)?"/>
+            <xs:pattern value="s\d\d-ed-pg[IVXL]+-note-\d+(-p-\d+)?"/>
+
+            <!-- original quotes and lines -->
+            <xs:pattern value="s\d\d-ed-ch(-\d+)+-p-\d+-q-\d+(-l-\d+)"/>
+
+            <!-- modern footnotes in apparat -->
+            <xs:pattern value="s\d\d-app-ch(-\d+)+-note-\d+(-p-\d+)?"/>
+
+            <!-- document text -->
+            <xs:pattern value="s\d\d-doc-\d+(-p-\d+)?"/>
+
+            <!-- document metadata -->
+            <xs:pattern value="s\d\d-doc-\d+-desc2?"/>
+
+            <!-- document footnotes -->
+            <xs:pattern value="s\d\d-doc-\d+-note-\d+(-p-\d+)?"/>
+
+            <!-- document comments -->
+            <xs:pattern value="s\d\d-doc-comment-\d+(-p-\d+)?"/>
+
+            <!-- GND entries -->
+            <xs:pattern value="gnd-[0-9a-zA-Z\-]*"/>
+            <!-- bibl entries -->
+            <xs:pattern value="bib-[0-9a-zA-Z\-.]*"/>
+            <!-- art entries -->
+            <xs:pattern value="object-[0-9a-zA-Z\-]*"/>
+            <xs:pattern value="index-(bib|obj|pers|place)"/>
+
+            <!-- styles -->
+            <xs:pattern value="italic"/>
+            <xs:pattern value="left"/>
+            <xs:pattern value="right"/>
+            <xs:pattern value="underlined"/>
+            <xs:pattern value="double_underlined"/>
+            <xs:pattern value="HW_Date_left"/>
+            <xs:pattern value="HW_Durchgestrichen"/>
+            <xs:pattern value="HW_Gesperrt"/>
+            <xs:pattern value="HW_Greek"/>
+            <xs:pattern value="HW_Hoch"/>
+            <xs:pattern value="HW_Quote"/>
+            <xs:pattern value="HW_Quote_right"/>
+            <xs:pattern value="HW_Signature_right"/>
+            <xs:pattern value="HW_Unterstrichen"/>
+            <xs:pattern value="HW_Unterstrichen2"/>
+            <xs:pattern value="HW_emphasis"/>
+            <xs:pattern value="HW_document_description"/>
+        </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+
+  <xs:attribute name="lang" type="xs:language">
+    <xs:annotation>
+      <xs:documentation>language</xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+
+
+    <xs:attribute name="space">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="preserve"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+</xs:schema>

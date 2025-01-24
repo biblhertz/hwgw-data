@@ -12,5 +12,5 @@ jobs:
           DATAVERSE_TOKEN: ${{secrets.DATAVERSE_TOKEN}}
           DATAVERSE_SERVER: https://edmond.mpg.de
           DATAVERSE_DATASET_DOI: doi:10.17617/3.QHJW4D
-          GITHUB_DIR: data
+          GITHUB_DIR: data, schema
           PUBLISH: False

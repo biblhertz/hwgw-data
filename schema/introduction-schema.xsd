@@ -1,0 +1,347 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xml="http://www.w3.org/XML/1998/namespace"
+           xmlns:tei="http://www.tei-c.org/ns/1.0"
+           targetNamespace="http://www.tei-c.org/ns/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+
+    <xs:include schemaLocation="core-schema.xsd"/>
+
+    <xs:element name="TEI">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="teiHeader">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fileDesc">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="titleStmt">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="title" maxOccurs="unbounded">
+                                                        <xs:complexType mixed="true">
+                                                            <xs:attribute name="level">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="a"/>
+                                                                        <xs:enumeration value="m"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="type">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="short"/>
+                                                                        <xs:enumeration value="full"/>
+                                                                        <xs:enumeration value="volume"/>
+                                                                        <xs:enumeration value="year"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="n">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern value="s\d\d"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="respStmt">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="resp">
+                                                                    <xs:complexType mixed="true"/>
+                                                                </xs:element>
+                                                                <xs:element name="name">
+                                                                    <xs:complexType mixed="true"/>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="author"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="editionStmt">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="edition">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="title"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="funder">
+                                                        <xs:complexType mixed="true">
+                                                            <xs:attribute name="ref"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="publicationStmt">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="publisher" maxOccurs="unbounded"/>
+                                                    <xs:element name="pubPlace"/>
+                                                    <xs:element name="availability">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="licence">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="p"/>
+                                                                        </xs:sequence>
+                                                                        <xs:attribute name="target" fixed="http://creativecommons.org/licenses/by/4.0/"/>
+                                                                        <xs:attribute name="date" type="xs:gYear"/>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="seriesStmt">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="title">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="level" fixed="s"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="respStmt">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="resp"/>
+                                                                <xs:element name="name" maxOccurs="unbounded"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="biblScope" minOccurs="2" maxOccurs="2">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="unit">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="volume"/>
+                                                                        <xs:enumeration value="part"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="sourceDesc">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="bibl">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="author"/>
+                                                                <xs:element name="title">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="level" fixed="m"/>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="date"/>
+                                                                <xs:element name="respStmt">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="resp"/>
+                                                                            <xs:element name="name" maxOccurs="unbounded"/>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="editor">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="name" maxOccurs="unbounded"/>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="biblScope">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="unit">
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="xs:string">
+                                                                                    <xs:enumeration value="volume"/>
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="pubPlace"/>
+                                                                <xs:element name="publisher"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute ref="xml:space" use="required"/>
+                                                            <xs:attribute name="type">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="printed_edition"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="profileDesc">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="textClass">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="catRef">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="scheme" fixed="#genre"/>
+                                                            <xs:attribute name="target" fixed="#apparatus"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="langUsage">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="language">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="ident" fixed="de"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="encodingDesc">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                         <xs:element name="ab">
+                                            <xs:complexType mixed="true">
+                                                <xs:sequence>
+                                                    <xs:element name="ref">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="target" type="xs:anyURI"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="n">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="images"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="tagsDecl">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="rendition">
+                                                        <xs:complexType mixed="true">
+                                                            <xs:attribute ref="xml:id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                             <xs:element name="revisionDesc">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="listChange">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="change">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="when" type="xs:date"/>
+                                                            <xs:attribute name="who" type="xs:string"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="text">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="body">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="div" type="tei:divSecondary" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="back">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="div">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element ref="tei:head"/>
+                                                    <xs:element ref="tei:pb" minOccurs="0"/>
+                                                     <xs:element name="ab" minOccurs="0">
+                                                         <xs:complexType>
+                                                             <xs:sequence>
+                                                                 <xs:element name="ptr" maxOccurs="unbounded">
+                                                                     <xs:complexType>
+                                                                         <xs:attribute name="type">
+                                                                             <xs:simpleType>
+                                                                                 <xs:restriction base="xs:string">
+                                                                                     <xs:enumeration value="endnote-link"/>
+                                                                                 </xs:restriction>
+                                                                             </xs:simpleType>
+                                                                         </xs:attribute>
+                                                                         <xs:attribute name="n" type="xs:integer"/>
+                                                                         <xs:attribute name="target" type="xs:anyURI"/>
+                                                                     </xs:complexType>
+                                                                 </xs:element>
+                                                                 <xs:element ref="tei:pb"/>
+                                                             </xs:sequence>
+                                                             <xs:attribute name="type">
+                                                                 <xs:simpleType>
+                                                                     <xs:restriction base="xs:string">
+                                                                         <xs:enumeration value="collected-comments"/>
+                                                                     </xs:restriction>
+                                                                 </xs:simpleType>
+                                                             </xs:attribute>
+                                                         </xs:complexType>
+                                                     </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="version" type="xs:string"/>
+            <xs:attribute name="n">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\d\d\.01"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
