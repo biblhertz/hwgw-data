@@ -141,7 +141,8 @@ Figures can generally occur in `div` elements. When used inline, they can also s
 
 #### Headings
 
-
+Headings include an attribute `@n` with a shortened version of the title for the display in paths in the context of
+search results or in breadcrumbs at the top of reading views.
 
 #### Lists
 
@@ -151,8 +152,59 @@ Lists (element `list`) can contain the child elements `item` and (optionally) `l
 
 #### Page breaks
 
+Throughout all parts, the page breaks of the printed editions are indicated as follows:
+
+```xml
+<pb ed="2020" n="131" xml:id="s03-pg131"/>
+```
+
+The original pagebreaks in the edition text is marked with `milestone` and it is linked to the original page via IIIF.
+An attribute `@hw_facs_order` gives the position in a local IIIF manifest specifically written for the use with the
+viewer Tify. `@ed` carries the year of the publication:
+
+```xml
+<milestone unit="page" ed="1889" n="[55]" xml:id="s03-ed-pg55" 
+           facs="https://iiif.archivelab.org/iiif/salomongessnermi02wolf$121" hw_facs_order="125"/>
+```
+
 #### Links and annotations
 
-## Specific encodings for HWGW
+References to related text elements are marked with `ref`. There are the following types:
 
-### 
+- page: link to a page from the original publication
+- old-page: link to the page from the original publication (special case)
+- modern-page: link to a page mark from the printed edition pagination
+- interdocument: link to a part of a different XML file
+- comment: link to a editorial comment
+- chapter: link to a chapter
+- footnote: link to a footnote
+- weblink: external link
+- manifest: for IIIF manifests in the header
+- doi: external link with DOI
+
+References to people, places and organisations use the following similar format. The ID of these entities is usually
+derived directly from GND:
+
+```xml
+<rs type="person" ref="gnd-118634496">Wölfflin</rs>
+```
+
+```xml
+<rs type="place" ref="gnd-4068038-1">Zürich</rs>
+```
+
+```xml
+<rs type="organisation" ref="gnd-2023655-4">UB BS</rs>
+```
+
+For objects, local IDs had to be generated from the title information in the index:
+
+```xml
+<rs type="object" ref="object-Denkmal-Salomon-16">Denkmal in der Platzpromenade</rs>
+```
+
+For bibliographic entries, the ID is derived from the bibliographic key by replacing spaces and special characters:
+
+```xml
+<bibl corresp="bib-Gessner.1753.Nacht">Gessner 1753 Nacht</bibl>
+```

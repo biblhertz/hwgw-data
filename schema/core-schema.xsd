@@ -180,8 +180,8 @@
             <xs:element ref="tei:pb" minOccurs="0"/>
             <xs:element ref="tei:choice" minOccurs="0"/>
             <xs:element ref="tei:quote" minOccurs="0"/>
-            <xs:element name="del" minOccurs="0"/>
-            <xs:element name="add" minOccurs="0"/>
+            <xs:element ref="tei:del" minOccurs="0"/>
+            <xs:element ref="tei:add" minOccurs="0"/>
         </xs:choice>
         <xs:attribute ref="xml:id" use="required"/>
         <xs:attribute ref="xml:space" use="required"/>
@@ -203,8 +203,8 @@
             <xs:element ref="tei:rs" minOccurs="0"/>
             <xs:element ref="tei:pb" minOccurs="0"/>
             <xs:element ref="tei:choice" minOccurs="0"/>
-            <xs:element name="del" minOccurs="0"/>
-            <xs:element name="add" minOccurs="0"/>
+            <xs:element ref="tei:del" minOccurs="0"/>
+            <xs:element ref="tei:add" minOccurs="0"/>
         </xs:choice>
         <xs:attribute ref="xml:space" use="required"/>
         <xs:attribute ref="xml:id" use="required"/>
@@ -224,8 +224,8 @@
             <xs:element ref="tei:emph" minOccurs="0"/>
             <xs:element ref="tei:rs" minOccurs="0"/>
             <xs:element ref="tei:choice" minOccurs="0"/>
-            <xs:element name="del" minOccurs="0"/>
-            <xs:element name="add" minOccurs="0"/>
+            <xs:element ref="tei:del" minOccurs="0"/>
+            <xs:element ref="tei:add" minOccurs="0"/>
         </xs:choice>
         <xs:attribute ref="xml:id" use="required"/>
             <xs:attribute name="rendition" type="tei:renditionType"/>
@@ -356,6 +356,8 @@
                 <xs:element ref="tei:pb" minOccurs="0"/>
                 <xs:element ref="tei:ab" minOccurs="0"/>
                 <xs:element ref="tei:choice" minOccurs="0"/>
+                <xs:element ref="tei:hi" minOccurs="0"/>
+                <xs:element ref="tei:emph" minOccurs="0"/>
             </xs:choice>
             <xs:attribute name="rendition" type="tei:renditionType"/>
             <xs:attribute ref="xml:space" use="optional"/>
@@ -390,6 +392,7 @@
                         <xs:enumeration value="footnote"/>
                         <xs:enumeration value="weblink"/>
                         <xs:enumeration value="manifest"/>
+                        <xs:enumeration value="doi"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
@@ -400,7 +403,10 @@
         <xs:complexType mixed="true">
             <xs:sequence>
                 <xs:element ref="tei:milestone" minOccurs="0"/>
-                <xs:element name="add" minOccurs="0"/>
+                <xs:element ref="tei:add" minOccurs="0"/>
+                <xs:element ref="tei:hi" minOccurs="0"/>
+                <xs:element ref="tei:emph" minOccurs="0"/><!-- to be discussed -->
+                <xs:element ref="tei:rs" minOccurs="0"/>
                 <xs:element name="title" minOccurs="0">
                     <xs:complexType mixed="true">
                         <xs:attribute name="type">
@@ -508,11 +514,14 @@
             <xs:choice maxOccurs="unbounded">
                 <xs:element ref="tei:note" minOccurs="0"/>
                 <xs:element ref="tei:rs" minOccurs="0"/>
+                <xs:element ref="tei:hi" minOccurs="0"/>
+                <xs:element ref="tei:emph" minOccurs="0"/>
                 <xs:element name="lb" minOccurs="0"/>
                 <xs:element name="seg" minOccurs="0">
                     <xs:complexType mixed="true">
                         <xs:choice maxOccurs="unbounded">
                             <xs:element ref="tei:note" minOccurs="0"/>
+                            <xs:element ref="tei:rs" minOccurs="0"/>
                         </xs:choice>
                         <xs:attribute name="rendition">
                             <xs:simpleType>
@@ -604,6 +613,7 @@
             <xs:choice maxOccurs="unbounded">
                 <xs:element ref="tei:note" minOccurs="0"/>
                 <xs:element ref="tei:ref" minOccurs="0"/>
+                <xs:element ref="tei:rs" minOccurs="0"/>
             </xs:choice>
             <xs:attribute name="rendition" type="tei:renditionType"/>
             <xs:attribute name="type">
@@ -644,6 +654,7 @@
                 <xs:element ref="tei:bibl" minOccurs="0"/>
                 <xs:element ref="tei:rs" minOccurs="0"/>
                 <xs:element ref="tei:pb" minOccurs="0"/>
+                <xs:element ref="tei:emph" minOccurs="0"/>
             </xs:choice>
             <xs:attribute name="rendition" type="tei:renditionType"/>
             <xs:attribute ref="xml:space" use="optional"/>
@@ -692,6 +703,14 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="add">
+        <xs:complexType mixed="true">
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="tei:rs"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="del">
         <xs:complexType mixed="true">
             <xs:sequence>
@@ -702,6 +721,7 @@
     <xs:element name="emph">
         <xs:complexType mixed="true">
             <xs:sequence>
+                <xs:element ref="tei:rs" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -711,6 +731,10 @@
             <xs:sequence>
                 <xs:element name="seg" minOccurs="0">
                     <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element ref="tei:rs" minOccurs="0"/>
+                            <xs:element name="lb" minOccurs="0"/><!-- to be discussed -->
+                        </xs:choice>
                         <xs:attribute name="type">
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
@@ -749,6 +773,7 @@
             <xs:enumeration value="#superscript"/>
             <xs:enumeration value="#underlined"/>
             <xs:enumeration value="#underlined"/>
+            <xs:enumeration value="#overlined"/>
             <xs:enumeration value="#double_underlined"/>
             <xs:enumeration value="#HW_Quote"/>
             <xs:enumeration value="#HW_Gesperrt"/>
