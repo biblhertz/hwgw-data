@@ -38,25 +38,6 @@
                                                                     </xs:restriction>
                                                                 </xs:simpleType>
                                                             </xs:attribute>
-                                                            <xs:attribute name="n">
-                                                                <xs:simpleType>
-                                                                    <xs:restriction base="xs:string">
-                                                                        <xs:pattern value="s\d\d"/>
-                                                                    </xs:restriction>
-                                                                </xs:simpleType>
-                                                            </xs:attribute>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="respStmt">
-                                                        <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element name="resp">
-                                                                    <xs:complexType mixed="true"/>
-                                                                </xs:element>
-                                                                <xs:element name="name">
-                                                                    <xs:complexType mixed="true"/>
-                                                                </xs:element>
-                                                            </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
                                                     <xs:element name="funder">
@@ -85,6 +66,7 @@
                             <xs:element name="profileDesc">
 
                             </xs:element>
+                            <xs:element name="encodingDesc" minOccurs="0"/>
                             <xs:element name="revisionDesc">
 
                             </xs:element>
@@ -95,25 +77,47 @@
                     <xs:complexType>
                         <xs:sequence>
 
-                            <xs:element name="body" minOccurs="1" maxOccurs="1">
+                            <xs:element name="body">
                                 <xs:complexType>
                                     <xs:sequence/>
                                 </xs:complexType>
                             </xs:element>
 
-                            <xs:element name="back" minOccurs="0" maxOccurs="1">
+                            <xs:element name="back">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="div" minOccurs="4" maxOccurs="5">
+                                        <xs:element name="div">
                                             <xs:complexType>
                                                 <xs:sequence>
                                                     <xs:element name="head"/>
-                                                    <xs:element ref="tei:listBibl" minOccurs="0"/>
+                                                    <xs:element ref="tei:listBibl" minOccurs="0" maxOccurs="3"/>
                                                     <xs:element name="listObject" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence>
-                                                                <xs:element name="head"/>
-                                                                <xs:element ref="tei:listObject" maxOccurs="unbounded"/>
+                                                                <xs:element name="listObject" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:choice maxOccurs="unbounded">
+                                                                            <xs:element ref="tei:listObject" maxOccurs="unbounded"/>
+                                                                            <xs:element ref="tei:object" maxOccurs="unbounded"/>
+                                                                        </xs:choice>
+                                                                        <xs:attribute name="type" use="required">
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="xs:string">
+                                                                                    <xs:enumeration value="place"/>
+                                                                                    <xs:enumeration value="bibl"/>
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="n" use="required"/>
+                                                                        <xs:attribute name="corresp" use="required">
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="xs:string">
+                                                                                    <xs:pattern value="gnd-[0-9\-X]*|no_place|diverse"/>
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -121,7 +125,7 @@
                                                     <xs:element ref="tei:listOrg" minOccurs="0"/>
                                                     <xs:element ref="tei:listPlace" minOccurs="0"/>
                                                 </xs:sequence>
-                                                <xs:attribute ref="xml:id"/>
+                                                <xs:attribute ref="xml:id" use="required"/>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
@@ -131,7 +135,7 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
-            <xs:attribute name="n">
+            <xs:attribute name="n" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="999"/>
@@ -145,12 +149,12 @@
     <xs:element name="listBibl">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="bibl" maxOccurs="unbounded">
+                <xs:element name="bibl" minOccurs="0" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="title">
                                 <xs:complexType mixed="true">
-                                    <xs:attribute name="type">
+                                    <xs:attribute name="type" use="required">
                                         <xs:simpleType>
                                             <xs:restriction base="xs:string">
                                                 <xs:enumeration value="short"/>
@@ -161,14 +165,88 @@
                             </xs:element>
                             <xs:element name="bibl">
                                 <xs:complexType mixed="true">
-                                    <xs:choice>
+                                    <xs:choice maxOccurs="unbounded">
                                         <xs:element name="author" minOccurs="0" maxOccurs="unbounded">
                                             <xs:complexType mixed="true">
                                                 <xs:attribute name="ref"/>
                                             </xs:complexType>
                                         </xs:element>
+                                        <xs:element name="title" minOccurs="0" maxOccurs="3">
+                                            <xs:complexType mixed="true">
+                                                <xs:attribute name="level" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="a"/>
+                                                            <xs:enumeration value="j"/>
+                                                            <xs:enumeration value="m"/>
+                                                            <xs:enumeration value="s"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="pubPlace" minOccurs="0"/>
+                                        <xs:element name="publisher" minOccurs="0"/>
+                                        <xs:element name="editor" minOccurs="0"/>
+                                        <xs:element name="edition" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="date" minOccurs="0"/>
+                                        <xs:element name="hi" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType mixed="true">
+                                                <xs:attribute name="rendition" type="tei:renditionType" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="biblScope" minOccurs="0">
+                                            <xs:complexType mixed="true">
+                                                <xs:attribute name="unit" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="page"/>
+                                                            <xs:enumeration value="volume"/>
+                                                            <xs:enumeration value="part"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="bibl" minOccurs="0">
+                                            <xs:complexType mixed="true">
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="date" minOccurs="0"/>
+                                                    <xs:element name="pubPlace" minOccurs="0"/>
+                                                    <xs:element name="publisher" minOccurs="0"/>
+                                                    <xs:element name="editor" minOccurs="0"/>
+                                                </xs:choice>
+                                                <xs:attribute name="type" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="first"/>
+                                                            <xs:enumeration value="related"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="corresp">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                           <xs:pattern value="bib-.*"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ref" minOccurs="0">
+                                            <xs:complexType mixed="true">
+                                                <xs:attribute name="type" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="doi"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="target" type="xs:anyURI" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
                                     </xs:choice>
-                                    <xs:attribute name="type">
+                                    <xs:attribute name="type" use="required">
                                         <xs:simpleType>
                                             <xs:restriction base="xs:string">
                                                 <xs:enumeration
@@ -176,87 +254,78 @@
                                             </xs:restriction>
                                         </xs:simpleType>
                                     </xs:attribute>
+                                    <xs:attribute ref="xml:space" use="required"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute ref="xml:id"/>
+                        <xs:attribute ref="xml:id" use="required"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-
-    <xs:element name="listObject">
+    <xs:element name="object">
         <xs:complexType>
-            <xs:choice>
-                <xs:element name="object" maxOccurs="unbounded">
-                    <xs:complexType>
+            <xs:sequence>
+                <xs:element name="head" maxOccurs="unbounded">
+                    <xs:complexType mixed="true">
+                        <xs:attribute name="type" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="main"/>
+                                    <xs:enumeration value="short"/>
+                                    <xs:enumeration value="alternative"/>
+                                    <xs:enumeration value="hw"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="note" minOccurs="0">
+                    <xs:complexType mixed="true">
                         <xs:sequence>
-                            <xs:element name="head" maxOccurs="unbounded">
+                            <xs:element name="persName" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType mixed="true">
-                                    <xs:attribute name="type">
+                                    <xs:attribute name="role" use="required">
                                         <xs:simpleType>
                                             <xs:restriction base="xs:string">
-                                                <xs:enumeration value="main"/>
-                                                <xs:enumeration value="hw"/>
+                                                <xs:enumeration value="author"/>
                                             </xs:restriction>
                                         </xs:simpleType>
                                     </xs:attribute>
+                                    <xs:attribute name="ref"/>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="note">
+                            <xs:element name="date" minOccurs="0"/>
+                            <xs:element name="p" minOccurs="0">
                                 <xs:complexType mixed="true">
                                     <xs:sequence>
-                                        <xs:element name="persName" minOccurs="0">
-                                            <xs:complexType mixed="true">
-                                                <xs:attribute name="role">
-                                                    <xs:simpleType>
-                                                        <xs:restriction base="xs:string">
-                                                            <xs:enumeration value="author"/>
-                                                        </xs:restriction>
-                                                    </xs:simpleType>
-                                                </xs:attribute>
-                                                <xs:attribute name="ref"/>
-                                            </xs:complexType>
-                                        </xs:element>
-                                        <xs:element name="placeName" minOccurs="0" maxOccurs="2">
-                                            <xs:complexType mixed="true">
-                                                <xs:attribute name="type">
-                                                    <xs:simpleType>
-                                                        <xs:restriction base="xs:string">
-                                                            <xs:enumeration value="city"/>
-                                                            <xs:enumeration value="building"/>
-                                                        </xs:restriction>
-                                                    </xs:simpleType>
-                                                </xs:attribute>
-                                                <xs:attribute name="ref"/>
-                                            </xs:complexType>
-                                        </xs:element>
-                                        <xs:element name="objectName" minOccurs="0">
-                                            <xs:complexType mixed="true">
-                                                <xs:attribute name="ref"/>
-                                            </xs:complexType>
-                                        </xs:element>
-                                        <xs:element name="p" minOccurs="0">
-                                            <xs:complexType mixed="true"/>
-                                        </xs:element>
-                                        <xs:element name="term" minOccurs="0">
-                                            <xs:complexType mixed="true"/>
-                                        </xs:element>
+                                        <xs:element name="material" minOccurs="0"/>
+                                        <xs:element name="dim" minOccurs="0"/>
+                                        <xs:element name="idno" minOccurs="0"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
+                            <xs:element ref="tei:idno" minOccurs="0"/>
                         </xs:sequence>
-                        <xs:attribute ref="xml:id"/>
                     </xs:complexType>
                 </xs:element>
+            </xs:sequence>
+            <xs:attribute ref="xml:id" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="listObject">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="tei:object" maxOccurs="unbounded" minOccurs="0"/>
                 <xs:element ref="tei:listObject" maxOccurs="unbounded" minOccurs="0"/>
             </xs:choice>
-            <xs:attribute name="corresp" use="optional">
+            <xs:attribute name="corresp">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <xs:pattern value="^(gnd-|object-)"/>
+                        <xs:pattern value="(gnd-|object-|bib-).*"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
@@ -264,9 +333,12 @@
             <xs:attribute name="type" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
+                        <xs:enumeration value="bibl"/>
                         <xs:enumeration value="place"/>
                         <xs:enumeration value="organisation"/>
                         <xs:enumeration value="object"/>
+                        <xs:enumeration value="part"/>
+                        <xs:enumeration value="category"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
@@ -279,25 +351,26 @@
                 <xs:element name="person" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="persName">
+                            <xs:element name="persName" maxOccurs="unbounded">
                                 <xs:complexType mixed="true">
-                                    <xs:choice minOccurs="0"/>
-                                    <xs:attribute name="type">
+                                    <xs:attribute name="type" use="required">
                                         <xs:simpleType>
                                             <xs:restriction base="xs:string">
-                                                <xs:enumeration value="full"/>
+                                                <xs:enumeration value="main"/>
+                                                <xs:enumeration value="alternative"/>
+                                                <xs:enumeration value="nee"/>
                                             </xs:restriction>
                                         </xs:simpleType>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="birth" minOccurs="0">
-                                <xs:complexType>
+                                <xs:complexType mixed="true">
                                     <xs:attribute name="when" type="xs:gYear"/>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="death" minOccurs="0">
-                                <xs:complexType>
+                                <xs:complexType mixed="true">
                                     <xs:attribute name="when" type="xs:gYear"/>
                                 </xs:complexType>
                             </xs:element>
@@ -306,25 +379,9 @@
                                     <xs:choice minOccurs="0"/>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="occupation" minOccurs="0" maxOccurs="unbounded">
-                                <xs:complexType mixed="true">
-                                    <xs:choice minOccurs="0"/>
-                                </xs:complexType>
-                            </xs:element>
-                            <xs:element name="ptr" minOccurs="0">
-                                <xs:complexType>
-                                    <xs:attribute name="type">
-                                        <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                                <xs:enumeration value="gnd"/>
-                                            </xs:restriction>
-                                        </xs:simpleType>
-                                    </xs:attribute>
-                                    <xs:attribute name="target" type="xs:anyURI"/>
-                                </xs:complexType>
-                            </xs:element>
+                            <xs:element ref="tei:idno" minOccurs="0" maxOccurs="3"/>
                         </xs:sequence>
-                        <xs:attribute ref="xml:id"/>
+                        <xs:attribute ref="xml:id" use="required"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
@@ -337,13 +394,25 @@
                 <xs:element name="org" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="orgName">
+                            <xs:element name="orgName" maxOccurs="unbounded">
                                 <xs:complexType mixed="true">
-                                    <xs:choice minOccurs="0"/>
-                                    <xs:attribute name="type">
+                                    <xs:attribute name="type" use="required">
                                         <xs:simpleType>
                                             <xs:restriction base="xs:string">
-                                                <xs:enumeration value="full"/>
+                                                <xs:enumeration value="main"/>
+                                                <xs:enumeration value="alternative"/>
+                                                <xs:enumeration value="short"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="placeName" minOccurs="0">
+                                <xs:complexType mixed="true">
+                                    <xs:attribute name="ref" use="required">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:pattern value="gnd-[0-9\-X]*"/>
                                             </xs:restriction>
                                         </xs:simpleType>
                                     </xs:attribute>
@@ -352,23 +421,13 @@
                             <xs:element name="p" minOccurs="0">
                                 <xs:complexType mixed="true">
                                     <xs:sequence>
+                                        <xs:element ref="tei:rs" minOccurs="0"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                             <xs:element name="ptr">
-                                <xs:complexType>
-                                    <xs:attribute name="type">
-                                        <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                                <xs:enumeration value="gnd"/>
-                                            </xs:restriction>
-                                        </xs:simpleType>
-                                    </xs:attribute>
-                                    <xs:attribute name="target" type="xs:anyURI"/>
-                                </xs:complexType>
-                            </xs:element>
+                            <xs:element ref="tei:idno"/>
                         </xs:sequence>
-                        <xs:attribute ref="xml:id"/>
+                        <xs:attribute ref="xml:id" use="required"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
@@ -381,13 +440,13 @@
                 <xs:element name="place" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="placeName">
+                            <xs:element name="placeName" maxOccurs="unbounded">
                                 <xs:complexType mixed="true">
-                                    <xs:choice minOccurs="0"/>
-                                    <xs:attribute name="type">
+                                    <xs:attribute name="type" use="required">
                                         <xs:simpleType>
                                             <xs:restriction base="xs:string">
-                                                <xs:enumeration value="full"/>
+                                                <xs:enumeration value="main"/>
+                                                <xs:enumeration value="alternative"/>
                                             </xs:restriction>
                                         </xs:simpleType>
                                     </xs:attribute>
@@ -398,25 +457,28 @@
                                     <xs:choice minOccurs="0"/>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="ptr">
-                                <xs:complexType>
-                                    <xs:attribute name="type">
-                                        <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                                <xs:enumeration value="gnd"/>
-                                            </xs:restriction>
-                                        </xs:simpleType>
-                                    </xs:attribute>
-                                    <xs:attribute name="target" type="xs:anyURI"/>
-                                </xs:complexType>
-                            </xs:element>
+                            <xs:element ref="tei:idno"/>
                         </xs:sequence>
-                        <xs:attribute ref="xml:id"/>
+                        <xs:attribute ref="xml:id" use="required"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     <!-- generic type of comments -->
+
+    <xs:element name="idno">
+        <xs:complexType mixed="true">
+            <xs:attribute name="type" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="GND"/>
+                        <xs:enumeration value="VIAF"/>
+                        <xs:enumeration value="ULAN"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
 
 </xs:schema>

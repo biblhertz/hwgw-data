@@ -50,13 +50,14 @@
             <xs:pattern value="bib-[0-9a-zA-Z\-.]*"/>
             <!-- art entries -->
             <xs:pattern value="object-[0-9a-zA-Z\-]*"/>
-            <xs:pattern value="index-(bib|obj|pers|place)"/>
+            <xs:pattern value="index-(bib|obj|org|pers|place)"/>
 
             <!-- styles -->
             <xs:pattern value="italic"/>
             <xs:pattern value="left"/>
             <xs:pattern value="right"/>
             <xs:pattern value="underlined"/>
+            <xs:pattern value="superscript"/>
             <xs:pattern value="double_underlined"/>
             <xs:pattern value="HW_Date_left"/>
             <xs:pattern value="HW_Durchgestrichen"/>
