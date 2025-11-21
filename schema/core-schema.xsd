@@ -11,7 +11,7 @@
 
      <xs:complexType name="divPrimary">
         <xs:choice maxOccurs="unbounded">
-            <xs:element ref="tei:head" maxOccurs="1"/>
+            <xs:element ref="tei:head"/>
             <xs:element ref="tei:ab" minOccurs="0"/>
             <xs:element ref="tei:ref" minOccurs="0"/>
             <xs:element ref="tei:milestone" minOccurs="0"/>
@@ -30,6 +30,7 @@
                     <xs:sequence>
                         <xs:any processContents="skip"/>
                     </xs:sequence>
+                    <xs:attribute name="rendition" type="tei:renditionType"/>
                 </xs:complexType>
             </xs:element>
         </xs:choice>
@@ -54,7 +55,7 @@
 
     <xs:complexType name="divSecondary">
         <xs:choice maxOccurs="unbounded">
-            <xs:element ref="tei:head" maxOccurs="1"/>
+            <xs:element ref="tei:head"/>
             <xs:element ref="tei:ref" minOccurs="0"/>
             <xs:element ref="tei:dateline" minOccurs="0"/>
             <xs:element ref="tei:signed" minOccurs="0"/>
@@ -68,7 +69,7 @@
             <xs:element ref="tei:floatingText" minOccurs="0"/>
             <xs:element name="ab" minOccurs="0">
                 <xs:complexType>
-                    <xs:sequence>
+                    <xs:choice maxOccurs="unbounded">
                         <xs:element name="ptr" maxOccurs="unbounded">
                             <xs:complexType>
                                 <xs:attribute name="type">
@@ -83,8 +84,8 @@
                                 <xs:attribute name="target" type="xs:anyURI"/>
                             </xs:complexType>
                         </xs:element>
-                        <xs:element ref="tei:pb"/>
-                    </xs:sequence>
+                        <xs:element ref="tei:pb" minOccurs="0"/>
+                    </xs:choice>
                     <xs:attribute name="type">
                         <xs:simpleType>
                             <xs:restriction base="xs:string">
@@ -95,6 +96,7 @@
                 </xs:complexType>
             </xs:element>
             <xs:element name="docAuthor" minOccurs="0" type="tei:paragraphLikeSecondary"/>
+            <xs:element name="docTitle" minOccurs="0" type="tei:paragraphLikeSecondary"/>
             <xs:element name="p" minOccurs="0" type="tei:paragraphLikeSecondary"/>
             <xs:element name="div" minOccurs="0" type="tei:divSecondary"/>
         </xs:choice>
@@ -135,7 +137,7 @@
                     </xs:complexType>
                 </xs:element>
                 <xs:element ref="tei:lg" minOccurs="0"/>
-                <xs:element name="p" minOccurs="1" type="tei:paragraphLikeAnyNote"/>
+                <xs:element name="p" type="tei:paragraphLikeAnyNote"/>
             </xs:choice>
             <xs:attribute ref="xml:id" use="required"/>
             <xs:attribute name="place">
@@ -226,6 +228,13 @@
             <xs:element ref="tei:choice" minOccurs="0"/>
             <xs:element ref="tei:del" minOccurs="0"/>
             <xs:element ref="tei:add" minOccurs="0"/>
+            <xs:element name="milestone">
+                <xs:complexType>
+                    <xs:attribute name="unit" fixed="page" use="required"/>
+                    <xs:attribute name="n" type="xs:integer" use="required"/>
+                    <xs:attribute name="ed" type="tei:edTypeOld" use="required"/>
+                </xs:complexType>
+            </xs:element>
         </xs:choice>
         <xs:attribute ref="xml:id" use="required"/>
             <xs:attribute name="rendition" type="tei:renditionType"/>
@@ -295,7 +304,7 @@
                 </xs:element>
                 <xs:element ref="tei:head" minOccurs="0"/>
                 <xs:element ref="tei:note" minOccurs="0"/>
-                <xs:element ref="tei:figDesc" minOccurs="1"/>
+                <xs:element ref="tei:figDesc"/>
             </xs:sequence>
             <xs:attribute ref="xml:id" use="required"/>
             <xs:attribute name="rendition" type="tei:renditionType"/>
@@ -360,7 +369,7 @@
                 <xs:element ref="tei:emph" minOccurs="0"/>
             </xs:choice>
             <xs:attribute name="rendition" type="tei:renditionType"/>
-            <xs:attribute ref="xml:space" use="optional"/>
+            <xs:attribute ref="xml:space"/>
             <xs:attribute name="rend">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -401,7 +410,7 @@
 
     <xs:element name="rs">
         <xs:complexType mixed="true">
-            <xs:sequence>
+            <xs:choice maxOccurs="unbounded">
                 <xs:element ref="tei:milestone" minOccurs="0"/>
                 <xs:element ref="tei:add" minOccurs="0"/>
                 <xs:element ref="tei:hi" minOccurs="0"/>
@@ -418,7 +427,7 @@
                         </xs:attribute>
                     </xs:complexType>
                 </xs:element>
-            </xs:sequence>
+            </xs:choice>
             <xs:attribute name="ref" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:anyURI">
@@ -460,18 +469,8 @@
             <xs:sequence>
                 <xs:element ref="tei:choice" minOccurs="0"/>
                 <xs:element ref="tei:rs" minOccurs="0"/>
-                <xs:element name="title" minOccurs="0">
-                    <xs:complexType>
-                        <xs:attribute name="level" use="required">
-                            <xs:simpleType>
-                                <xs:restriction base="xs:string">
-                                    <xs:enumeration value="a"/>
-                                    <xs:enumeration value="m"/>
-                                </xs:restriction>
-                            </xs:simpleType>
-                        </xs:attribute>
-                    </xs:complexType>
-                </xs:element>
+                <xs:element ref="tei:bibl" minOccurs="0"/>
+                <xs:element ref="tei:emph" minOccurs="0"/>
             </xs:sequence>
             <xs:attribute name="corresp" use="required">
                 <xs:simpleType>
@@ -495,16 +494,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="ed" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:enumeration value="1886"/>
-                        <xs:enumeration value="1888"/>
-                        <xs:enumeration value="1889"/>
-                        <xs:enumeration value="1891"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:attribute>
+            <xs:attribute name="ed" type="tei:edTypeOld" use="required"/>
             <xs:attribute name="n" type="xs:string" use="required"/>
             <xs:attribute name="facs" type="xs:anyURI" use="required"/>
             <xs:attribute name="hw_facs_order" type="xs:integer" use="required"/>
@@ -516,6 +506,8 @@
             <xs:choice maxOccurs="unbounded">
                 <xs:element ref="tei:note" minOccurs="0"/>
                 <xs:element ref="tei:rs" minOccurs="0"/>
+                <xs:element ref="tei:bibl" minOccurs="0"/>
+                <xs:element ref="tei:ref" minOccurs="0"/>
                 <xs:element ref="tei:hi" minOccurs="0"/>
                 <xs:element ref="tei:emph" minOccurs="0"/>
                 <xs:element name="lb" minOccurs="0"/>
@@ -525,30 +517,11 @@
                             <xs:element ref="tei:note" minOccurs="0"/>
                             <xs:element ref="tei:rs" minOccurs="0"/>
                         </xs:choice>
-                        <xs:attribute name="rendition">
-                            <xs:simpleType>
-                                <xs:restriction base="xs:string">
-                                    <xs:enumeration value="#HW_Section_line1"/>
-                                    <xs:enumeration value="#HW_Section_line2"/>
-                                </xs:restriction>
-                            </xs:simpleType>
-                        </xs:attribute>
+                        <xs:attribute name="rendition" type="tei:renditionType"/>
                     </xs:complexType>
                 </xs:element>
             </xs:choice>
-            <xs:attribute name="rendition">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:enumeration value="#HW_Section"/>
-                        <xs:enumeration value="#HW_Section_lines"/>
-                        <xs:enumeration value="#HW_Ueberschrift1"/>
-                        <xs:enumeration value="#HW_Zwischentitel"/>
-                        <xs:enumeration value="#HW_Ueberschrift2"/>
-                        <xs:enumeration value="#HW_Image_list"/>
-                        <xs:enumeration value="#HW_TOC"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:attribute>
+            <xs:attribute name="rendition" type="tei:renditionType"/>
             <xs:attribute ref="xml:space" use="required"/>
             <xs:attribute name="n"/>
         </xs:complexType>
@@ -557,7 +530,7 @@
     <xs:element name="lg">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="tei:l" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element ref="tei:l" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -567,7 +540,7 @@
     <xs:element name="table">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="tei:row" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element ref="tei:row" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -575,7 +548,7 @@
     <xs:element name="row">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="tei:cell" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element ref="tei:cell" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -595,6 +568,7 @@
                 <xs:element ref="tei:note" minOccurs="0"/>
                 <xs:element ref="tei:pb" minOccurs="0"/>
                 <xs:element ref="tei:rs" minOccurs="0"/>
+                <xs:element ref="tei:choice" minOccurs="0"/>
             </xs:choice>
             <xs:attribute name="rendition" type="tei:renditionType" use="required"/>
         </xs:complexType>
@@ -659,7 +633,7 @@
                 <xs:element ref="tei:emph" minOccurs="0"/>
             </xs:choice>
             <xs:attribute name="rendition" type="tei:renditionType"/>
-            <xs:attribute ref="xml:space" use="optional"/>
+            <xs:attribute ref="xml:space"/>
             <xs:attribute name="type">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -672,18 +646,7 @@
     <xs:element name="pb">
         <xs:complexType>
             <xs:attribute ref="xml:id" use="required"/>
-            <xs:attribute name="ed" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:enumeration value="2019"/>
-                        <xs:enumeration value="2020"/>
-                        <xs:enumeration value="2021"/>
-                        <xs:enumeration value="2023"/>
-                        <xs:enumeration value="2025"/>
-                        <xs:enumeration value="2026"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:attribute>
+            <xs:attribute name="ed" type="tei:edTypeNew" use="required"/>
             <xs:attribute name="n" type="xs:string" use="required"/>
             <xs:attribute name="break">
                 <xs:simpleType>
@@ -712,15 +675,16 @@
     <xs:element name="add">
         <xs:complexType mixed="true">
             <xs:choice maxOccurs="unbounded">
-                <xs:element ref="tei:rs"/>
+                <xs:element ref="tei:rs" minOccurs="0"/>
             </xs:choice>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="del">
         <xs:complexType mixed="true">
-            <xs:sequence>
-            </xs:sequence>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="tei:rs" minOccurs="0"/>
+            </xs:choice>
         </xs:complexType>
     </xs:element>
 
@@ -736,9 +700,10 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="seg" minOccurs="0">
-                    <xs:complexType>
+                    <xs:complexType mixed="true">
                         <xs:choice maxOccurs="unbounded">
                             <xs:element ref="tei:rs" minOccurs="0"/>
+                            <xs:element ref="tei:ref" minOccurs="0"/>
                             <xs:element name="lb" minOccurs="0"/><!-- to be discussed -->
                         </xs:choice>
                         <xs:attribute name="type">
@@ -752,12 +717,17 @@
                 </xs:element>
                 <xs:element name="sic">
                     <xs:complexType mixed="true">
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element ref="tei:ref" minOccurs="0"/>
+                        </xs:choice>
                         <xs:attribute name="n" use="required"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="corr">
                     <xs:complexType mixed="true">
-
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element ref="tei:ref" minOccurs="0"/>
+                        </xs:choice>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
@@ -765,40 +735,29 @@
     </xs:element>
 
     <!-- attributes -->
-    <xs:simpleType name="renditionEnum">
+
+    <xs:simpleType name="edTypeOld">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="#block"/>
-            <xs:enumeration value="#left"/>
-            <xs:enumeration value="#right"/>
-            <xs:enumeration value="#center"/>
-            <xs:enumeration value="#fraktur"/>
-            <xs:enumeration value="#indent"/>
-            <xs:enumeration value="#italic"/>
-            <xs:enumeration value="#left #indent"/>
-            <xs:enumeration value="#smallcaps"/>
-            <xs:enumeration value="#spaced"/>
-            <xs:enumeration value="#superscript"/>
-            <xs:enumeration value="#underlined"/>
-            <xs:enumeration value="#overlined"/>
-            <xs:enumeration value="#double_underlined"/>
-            <xs:enumeration value="#HW_Quote"/>
-            <xs:enumeration value="#HW_Gesperrt"/>
-            <xs:enumeration value="#HW_Page_mark"/>
-            <xs:enumeration value="#HW_Hoch"/>
-            <xs:enumeration value="#HW_Untertitel2"/>
-            <xs:enumeration value="#HW_Index1"/>
-            <xs:enumeration value="#HW_Index2"/>
-            <xs:enumeration value="#HW_Index3"/>
-            <xs:enumeration value="#HW_document_description"/>
+            <xs:enumeration value="1886"/>
+            <xs:enumeration value="1888"/>
+            <xs:enumeration value="1889"/>
+            <xs:enumeration value="1891"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="renditionType">
-        <xs:union memberTypes="tei:renditionEnum">
-            <xs:simpleType>
-                <xs:restriction base="xs:string">
-                    <xs:pattern value="^#s[0-9][0-9].*"/>
-                </xs:restriction>
-            </xs:simpleType>
-        </xs:union>
+
+    <xs:simpleType name="edTypeNew">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="2019"/>
+            <xs:enumeration value="2020"/>
+            <xs:enumeration value="2021"/>
+            <xs:enumeration value="2023"/>
+            <xs:enumeration value="2025"/>
+            <xs:enumeration value="2026"/>
+        </xs:restriction>
     </xs:simpleType>
+
+    <xs:simpleType name="renditionType">
+        <xs:restriction base="xml:renditionLinkType"/>
+    </xs:simpleType>
+
 </xs:schema>

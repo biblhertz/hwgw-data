@@ -190,11 +190,7 @@
                                         <xs:element name="editor" minOccurs="0"/>
                                         <xs:element name="edition" minOccurs="0" maxOccurs="unbounded"/>
                                         <xs:element name="date" minOccurs="0"/>
-                                        <xs:element name="hi" minOccurs="0" maxOccurs="unbounded">
-                                            <xs:complexType mixed="true">
-                                                <xs:attribute name="rendition" type="tei:renditionType" use="required"/>
-                                            </xs:complexType>
-                                        </xs:element>
+                                        <xs:element ref="tei:hi" minOccurs="0" maxOccurs="unbounded"/>
                                         <xs:element name="biblScope" minOccurs="0">
                                             <xs:complexType mixed="true">
                                                 <xs:attribute name="unit" use="required">
