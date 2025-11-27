@@ -172,15 +172,14 @@ viewer Tify. `@ed` carries the year of the publication:
 References to related text elements are marked with `ref`. There are the following types:
 
 - page: link to a page from the original publication
-- old-page: link to the page from the original publication (special case)
 - modern-page: link to a page mark from the printed edition pagination
-- interdocument: link to a part of a different XML file
 - comment: link to a editorial comment
 - chapter: link to a chapter
 - footnote: link to a footnote
 - weblink: external link
 - manifest: for IIIF manifests in the header
 - doi: external link with DOI
+- note: from index to apparatus
 
 References to people, places and organisations use the following similar format. The ID of these entities is usually
 derived directly from GND:

@@ -292,7 +292,5 @@
         </xs:complexType>
     </xs:element>
 
-    <!-- generic type of comments -->
-
     <xs:element name="div" type="tei:divSecondary"/>
 </xs:schema>

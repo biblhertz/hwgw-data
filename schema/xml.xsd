@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Stand: 12.03.2016 -->
+
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/XML/1998/namespace" >
 
-  <xs:attribute name="id">
-    <xs:annotation>
-      <xs:documentation>(identifier) provides a unique identifier for the element bearing the attribute.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-        <xs:union memberTypes="xml:elementIdType xml:renditionIdType">
-        </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
+    <xs:attribute name="id">
+        <xs:annotation>
+            <xs:documentation>(identifier) provides a unique identifier for the element bearing the attribute.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:union memberTypes="xml:elementIdType xml:renditionIdType"/>
+        </xs:simpleType>
+    </xs:attribute>
 
-  <xs:attribute name="lang" type="xs:language">
-    <xs:annotation>
-      <xs:documentation>language</xs:documentation>
-    </xs:annotation>
-  </xs:attribute>
+    <xs:attribute name="lang" type="xs:language">
+        <xs:annotation>
+            <xs:documentation>language</xs:documentation>
+        </xs:annotation>
+    </xs:attribute>
 
     <xs:attribute name="space">
         <xs:simpleType>
@@ -106,6 +105,8 @@
             <xs:pattern value="#?block"/>
             <xs:pattern value="#?center"/>
             <xs:pattern value="#?fraktur"/>
+            <xs:pattern value="#?smallcaps"/>
+            <xs:pattern value="#?allcaps"/>
             <xs:pattern value="#?indent"/>
             <xs:pattern value="#?italic"/>
             <xs:pattern value="#?left"/>

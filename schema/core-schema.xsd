@@ -5,11 +5,7 @@
            targetNamespace="http://www.tei-c.org/ns/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 
-
-
-    <!-- generic type of comments -->
-
-     <xs:complexType name="divPrimary">
+    <xs:complexType name="divPrimary">
         <xs:choice maxOccurs="unbounded">
             <xs:element ref="tei:head"/>
             <xs:element ref="tei:ab" minOccurs="0"/>
@@ -392,9 +388,7 @@
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:enumeration value="page"/>
-                        <xs:enumeration value="old-page"/>
                         <xs:enumeration value="modern-page"/>
-                        <xs:enumeration value="interdocument"/>
                         <xs:enumeration value="comment"/>
                         <xs:enumeration value="chapter"/>
                         <xs:enumeration value="document"/>
@@ -402,6 +396,7 @@
                         <xs:enumeration value="weblink"/>
                         <xs:enumeration value="manifest"/>
                         <xs:enumeration value="doi"/>
+                        <xs:enumeration value="note"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
@@ -691,7 +686,7 @@
     <xs:element name="emph">
         <xs:complexType mixed="true">
             <xs:sequence>
-                <xs:element ref="tei:rs" minOccurs="0"/>
+                <xs:element ref="tei:rs" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

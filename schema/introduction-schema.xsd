@@ -242,7 +242,7 @@
                                         <xs:element name="tagsDecl">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="rendition">
+                                                    <xs:element name="rendition" maxOccurs="unbounded">
                                                         <xs:complexType mixed="true">
                                                             <xs:attribute ref="xml:id"/>
                                                         </xs:complexType>

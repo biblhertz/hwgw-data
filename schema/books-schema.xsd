@@ -330,6 +330,4 @@
         </xs:complexType>
     </xs:element>
 
-    <!-- generic type of comments -->
-
 </xs:schema>

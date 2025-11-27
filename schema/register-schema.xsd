@@ -461,7 +461,6 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <!-- generic type of comments -->
 
     <xs:element name="idno">
         <xs:complexType mixed="true">
