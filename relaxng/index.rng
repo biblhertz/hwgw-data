@@ -125,247 +125,239 @@
                 </oneOrMore>
               </element>
             </element>
-            <element name="back">
-              <element name="div">
-                <attribute name="xml:id">
-                  <value>index-obj</value>
-                </attribute>
-                <element name="head">
-                  <value>Objektverzeichnis</value>
-                </element>
-                <element name="listObject">
-                  <oneOrMore>
-                    <ref name="listObject_place"/>
-                  </oneOrMore>
-                </element>
+            <element name="div">
+              <attribute name="xml:id">
+                <value>index-obj</value>
+              </attribute>
+              <element name="head">
+                <value>Objektverzeichnis</value>
+              </element>
+              <element name="listObject">
+                <oneOrMore>
+                  <ref name="listObject_place"/>
+                </oneOrMore>
               </element>
             </element>
-            <element name="back">
-              <element name="div">
-                <attribute name="xml:id">
-                  <value>index-org</value>
-                </attribute>
-                <element name="head">
-                  <value>Organisationsverzeichnis</value>
-                </element>
-                <element name="listOrg">
-                  <oneOrMore>
-                    <element name="org">
-                      <attribute name="xml:id"/>
+            <element name="div">
+              <attribute name="xml:id">
+                <value>index-org</value>
+              </attribute>
+              <element name="head">
+                <value>Organisationsverzeichnis</value>
+              </element>
+              <element name="listOrg">
+                <oneOrMore>
+                  <element name="org">
+                    <attribute name="xml:id"/>
+                    <element name="orgName">
+                      <attribute name="type">
+                        <value>main</value>
+                      </attribute>
+                      <text/>
+                    </element>
+                    <optional>
                       <element name="orgName">
                         <attribute name="type">
-                          <value>main</value>
+                          <value>short</value>
                         </attribute>
                         <text/>
                       </element>
-                      <optional>
-                        <element name="orgName">
-                          <attribute name="type">
-                            <value>short</value>
-                          </attribute>
-                          <text/>
-                        </element>
-                      </optional>
-                      <element name="placeName">
-                        <attribute name="ref"/>
-                        <text/>
-                      </element>
-                      <optional>
-                        <element name="p">
-                          <mixed>
-                            <optional>
-                              <element name="rs">
-                                <attribute name="type">
-                                  <value>org</value>
-                                </attribute>
-                              </element>
-                            </optional>
-                          </mixed>
-                        </element>
-                      </optional>
-                      <element name="idno">
-                        <attribute name="type">
-                          <value>GND</value>
-                        </attribute>
-                        <text/>
-                      </element>
+                    </optional>
+                    <element name="placeName">
+                      <attribute name="ref"/>
+                      <text/>
                     </element>
-                  </oneOrMore>
-                </element>
+                    <optional>
+                      <element name="p">
+                        <mixed>
+                          <optional>
+                            <element name="rs">
+                              <attribute name="type">
+                                <value>org</value>
+                              </attribute>
+                            </element>
+                          </optional>
+                        </mixed>
+                      </element>
+                    </optional>
+                    <element name="idno">
+                      <attribute name="type">
+                        <value>GND</value>
+                      </attribute>
+                      <text/>
+                    </element>
+                  </element>
+                </oneOrMore>
               </element>
             </element>
-            <element name="back">
-              <element name="div">
-                <attribute name="xml:id">
-                  <value>index-pers</value>
-                </attribute>
-                <element name="head">
-                  <value>Personenverzeichnis</value>
-                </element>
-                <element name="listPerson">
-                  <oneOrMore>
-                    <element name="person">
-                      <attribute name="xml:id"/>
+            <element name="div">
+              <attribute name="xml:id">
+                <value>index-pers</value>
+              </attribute>
+              <element name="head">
+                <value>Personenverzeichnis</value>
+              </element>
+              <element name="listPerson">
+                <oneOrMore>
+                  <element name="person">
+                    <attribute name="xml:id"/>
+                    <element name="persName">
+                      <attribute name="type">
+                        <value>main</value>
+                      </attribute>
+                      <text/>
+                    </element>
+                    <optional>
                       <element name="persName">
                         <attribute name="type">
-                          <value>main</value>
+                          <value>nee</value>
                         </attribute>
                         <text/>
                       </element>
-                      <optional>
-                        <element name="persName">
-                          <attribute name="type">
-                            <value>nee</value>
-                          </attribute>
-                          <text/>
-                        </element>
-                      </optional>
-                      <zeroOrMore>
-                        <element name="persName">
-                          <attribute name="type">
-                            <value>alternative</value>
-                          </attribute>
-                          <text/>
-                        </element>
-                      </zeroOrMore>
-                      <choice>
-                        <group>
-                          <optional>
-                            <element name="birth">
-                              <choice>
-                                <group>
-                                  <attribute name="when">
-                                    <data type="string">
-                                      <param name="pattern" xml:space="preserve">[12]\d\d\d</param>
-                                    </data>
-                                  </attribute>
-                                  <empty/>
-                                </group>
-                                <group>
-                                  <attribute name="when">
-                                    <data type="string">
-                                      <param name="pattern" xml:space="preserve">0\d\d\d|-\d+</param>
-                                    </data>
-                                  </attribute>
-                                  <text/>
-                                </group>
-                                <text/>
-                              </choice>
-                            </element>
-                          </optional>
-                          <optional>
-                            <element name="death">
-                              <choice>
-                                <group>
-                                  <attribute name="when">
-                                    <data type="string">
-                                      <param name="pattern" xml:space="preserve">[12]\d\d\d</param>
-                                    </data>
-                                  </attribute>
-                                  <empty/>
-                                </group>
-                                <group>
-                                  <attribute name="when">
-                                    <data type="string">
-                                      <param name="pattern" xml:space="preserve">0\d\d\d|-\d+</param>
-                                    </data>
-                                  </attribute>
-                                  <text/>
-                                </group>
-                                <text/>
-                              </choice>
-                            </element>
-                          </optional>
-                        </group>
-                        <element name="note">
-                          <text/>
-                        </element>
-                      </choice>
-                      <optional>
-                        <element name="idno">
-                          <attribute name="type">
-                            <value>GND</value>
-                          </attribute>
-                          <text/>
-                        </element>
-                      </optional>
-                      <optional>
-                        <element name="idno">
-                          <attribute name="type">
-                            <value>ULAN</value>
-                          </attribute>
-                          <text/>
-                        </element>
-                      </optional>
-                      <optional>
-                        <element name="idno">
-                          <attribute name="type">
-                            <value>VIAF</value>
-                          </attribute>
-                          <text/>
-                        </element>
-                      </optional>
-                    </element>
-                  </oneOrMore>
-                </element>
-              </element>
-            </element>
-            <element name="back">
-              <element name="div">
-                <attribute name="xml:id">
-                  <value>index-place</value>
-                </attribute>
-                <element name="head">
-                  <value>Organisationsverzeichnis</value>
-                </element>
-                <element name="listPlace">
-                  <oneOrMore>
-                    <element name="place">
-                      <attribute name="xml:id"/>
-                      <element name="placeName">
+                    </optional>
+                    <zeroOrMore>
+                      <element name="persName">
                         <attribute name="type">
-                          <value>main</value>
+                          <value>alternative</value>
                         </attribute>
                         <text/>
                       </element>
-                      <optional>
-                        <element name="placeName">
-                          <attribute name="type">
-                            <value>short</value>
-                          </attribute>
-                          <text/>
-                        </element>
-                      </optional>
-                      <optional>
-                        <element name="placeName">
-                          <attribute name="type">
-                            <value>alternative</value>
-                          </attribute>
-                          <text/>
-                        </element>
-                      </optional>
-                      <optional>
-                        <element name="p">
-                          <mixed>
-                            <optional>
-                              <element name="rs">
-                                <attribute name="type">
-                                  <value>place</value>
+                    </zeroOrMore>
+                    <choice>
+                      <group>
+                        <optional>
+                          <element name="birth">
+                            <choice>
+                              <group>
+                                <attribute name="when">
+                                  <data type="string">
+                                    <param name="pattern" xml:space="preserve">[12]\d\d\d</param>
+                                  </data>
                                 </attribute>
-                              </element>
-                            </optional>
-                          </mixed>
-                        </element>
-                      </optional>
+                                <empty/>
+                              </group>
+                              <group>
+                                <attribute name="when">
+                                  <data type="string">
+                                    <param name="pattern" xml:space="preserve">0\d\d\d|-\d+</param>
+                                  </data>
+                                </attribute>
+                                <text/>
+                              </group>
+                              <text/>
+                            </choice>
+                          </element>
+                        </optional>
+                        <optional>
+                          <element name="death">
+                            <choice>
+                              <group>
+                                <attribute name="when">
+                                  <data type="string">
+                                    <param name="pattern" xml:space="preserve">[12]\d\d\d</param>
+                                  </data>
+                                </attribute>
+                                <empty/>
+                              </group>
+                              <group>
+                                <attribute name="when">
+                                  <data type="string">
+                                    <param name="pattern" xml:space="preserve">0\d\d\d|-\d+</param>
+                                  </data>
+                                </attribute>
+                                <text/>
+                              </group>
+                              <text/>
+                            </choice>
+                          </element>
+                        </optional>
+                      </group>
+                      <element name="note">
+                        <text/>
+                      </element>
+                    </choice>
+                    <optional>
                       <element name="idno">
                         <attribute name="type">
                           <value>GND</value>
                         </attribute>
                         <text/>
                       </element>
+                    </optional>
+                    <optional>
+                      <element name="idno">
+                        <attribute name="type">
+                          <value>ULAN</value>
+                        </attribute>
+                        <text/>
+                      </element>
+                    </optional>
+                    <optional>
+                      <element name="idno">
+                        <attribute name="type">
+                          <value>VIAF</value>
+                        </attribute>
+                        <text/>
+                      </element>
+                    </optional>
+                  </element>
+                </oneOrMore>
+              </element>
+            </element>
+            <element name="div">
+              <attribute name="xml:id">
+                <value>index-place</value>
+              </attribute>
+              <element name="head">
+                <value>Organisationsverzeichnis</value>
+              </element>
+              <element name="listPlace">
+                <oneOrMore>
+                  <element name="place">
+                    <attribute name="xml:id"/>
+                    <element name="placeName">
+                      <attribute name="type">
+                        <value>main</value>
+                      </attribute>
+                      <text/>
                     </element>
-                  </oneOrMore>
-                </element>
+                    <optional>
+                      <element name="placeName">
+                        <attribute name="type">
+                          <value>short</value>
+                        </attribute>
+                        <text/>
+                      </element>
+                    </optional>
+                    <optional>
+                      <element name="placeName">
+                        <attribute name="type">
+                          <value>alternative</value>
+                        </attribute>
+                        <text/>
+                      </element>
+                    </optional>
+                    <optional>
+                      <element name="p">
+                        <mixed>
+                          <optional>
+                            <element name="rs">
+                              <attribute name="type">
+                                <value>place</value>
+                              </attribute>
+                            </element>
+                          </optional>
+                        </mixed>
+                      </element>
+                    </optional>
+                    <element name="idno">
+                      <attribute name="type">
+                        <value>GND</value>
+                      </attribute>
+                      <text/>
+                    </element>
+                  </element>
+                </oneOrMore>
               </element>
             </element>
           </choice>
