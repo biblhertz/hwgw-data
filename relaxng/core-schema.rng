@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         ns="http://www.tei-c.org/ns/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <div xml:id="header">
+        <define name="header_edition_stmt">
+            <element name="editionStmt">
+                <element name="edition">
+                    <element name="title">
+                        <value>Online-Edition</value>
+                    </element>
+                </element>
+                <element name="funder">
+                    <attribute name="ref">
+                        <value>https://data.snf.ch/grants/grant/157979</value>
+                    </attribute>
+                    <value>Schweizerischer Nationalfonds zur Förderung der wissenschaftlichen Forschung</value>
+                </element>
+                <element name="funder">
+                    <attribute name="ref">
+                        <value>https://data.snf.ch/grants/grant/198243</value>
+                    </attribute>
+                    <value>Schweizerischer Nationalfonds zur Förderung der wissenschaftlichen Forschung</value>
+                </element>
+                <element name="funder">
+                    <value>Bibliotheca Hertziana – Max-Planck-Institut für Kunstgeschichte</value>
+                </element>
+            </element>
+        </define>
+        <define name="header_publication_stmt">
+            <element name="publicationStmt">
+                <element name="publisher">
+                    <value>Universität Zürich: Kunsthistorisches Institut</value>
+                </element>
+                <element name="publisher">
+                    <value>Bibliotheca Hertziana – Max-Planck-Institut für Kunstgeschichte</value>
+                </element>
+                <element name="pubPlace">
+                    <value>Zürich und Rom</value>
+                </element>
+                <element name="availability">
+                    <element name="licence">
+                        <attribute name="target">
+                            <value>http://creativecommons.org/licenses/by/4.0/</value>
+                        </attribute>
+                        <attribute name="date">
+                            <data type="gYear"/>
+                        </attribute>
+                        <element name="p">
+                            <value>The Creative Commons Attribution 4.0 International (CC BY 4.0) Licence applies to this document.</value>
+                        </element>
+                    </element>
+                </element>
+            </element>
+        </define>
+        <define name="header_series_stmt">
+            <element name="seriesStmt">
+                <element name="title">
+                    <attribute name="level"><value>s</value></attribute>
+                    <value>Heinrich Wölfflin – Gesammelte Werke</value>
+                </element>
+                <element name="respStmt">
+                    <element name="resp">
+                        <value>Herausgegeben von</value>
+                    </element>
+                    <element name="name">
+                        <value>Tristan Weddigen</value>
+                    </element>
+                    <element name="name">
+                        <value>Oskar Bätschmann</value>
+                    </element>
+                    <optional>
+                        <element name="name">
+                            <value>Joris van Gastel</value>
+                        </element>
+                    </optional>
+                </element>
+                <element name="biblScope">
+                    <attribute name="unit">
+                        <value>volume</value>
+                    </attribute>
+                    <data type="integer"/>
+                </element>
+                <element name="biblScope">
+                    <attribute name="unit">
+                        <value>part</value>
+                    </attribute>
+                    <data type="integer"/>
+                </element>
+            </element>
+        </define>
+        <define name="header_modern_book">
+            <element name="bibl">
+                <attribute name="type">
+                    <value>printed_edition</value>
+                </attribute>
+                <ref name="core_space_preserve"/>
+                <mixed>
+                    <element name="author">
+                        <text />
+                    </element>
+                    <element name="title">
+                        <attribute name="level">
+                            <value>m</value>
+                        </attribute>
+                        <text />
+                    </element>
+                    <element name="date">
+                        <data type="gYear" />
+                    </element>
+                    <element name="respStmt">
+                        <element name="resp">
+                            <value>Einleitung</value>
+                        </element>
+                        <text />
+                        <element name="name">
+                            <text />
+                        </element>
+                        <text />
+                    </element>
+                    <element name="respStmt">
+                        <element name="resp">
+                            <choice>
+                                <value>Bearbeitung und Kommentar</value>
+                                <value>Kommentar und Bearbeitung</value>
+                            </choice>
+                        </element>
+                        <text />
+                        <oneOrMore>
+                            <element name="name">
+                                <text />
+                            </element>
+                            <text />
+                        </oneOrMore>
+                    </element>
+                    <element name="editor">
+                        <element name="name">
+                            <value>Tristan Weddigen</value>
+                        </element>
+                    </element>
+                    <element name="editor">
+                        <element name="name">
+                            <value>Oskar Bätschmann</value>
+                        </element>
+                    </element>
+                    <optional>
+                        <element name="editor">
+                            <element name="name">
+                                <value>Joris van Gastel</value>
+                            </element>
+                        </element>
+                    </optional>
+                    <element name="title">
+                        <attribute name="level">
+                            <value>s</value>
+                        </attribute>
+                        <value>Heinrich Wölfflin Gesammelte Werke</value>
+                    </element>
+                    <element name="biblScope">
+                        <attribute name="unit">
+                            <value>volume</value>
+                        </attribute>
+                        <data type="integer" />
+                    </element>
+                    <element name="pubPlace">
+                        <value>Basel</value>
+                    </element>
+                    <element name="publisher">
+                        <value>Schwabe</value>
+                    </element>
+                    <element name="date">
+                        <data type="gYear" />
+                    </element>
+                </mixed>
+            </element>
+        </define>
+        <define name="header_revision_desc">
+            <element name="revisionDesc">
+                <element name="listChange">
+                    <zeroOrMore>
+                        <element name="change">
+                            <choice>
+                                <attribute name="when">
+                                    <choice>
+                                        <data type="gYearMonth"/>
+                                        <data type="date"/>
+                                    </choice>
+                                </attribute>
+                                <attribute name="notAfter">
+                                    <choice>
+                                        <data type="gYearMonth"/>
+                                        <data type="date"/>
+                                    </choice>
+                                </attribute>
+                            </choice>
+                            <attribute name="who">
+                                <data type="string"/>
+                            </attribute>
+                            <text/>
+                        </element>
+                    </zeroOrMore>
+                </element>
+            </element>
+        </define>
+    </div>
+    <div xml:id="rendition">
+        <define name="rendition_tags_decl">
+            <element name="tagsDecl">
+                <zeroOrMore>
+                    <ref name="rendition_rendition"/>
+                </zeroOrMore>
+            </element>
+        </define>
+        <define name="rendition_rendition">
+            <choice>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>allcaps</value>
+                    </attribute>
+                    <value>text-transform: uppercase;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>antiqua</value>
+                    </attribute>
+                    <value>font-style: italic;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>block</value>
+                    </attribute>
+                    <value>display: block;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>center</value>
+                    </attribute>
+                    <value>text-align: center;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>fraktur</value>
+                    </attribute>
+                    <empty/>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>indent</value>
+                    </attribute>
+                    <value>text-indent: 2em;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>italic</value>
+                    </attribute>
+                    <value>font-style: italic;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>left</value>
+                    </attribute>
+                    <value>text-align: left;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>right</value>
+                    </attribute>
+                    <value>text-align: right;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>smallcaps</value>
+                    </attribute>
+                    <value>font-variant: small-caps;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>spaced</value>
+                    </attribute>
+                    <value>letter-spacing: 0.3em;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>superscript</value>
+                    </attribute>
+                    <value>vertical-align: super;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <value>underlined</value>
+                    </attribute>
+                    <value>text-decoration: underline;</value>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <data type="ID">
+                            <param name="pattern" xml:space="preserve">s\d\d_.*</param>
+                        </data>
+                    </attribute>
+                    <text/>
+                </element>
+                <element name="rendition">
+                    <attribute name="xml:id">
+                        <data type="ID"><!-- TODO delete -->
+                            <param name="pattern" xml:space="preserve">HW_.*</param>
+                        </data>
+                    </attribute>
+                    <text/>
+                </element>
+            </choice>
+        </define>
+        <define name="rendition_value">
+            <attribute name="rendition">
+                <list>
+                    <oneOrMore>
+                        <choice>
+                            <value>#allcaps</value>
+                            <a:documentation>Small caps</a:documentation>
+                            <value>#antiqua</value>
+                            <a:documentation>Antiqua font in Fraktur</a:documentation>
+                            <value>#block</value>
+                            <a:documentation>Element is displayed as a block</a:documentation>
+                            <value>#center</value>
+                            <a:documentation>Centered text</a:documentation>
+                            <value>#fraktur</value>
+                            <value>#indent</value>
+                            <value>#italic</value>
+                            <value>#left</value>
+                            <value>#right</value>
+                            <value>#smallcaps</value>
+                            <value>#spaced</value>
+                            <value>#superscript</value>
+                            <value>#underlined</value>
+                            <data type="string">
+                                <param name="pattern" xml:space="preserve">#s\d\d_.*</param>
+                            </data>
+                            <data type="string"><!-- todo remove -->
+                                <param name="pattern" xml:space="preserve">#HW_.*</param>
+                            </data>
+                        </choice>
+                    </oneOrMore>
+                </list>
+            </attribute>
+        </define>
+    </div>
+    <div xml:id="page">
+        <define name="page_original_id">
+            <a:documentation>Pages from the original book. The ID includes the part.</a:documentation>
+            <data type="ID">
+                <param name="pattern" xml:space="preserve">s\d\d-ed-pg(\d+|[LXVI]+)</param>
+            </data>
+        </define>
+        <define name="page_original_number">
+            <a:documentation>Original page numbers can be arabic or roman numerals. The numbers can be enclosed in square brackets.</a:documentation>
+            <data type="string">
+                <param name="pattern" xml:space="preserve">(\[(\d+|[LXVI]+)\]|\d+|[LXVI]+)</param>
+            </data>
+        </define>
+        <define name="page_original">
+            <a:documentation>Original page number. In the main text, an ID is assigned.</a:documentation>
+            <element name="milestone">
+                <attribute name="unit">
+                    <value>page</value>
+                </attribute>
+                <attribute name="ed">
+                    <data type="gYear"/>
+                </attribute>
+                <attribute name="n">
+                    <ref name="page_original_number"/>
+                </attribute>
+                <attribute name="hw_facs_order">
+                    <data type="integer"/>
+                </attribute>
+                <optional>
+                    <attribute name="facs">
+                        <data type="anyURI"/>
+                    </attribute>
+                </optional>
+                <attribute name="xml:id">
+                    <ref name="page_original_id"/>
+                </attribute>
+            </element>
+        </define>
+        <define name="page_original_footnote">
+            <a:documentation>Page breaks in footnotes are marked but they carry no ID or image information.</a:documentation>
+            <element name="milestone">
+                <attribute name="unit">
+                    <value>page</value>
+                </attribute>
+                <attribute name="ed">
+                    <data type="gYear"/>
+                </attribute>
+                <attribute name="n">
+                    <ref name="page_original_number"/>
+                </attribute>
+            </element>
+        </define>
+        <define name="page_modern">
+            <a:documentation>Page breaks from the printed eidtion.</a:documentation>
+            <element name="pb">
+                <attribute name="ed">
+                    <ref name="issue_modern_ed"/>
+                </attribute>
+                <attribute name="n">
+                    <data type="string">
+                        <param name="pattern" xml:space="preserve">(\[(\d+|[LXVI]+)\]|\d+|[LXVI]+)</param>
+                    </data>
+                </attribute>
+                <attribute name="xml:id">
+                    <data type="ID">
+                        <param name="pattern" xml:space="preserve">s\d\d-pg\d+</param>
+                    </data>
+                </attribute>
+                <optional>
+                    <attribute name="break">
+                        <value>no</value>
+                    </attribute>
+                </optional>
+            </element>
+        </define>
+    </div>
+    <div xml:id="issue">
+        <define name="issue_original_ed">
+            <choice>
+                <value>1886</value>
+                <value>1888</value>
+                <value>1889</value>
+                <value>1891</value>
+            </choice>
+        </define>
+        <define name="issue_modern_ed">
+            <choice>
+                <value>2020</value>
+                <value>2021</value>
+                <value>2023</value>
+                <value>2025</value>
+            </choice>
+        </define>
+    </div>
+    <div xml:id="annotation">
+        <define name="annotation_bibl_id">
+            <data type="string">
+                <param name="pattern" xml:space="preserve">bib-.*</param>
+            </data>
+        </define>
+        <define name="annotation_object_id">
+            <data type="string">
+                <param name="pattern" xml:space="preserve">(gnd-[0-9\-X]+|object-.*)</param>
+            </data>
+        </define>
+        <define name="annotation_org_id">
+            <data type="string">
+                <param name="pattern" xml:space="preserve">gnd-[0-9\-X]+</param>
+            </data>
+        </define>
+        <define name="annotation_person_id">
+            <data type="string">
+                <param name="pattern" xml:space="preserve">(gnd-[0-9\-X]+|gnd-local-.*)</param>
+            </data>
+        </define>
+        <define name="annotation_place_id">
+            <data type="string">
+                <param name="pattern" xml:space="preserve">gnd-[0-9\-X]+</param>
+            </data>
+        </define>
+        <define name="annotation_bibl_attrs">
+            <attribute name="corresp">
+                <ref name="annotation_bibl_id"/>
+            </attribute>
+        </define>
+        <define name="annotation_object_attrs">
+            <attribute name="type">
+                <value>object</value>
+            </attribute>
+            <attribute name="ref">
+                <ref name="annotation_object_id"/>
+            </attribute>
+        </define>
+        <define name="annotation_org_attrs">
+            <attribute name="type">
+                <value>organisation</value>
+            </attribute>
+            <attribute name="ref">
+                <ref name="annotation_org_id"/>
+            </attribute>
+        </define>
+        <define name="annotation_person_attrs">
+            <attribute name="type">
+                <value>person</value>
+            </attribute>
+            <attribute name="ref">
+                <ref name="annotation_person_id"/>
+            </attribute>
+        </define>
+        <define name="annotation_place_attrs">
+            <attribute name="type">
+                <value>place</value>
+            </attribute>
+            <attribute name="ref">
+                <ref name="annotation_place_id"/>
+            </attribute>
+        </define>
+    </div>
+    <div xml:id="link">
+        <define name="link_ref_attrs">
+            <choice>
+                <group>
+                    <attribute name="target">
+                        <data type="anyURI">
+                            <param name="pattern" xml:space="preserve">#s\d\d-ed-pg(\d+|[LXVI]+)</param>
+                        </data>
+                    </attribute>
+                    <attribute name="type">
+                        <value>page</value>
+                    </attribute>
+                </group>
+                <group>
+                    <attribute name="target">
+                        <data type="anyURI">
+                            <param name="pattern" xml:space="preserve">#s\d\d-pg\d+</param>
+                        </data>
+                    </attribute>
+                    <attribute name="type">
+                        <value>modern-page</value>
+                    </attribute>
+                </group>
+                <group>
+                    <attribute name="target">
+                        <data type="anyURI"/>
+                    </attribute>
+                    <attribute name="type">
+                        <value>weblink</value>
+                    </attribute>
+                </group>
+                <group>
+                    <attribute name="target">
+                        <data type="anyURI">
+                            <param name="pattern" xml:space="preserve">#s\d\d-(ed|in|app|doc)-comment-\d+</param>
+                        </data>
+                    </attribute>
+                    <attribute name="type">
+                        <value>comment</value>
+                    </attribute>
+                </group>
+                <group>
+                    <attribute name="target">
+                        <data type="anyURI">
+                            <param name="pattern" xml:space="preserve">#s\d\d-doc-\d+</param>
+                        </data>
+                    </attribute>
+                    <attribute name="type">
+                        <value>document</value>
+                    </attribute>
+                </group>
+                <group>
+                    <attribute name="target">
+                        <data type="anyURI">
+                            <param name="pattern" xml:space="preserve">#s\d\d-(ed|in|app)-ch(-\d+)+</param>
+                        </data>
+                    </attribute>
+                    <attribute name="type">
+                        <value>chapter</value>
+                    </attribute>
+                </group>
+            </choice>
+        </define>
+    </div>
+    <div xml:id="bibl">
+        <define name="bibl_content">
+            <a:documentation>Bibliography style in HWGW</a:documentation>
+            <mixed>
+                <element name="author">
+                    <text/>
+                </element>
+                <element name="title">
+                    <attribute name="level">
+                        <value>m</value>
+                    </attribute>
+                    <text/>
+                </element>
+                <element name="date">
+                    <data type="gYear"/>
+                </element>
+                <element name="editor">
+                    <text/>
+                </element>
+                <element name="title">
+                    <attribute name="level">
+                        <value>s</value>
+                    </attribute>
+                    <text/>
+                </element>
+                <element name="pubPlace">
+                    <text/>
+                </element>
+                <element name="publisher">
+                    <text/>
+                </element>
+                <element name="date">
+                    <data type="gYear"/>
+                </element>
+            </mixed>
+        </define>
+    </div>
+    <div xml:id="core">
+        <define name="core_space_preserve">
+            <attribute name="xml:space">
+                <value>preserve</value>
+            </attribute>
+        </define>
+    </div>
+</grammar>

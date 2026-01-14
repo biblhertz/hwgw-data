@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://www.tei-c.org/ns/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+      <element name="TEI">
+          <attribute name="n"/>
+          <externalRef href="register_header.rng"/>
+          <element name="text">
+              <element name="body">
+                  <empty/>
+              </element>
+              <element name="back">
+                  <element name="div">
+                      <attribute name="xml:id">
+                          <value>index-place</value>
+                      </attribute>
+                      <element name="head">
+                          <value>Organisationsverzeichnis</value>
+                      </element>
+                      <element name="listPlace">
+                          <oneOrMore>
+                              <element name="place">
+                                  <attribute name="xml:id"/>
+                                  <element name="placeName">
+                                      <attribute name="type">
+                                          <value>main</value>
+                                      </attribute>
+                                      <text/>
+                                  </element>
+                                  <optional>
+                                      <element name="placeName">
+                                          <attribute name="type">
+                                              <value>short</value>
+                                          </attribute>
+                                          <text/>
+                                      </element>
+                                  </optional>
+                                  <optional>
+                                      <element name="placeName">
+                                          <attribute name="type">
+                                              <value>alternative</value>
+                                          </attribute>
+                                          <text/>
+                                      </element>
+                                  </optional>
+                                  <optional>
+                                      <element name="p">
+                                          <mixed>
+                                              <optional>
+                                                  <element name="rs">
+                                                      <attribute name="type">
+                                                          <value>place</value>
+                                                      </attribute>
+                                                  </element>
+                                              </optional>
+                                          </mixed>
+                                      </element>
+                                  </optional>
+                                  <element name="idno">
+                                      <attribute name="type">
+                                          <value>GND</value>
+                                      </attribute>
+                                      <text/>
+                                  </element>
+                              </element>
+                          </oneOrMore>
+                      </element>
+                  </element>
+              </element>
+          </element>
+      </element>
+  </start>
+</grammar>

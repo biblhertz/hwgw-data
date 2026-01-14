@@ -1,0 +1,467 @@
+<?xml version="1.0"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         ns="http://www.tei-c.org/ns/1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <include href="core-schema.rng"/>
+
+    <start>
+        <element name="TEI">
+            <attribute name="n">
+                <data type="string">
+                    <param name="pattern" xml:space="preserve">\d\d\.01</param>
+                </data>
+            </attribute>
+            <optional>
+                <attribute name="xsi:schemaLocation"/>
+            </optional>
+            <element name="teiHeader">
+                <element name="fileDesc">
+                    <element name="titleStmt">
+                        <element name="title">
+                            <attribute name="level"><value>a</value></attribute>
+                            <attribute name="type"><value>full</value></attribute>
+                            <choice>
+                                <value>Verkörperung. Einführung in Heinrich Wölfflins Prolegomena</value>
+                                <value>Stilwandel</value>
+                                <value>Heinrich Wölfflin und Salomon Gessner</value>
+                                <value>Kunstgeschichte nach Reproduktionen. Zu Wölfflins formanalytischen Anfängen</value>
+                                <value>tba 5</value>
+                                <value>Wölfflins Dürer</value>
+                                <value>tba 7</value>
+                                <value>«Was uns Italien ist» – Formpsychologische Erkundung kollektiver Tiefenschichten</value>
+                            </choice>
+                        </element>
+                        <element name="title">
+                            <attribute name="level"><value>a</value></attribute>
+                            <attribute name="type"><value>short</value></attribute>
+                            <choice>
+                                <value>Gottfried Boehm: Einleitung</value>
+                                <value>Oskar Bätschmann: Einleitung</value>
+                                <value>Wolfgang Proß: Einleitung</value>
+                                <value>Joseph Imorde: Einleitung</value>
+                                <value>tba 5</value>
+                                <value>Oskar Bätschmann: Einleitung</value>
+                                <value>tba 7</value>
+                                <value>Hubert Locher: Einleitung</value>
+                            </choice>
+                        </element>
+                        <element name="title">
+                            <attribute name="level"><value>m</value></attribute>
+                            <choice>
+                                <value>Prolegomena zu einer Psychologie der Architektur</value>
+                                <value>Renaissance und Barock. Eine Untersuchung über Wesen und Entstehung des Barockstils in Italien</value>
+                                <value>Salomon Geßner</value>
+                                <value>Die Jugendwerke des Michelangelo</value>
+                                <value>tba 5</value>
+                                <value>Die Kunst Albrecht Dürers</value>
+                                <value>tba 7</value>
+                                <value>Italien und das deutsche Formgefühl</value>
+                            </choice>
+                        </element>
+                        <element name="title">
+                            <attribute name="n">
+                                <data type="string">
+                                    <param name="pattern" xml:space="preserve">s\d\d</param>
+                                </data>
+                            </attribute>
+                            <attribute name="type"><value>volume</value></attribute>
+                            <data type="string">
+                                <param name="pattern" xml:space="preserve">Schriften \d+</param>
+                            </data>
+                        </element>
+                        <element name="title">
+                            <attribute name="type"><value>year</value></attribute>
+                            <data type="gYear"/>
+                        </element>
+                        <element name="author">
+                            <text/>
+                        </element>
+                    </element>
+                    <ref name="header_edition_stmt"/>
+                    <ref name="header_publication_stmt"/>
+                    <ref name="header_series_stmt"/>
+                    <element name="sourceDesc">
+                        <ref name="header_modern_book"/>
+                    </element>
+                </element>
+                <element name="profileDesc">
+                    <element name="textClass">
+                        <element name="catRef">
+                            <attribute name="scheme">
+                                <value>#genre</value>
+                            </attribute>
+                            <attribute name="target">
+                                <value>#introduction</value>
+                            </attribute>
+                        </element>
+                    </element>
+                    <element name="langUsage">
+                        <element name="language">
+                            <attribute name="ident">
+                                <data type="language"/>
+                            </attribute>
+                            <text/>
+                        </element>
+                    </element>
+                </element>
+                <element name="encodingDesc">
+                    <element name="ab">
+                        <attribute name="n">
+                            <value>images</value>
+                        </attribute>
+                        <element name="ref">
+                            <attribute name="target">
+                                <data type="anyURI"/>
+                            </attribute>
+                            <text/>
+                        </element>
+                        <text/>
+                    </element>
+                    <ref name="rendition_tags_decl"/>
+                </element>
+                <ref name="header_revision_desc"/>
+            </element>
+            <element name="text">
+                <element name="body">
+                    <element name="div">
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-in-ch(-\d+)+</param>
+                            </data>
+                        </attribute>
+                        <attribute name="type">
+                            <value>preface</value>
+                        </attribute>
+                        <ref name="page_modern"/>
+                        <optional>
+                            <element name="figure">
+                                <ref name="intro_figure_content"/>
+                            </element>
+                            <ref name="page_modern"/>
+                        </optional>
+                        <element name="head">
+                            <empty/>
+                        </element>
+                        <element name="docTitle">
+                            <ref name="intro_paragraph_attrs"/>
+                            <ref name="intro_paragraph_content"/>
+                        </element>
+                        <element name="docAuthor">
+                            <ref name="intro_paragraph_attrs"/>
+                            <ref name="intro_paragraph_content"/>
+                        </element>
+                        <zeroOrMore>
+                            <ref name="intro_epigraph"/>
+                        </zeroOrMore>
+                        <zeroOrMore>
+                            <choice>
+                                <ref name="intro_p"/>
+                                <ref name="intro_quote"/>
+                            </choice>
+                        </zeroOrMore>
+                        <zeroOrMore>
+                            <ref name="intro_div"/>
+                        </zeroOrMore>
+                    </element>
+                    <zeroOrMore>
+                        <ref name="intro_div"/>
+                    </zeroOrMore>
+                </element>
+                <element name="back">
+                    <element name="div">
+                        <optional>
+                            <ref name="page_modern"/>
+                        </optional>
+                        <element name="head">
+                            <attribute name="n"/>
+                            <ref name="core_space_preserve"/>
+                            <text/>
+                        </element>
+                        <element name="ab">
+                            <attribute name="type">
+                                <value>collected-comments</value>
+                            </attribute>
+                            <oneOrMore>
+                                <choice>
+                                    <element name="ptr">
+                                        <attribute name="type">
+                                            <value>endnote-link</value>
+                                        </attribute>
+                                        <attribute name="n">
+                                            <data type="integer"/>
+                                        </attribute>
+                                        <attribute name="target">
+                                            <data type="anyURI">
+                                                <param name="pattern" xml:space="preserve">#s\d\d-in-comment-\d+</param>
+                                            </data>
+                                        </attribute>
+                                    </element>
+                                    <ref name="page_modern"/>
+                                </choice>
+                            </oneOrMore>
+                        </element>
+                    </element>
+                </element>
+            </element>
+        </element>
+    </start>
+    <div>
+        <define name="intro_div">
+            <a:documentation>Division of the introduction after the titling.</a:documentation>
+            <element name="div">
+                <attribute name="type">
+                    <choice>
+                        <value>chapter</value>
+                        <value>subchapter</value>
+                        <value>subsubchapter</value>
+                    </choice>
+                </attribute>
+                <attribute name="xml:id">
+                    <data type="ID">
+                        <param name="pattern" xml:space="preserve">s\d\d-in-ch(-\d+)+</param>
+                    </data>
+                </attribute>
+                <optional>
+                    <ref name="page_modern"/>
+                </optional>
+                <ref name="intro_head"/>
+                <zeroOrMore>
+                    <choice>
+                        <ref name="intro_quote"/>
+                        <ref name="intro_p"/>
+                        <group>
+                            <optional>
+                                <ref name="page_modern"/>
+                            </optional>
+                            <element name="figure">
+                                <ref name="intro_figure_content"/>
+                            </element>
+                        </group>
+                        <element name="ptr">
+                            <attribute name="type">
+                                <value>new image position</value>
+                            </attribute>
+                            <attribute name="target">
+                                <data type="anyURI">
+                                    <param name="pattern" xml:space="preserve">#s\d\d-in-img-\d+</param>
+                                </data>
+                            </attribute>
+                        </element>
+                    </choice>
+                </zeroOrMore>
+                <zeroOrMore>
+                    <ref name="intro_div"/>
+                </zeroOrMore>
+            </element>
+        </define>
+        <define name="intro_p">
+            <element name="p">
+                <ref name="intro_paragraph_attrs"/>
+                <ref name="intro_paragraph_content"/>
+            </element>
+        </define>
+        <define name="intro_head">
+            <element name="head">
+                <ref name="core_space_preserve"/>
+                <attribute name="n"/>
+                <ref name="intro_paragraph_content"/>
+            </element>
+        </define>
+        <define name="intro_quote">
+            <element name="quote">
+                <ref name="intro_paragraph_attrs"/>
+                <ref name="intro_paragraph_content"/>
+            </element>
+        </define>
+        <define name="intro_epigraph">
+            <element name="epigraph">
+                <ref name="intro_paragraph_attrs"/>
+                <ref name="intro_paragraph_content"/>
+            </element>
+        </define>
+        <define name="intro_paragraph_attrs">
+            <ref name="core_space_preserve"/>
+            <attribute name="xml:id">
+                <data type="ID">
+                    <param name="pattern" xml:space="preserve">s\d\d-in-ch(-\d+)+-p-\d+</param>
+                </data>
+            </attribute>
+        </define>
+        <define name="intro_paragraph_content">
+            <oneOrMore>
+                <choice>
+                    <text/>
+                    <element name="rs">
+                        <choice>
+                            <ref name="annotation_object_attrs"/>
+                            <ref name="annotation_org_attrs"/>
+                            <ref name="annotation_person_attrs"/>
+                            <ref name="annotation_place_attrs"/>
+                        </choice>
+                        <ref name="intro_paragraph_content"/>
+                    </element>
+                    <element name="emph">
+                        <ref name="intro_paragraph_content"/>
+                    </element>
+                    <element name="bibl">
+                        <ref name="annotation_bibl_attrs"/>
+                        <ref name="intro_paragraph_content"/>
+                    </element>
+                    <element name="ref">
+                        <ref name="link_ref_attrs"/>
+                        <ref name="intro_paragraph_content"/>
+                    </element>
+                    <element name="hi">
+                        <a:documentation>italic should only be used in quotes</a:documentation>
+                        <ref name="rendition_value"/>
+                        <ref name="intro_paragraph_content"/>
+                    </element>
+                    <ref name="page_modern"/>
+                    <element name="note">
+                        <attribute name="n">
+                            <data type="integer"/>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-in-comment-\d+</param>
+                            </data>
+                        </attribute>
+                        <oneOrMore>
+                            <element name="p">
+                                <attribute name="xml:id">
+                                    <data type="ID">
+                                        <param name="pattern" xml:space="preserve">s\d\d-in-comment-\d+-p-\d+</param>
+                                    </data>
+                                </attribute>
+                                <ref name="intro_note_paragraph_content"/>
+                            </element>
+                        </oneOrMore>
+                    </element>
+                    <element name="choice">
+                        <optional>
+                            <element name="seg">
+                                <attribute name="type">
+                                    <value>explanation</value>
+                                </attribute>
+                                <ref name="intro_note_paragraph_content"/>
+                            </element>
+                        </optional>
+                        <oneOrMore>
+                            <element name="sic">
+                                <attribute name="n">
+                                    <ref name="issue_modern_ed"/>
+                                </attribute>
+                                <ref name="intro_paragraph_content"/>
+                            </element>
+                        </oneOrMore>
+                        <element name="corr">
+                            <ref name="intro_paragraph_content"/>
+                        </element>
+                    </element>
+                    <element name="figure">
+                        <ref name="intro_figure_content"/>
+                    </element>
+                    <element name="ptr">
+                        <attribute name="type">
+                            <value>new image position</value>
+                        </attribute>
+                        <attribute name="target">
+                            <data type="anyURI">
+                                <param name="pattern" xml:space="preserve">#s\d\d-in-img-\d+</param>
+                            </data>
+                        </attribute>
+                    </element>
+                </choice>
+            </oneOrMore>
+        </define>
+        <define name="intro_note_paragraph_content">
+            <oneOrMore>
+                <choice>
+                    <text/>
+                    <element name="rs">
+                        <choice>
+                            <ref name="annotation_object_attrs"/>
+                            <ref name="annotation_org_attrs"/>
+                            <ref name="annotation_person_attrs"/>
+                            <ref name="annotation_place_attrs"/>
+                        </choice>
+                        <ref name="intro_note_paragraph_content"/>
+                    </element>
+                    <element name="bibl">
+                        <ref name="annotation_bibl_attrs"/>
+                        <ref name="intro_note_paragraph_content"/>
+                    </element>
+                    <element name="emph">
+                        <ref name="intro_note_paragraph_content"/>
+                    </element>
+                    <element name="hi">
+                        <a:documentation>Only use italic in quotes. Use emph instead</a:documentation>
+                        <ref name="rendition_value"/>
+                        <ref name="intro_note_paragraph_content"/>
+                    </element>
+                    <element name="del">
+                        <ref name="intro_note_paragraph_content"/>
+                    </element>
+                    <element name="ref">
+                        <ref name="link_ref_attrs"/>
+                        <text/>
+                    </element>
+                    <element name="choice">
+                        <optional>
+                            <element name="seg">
+                                <attribute name="type">
+                                    <value>explanation</value>
+                                </attribute>
+                                <ref name="intro_note_paragraph_content"/>
+                            </element>
+                        </optional>
+                        <oneOrMore>
+                            <element name="sic">
+                                <attribute name="n">
+                                    <ref name="issue_modern_ed"/>
+                                </attribute>
+                                <ref name="intro_note_paragraph_content"/>
+                            </element>
+                        </oneOrMore>
+                        <element name="corr">
+                            <ref name="intro_note_paragraph_content"/>
+                        </element>
+                    </element>
+                </choice>
+            </oneOrMore>
+        </define>
+        <define name="intro_figure_content">
+            <attribute name="n">
+                <data type="integer"/>
+            </attribute>
+            <attribute name="xml:id">
+                <data type="ID">
+                    <param name="pattern" xml:space="preserve">s\d\d-in-img-\d+</param>
+                </data>
+            </attribute>
+            <element name="graphic">
+                <attribute name="n">
+                    <data type="integer"/>
+                </attribute>
+                <attribute name="url">
+                    <data type="anyURI"/>
+                </attribute>
+            </element>
+            <element name="head">
+                <ref name="core_space_preserve"/>
+                <ref name="intro_note_paragraph_content"/>
+            </element>
+            <element name="figDesc">
+                <ref name="core_space_preserve"/>
+                <attribute name="xml:id">
+                    <data type="ID">
+                        <param name="pattern" xml:space="preserve">s\d\d-in-img-\d+-desc</param>
+                    </data>
+                </attribute>
+                <ref name="intro_note_paragraph_content"/>
+            </element>
+        </define>
+    </div>
+</grammar>

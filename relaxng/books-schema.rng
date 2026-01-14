@@ -1,0 +1,801 @@
+<?xml version="1.0"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         ns="http://www.tei-c.org/ns/1.0"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <include href="core-schema.rng"/>
+
+    <start>
+        <element name="TEI">
+            <attribute name="n">
+                <data type="string">
+                    <param name="pattern" xml:space="preserve">\d\d\.02</param>
+                </data>
+            </attribute>
+            <optional>
+                <attribute name="xsi:schemaLocation"/>
+            </optional>
+            <element name="teiHeader">
+                <element name="fileDesc">
+                    <element name="titleStmt">
+                        <element name="title">
+                        <a:documentation>Originaltitel</a:documentation>
+                            <attribute name="level"><value>m</value></attribute>
+                            <choice>
+                                <value>Prolegomena zu einer Psychologie der Architektur</value>
+                                <value>Renaissance und Barock. Eine Untersuchung über Wesen und Entstehung des Barockstils in Italien</value>
+                                <value>Salomon Geßner</value>
+                                <value>Die Jugendwerke des Michelangelo</value>
+                                <value>tba 5</value>
+                                <value>Die Kunst Albrecht Dürers</value>
+                                <value>tba 7</value>
+                                <value>Italien und das deutsche Formgefühl</value>
+                            </choice>
+                        </element>
+                        <element name="title">
+                            <attribute name="level"><value>a</value></attribute>
+                            <attribute name="type"><value>short</value></attribute>
+                            <choice>
+                                <value>Heinrich Wölfflin: Prolegomena</value>
+                                <value>Heinrich Wölfflin: Renaissance u. Barock</value>
+                                <value>Heinrich Wölfflin: Geßner</value>
+                                <value>Heinrich Wölfflin: Jugendwerke</value>
+                                <value>Heinrich Wölfflin: </value>
+                                <value>Heinrich Wölfflin: Dürer</value>
+                                <value>Heinrich Wölfflin: </value>
+                                <value>Heinrich Wölfflin: Formgefühl</value>
+                            </choice>
+                        </element>
+                        <element name="title">
+                            <attribute name="n">
+                                <data type="string">
+                                    <param name="pattern" xml:space="preserve">s\d\d</param>
+                                </data>
+                            </attribute>
+                            <attribute name="type"><value>volume</value></attribute>
+                            <data type="string">
+                                <param name="pattern" xml:space="preserve">Schriften \d+</param>
+                            </data>
+                        </element>
+                        <element name="author">
+                            <value>Heinrich Wölfflin</value>
+                        </element>
+                        <element name="title">
+                            <attribute name="type"><value>year</value></attribute>
+                            <data type="gYear" />
+                        </element>
+                        <element name="respStmt">
+                            <element name="resp">
+                                <value>Kommentiert von</value>
+                            </element>
+                            <oneOrMore>
+                                <element name="name">
+                                    <text />
+                                </element>
+                            </oneOrMore>
+                        </element>
+                    </element>
+                    <ref name="header_edition_stmt" />
+                    <ref name="header_publication_stmt" />
+                    <ref name="header_series_stmt" />
+                    <element name="sourceDesc">
+                        <ref name="header_modern_book" />
+                        <element name="bibl">
+                            <ref name="core_space_preserve" />
+                            <ref name="bibl_content" />
+                        </element>
+                    </element>
+                </element>
+                <element name="profileDesc">
+                    <element name="textClass">
+                        <element name="catRef">
+                            <attribute name="scheme">
+                                <value>#genre</value>
+                            </attribute>
+                            <attribute name="target">
+                                <value>#edition</value>
+                            </attribute>
+                        </element>
+                    </element>
+                    <element name="langUsage">
+                        <element name="language">
+                            <attribute name="ident">
+                                <data type="language" />
+                            </attribute>
+                            <text />
+                        </element>
+                    </element>
+                </element>
+                <element name="encodingDesc">
+                    <element name="ab">
+                        <attribute name="n">
+                            <value>images</value>
+                        </attribute>
+                        <element name="ref">
+                            <attribute name="target">
+                                <data type="anyURI" />
+                            </attribute>
+                            <text />
+                        </element>
+                        <text />
+                    </element>
+                    <element name="ab">
+                        <attribute name="n">
+                            <value>facsimiles</value>
+                        </attribute>
+                        <element name="ref">
+                            <attribute name="target">
+                                <data type="anyURI" />
+                            </attribute>
+                            <text />
+                        </element>
+                        <text />
+                        <element name="ref">
+                            <attribute name="target">
+                                <data type="anyURI" />
+                            </attribute>
+                            <value>IIIF-Manifest</value>
+                        </element>
+                    </element>
+                    <ref name="rendition_tags_decl" />
+                </element>
+                <ref name="header_revision_desc" />
+            </element>
+            <element name="text">
+                <element name="front">
+                    <element name="div">
+                        <attribute name="type">
+                            <value>titlepage</value>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-ed-ch-0-1</param>
+                            </data>
+                        </attribute>
+                        <ref name="page_modern"/>
+                        <ref name="page_original"/>
+                        <element name="titlePage">
+                            <ref name="rendition_value"/>
+                            <oneOrMore>
+                                <choice>
+                                    <element name="docTitle">
+                                        <oneOrMore>
+                                            <element name="titlePart">
+                                                <optional>
+                                                    <ref name="rendition_value"/>
+                                                </optional>
+                                                <optional>
+                                                    <attribute name="type">
+                                                        <choice>
+                                                            <value>main</value>
+                                                            <value>alt</value>
+                                                        </choice>
+                                                    </attribute>
+                                                </optional>
+                                                <ref name="core_space_preserve"/>
+                                                <text/>
+                                            </element>
+                                        </oneOrMore>
+                                    </element>
+                                    <element name="byline">
+                                        <text/>
+                                    </element>
+                                    <element name="docImprint">
+                                        <oneOrMore>
+                                            <choice>
+                                                <element name="name">
+                                                    <optional>
+                                                        <ref name="rendition_value"/>
+                                                    </optional>
+                                                    <element name="rs">
+                                                        <ref name="annotation_place_attrs"/>
+                                                        <text/>
+                                                    </element>
+                                                </element>
+                                            </choice>
+                                        </oneOrMore>
+                                    </element>
+                                </choice>
+                            </oneOrMore>
+                        </element>
+                        <optional>
+                            <element name="p">
+                                <ref name="core_space_preserve"/>
+                                <attribute name="xml:id">
+                                    <data type="ID">
+                                        <param name="pattern" xml:space="preserve">s\d\d-ed-ch-0(-\d+)-p-\d</param>
+                                    </data>
+                                </attribute>
+                                <zeroOrMore>
+                                    <ref name="page_modern"/>
+                                    <ref name="page_original"/>
+                                </zeroOrMore>
+                            </element>
+                        </optional>
+                    </element>
+                    <zeroOrMore>
+                        <ref name="book_div"/>
+                    </zeroOrMore>
+                </element>
+                <element name="body">
+                    <oneOrMore>
+                        <ref name="book_div"/>
+                    </oneOrMore>
+                </element>
+                <optional>
+                    <element name="back">
+                        <oneOrMore>
+                            <ref name="book_div"/>
+                        </oneOrMore>
+                    </element>
+                </optional>
+            </element>
+        </element>
+    </start>
+    <div xml:id="primary">
+        <define name="book_div">
+            <element name="div">
+                <attribute name="type">
+                    <choice>
+                        <value>preface</value>
+                        <a:documentation>Only used in front</a:documentation>
+                        <value>toc</value>
+                        <value>tof</value>
+                        <value>section</value>
+                        <value>chapter</value>
+                        <value>subchapter</value>
+                    </choice>
+                </attribute>
+                <attribute name="xml:id">
+                    <data type="ID">
+                        <param name="pattern" xml:space="preserve">s\d\d-ed-ch(-\d+)+</param>
+                    </data>
+                </attribute>
+                <ref name="book_div_content"/>
+            </element>
+        </define>
+        <define name="book_p">
+            <element name="p">
+                <ref name="book_paragraph_attrs"/>
+                <ref name="book_paragraph_content"/>
+            </element>
+        </define>
+        <define name="book_head">
+            <element name="head">
+                <ref name="core_space_preserve"/>
+                <attribute name="n">
+                    <text/>
+                </attribute>
+                <optional>
+                    <ref name="rendition_value"/>
+                </optional>
+                <choice>
+                    <ref name="book_paragraph_content"/>
+                    <group>
+                        <element name="seg">
+                            <ref name="rendition_value"/>
+                            <ref name="book_paragraph_content"/>
+                        </element>
+                        <oneOrMore>
+                            <optional>
+                                <element name="lb">
+                                    <empty/>
+                                </element>
+                            </optional>
+                            <element name="seg">
+                                <ref name="rendition_value"/>
+                                <ref name="book_paragraph_content"/>
+                            </element>
+                        </oneOrMore>
+                    </group>
+                </choice>
+            </element>
+        </define>
+        <define name="book_footnote">
+            <element name="note">
+                <attribute name="place">
+                    <value>foot</value>
+                </attribute>
+                <attribute name="n">
+                    <data type="string">
+                        <param name="pattern" xml:space="preserve">[VI]+</param>
+                    </data>
+                </attribute>
+                <attribute name="xml:id">
+                    <data type="ID">
+                        <param name="pattern" xml:space="preserve">s\d\d-ed-pg(\d+|[VI]+)-note-\d+</param>
+                    </data>
+                </attribute>
+                <element name="fw">
+                    <attribute name="n">
+                        <data type="string">
+                            <param name="pattern" xml:space="preserve">\{(\d+|[LXVI]+)\}\d+</param>
+                        </data>
+                    </attribute>
+                    <attribute name="type">
+                        <value>original-footnote</value>
+                    </attribute>
+                </element>
+                <oneOrMore>
+                    <choice>
+                        <element name="p">
+                            <optional>
+                                <ref name="rendition_value"/>
+                            </optional>
+                            <attribute name="xml:id">
+                                <data type="ID">
+                                    <param name="pattern" xml:space="preserve">s\d\d-ed-pg(\d+|[VI]+)-note-\d+-p-\d+</param>
+                                </data>
+                            </attribute>
+                            <ref name="book_footnote_paragraph_content"/>
+                        </element>
+                        <ref name="book_footnote_lg"/>
+                        <element name="quote">
+                            <attribute name="xml:id">
+                                <data type="ID">
+                                    <param name="pattern" xml:space="preserve">s\d\d-ed-ch(-\d+)+-p-\d+</param>
+                                </data>
+                            </attribute>
+                            <attribute name="rendition">
+                                <value>#block</value>
+                            </attribute>
+                            <choice>
+                                <oneOrMore>
+                                    <ref name="book_footnote_lg"/>
+                                </oneOrMore>
+                                <oneOrMore>
+                                    <element name="p">
+                                        <attribute name="xml:id">
+                                            <data type="ID">
+                                                <param name="pattern" xml:space="preserve">s\d\d-ed-pg(\d+|[VI]+)-note-\d+-p-\d+</param>
+                                            </data>
+                                        </attribute>
+                                        <ref name="book_footnote_paragraph_content"/>
+                                    </element>
+                                </oneOrMore>
+                            </choice>
+                        </element>
+                    </choice>
+                </oneOrMore>
+            </element>
+        </define>
+        <define name="book_footnote_lg">
+            <element name="lg">
+                <oneOrMore>
+                    <element name="l">
+                        <ref name="core_space_preserve"/>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-ed-pg(\d+|[VI]+)-note-\d+-p-\d+</param>
+                            </data>
+                        </attribute>
+                        <ref name="book_footnote_paragraph_content"/>
+                    </element>
+                </oneOrMore>
+            </element>
+        </define>
+        <define name="book_div_content">
+            <optional>
+                <ref name="page_modern"/>
+            </optional>
+            <optional>
+                <ref name="page_original"/>
+            </optional>
+            <ref name="book_head"/>
+            <optional>
+                <element name="ab">
+                    <ref name="core_space_preserve"/>
+                    <optional>
+                        <ref name="rendition_value"/>
+                    </optional>
+                    <ref name="book_paragraph_content"/>
+                </element>
+            </optional>
+            <zeroOrMore>
+                <ref name="page_modern"/>
+                <ref name="page_original"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="book_epigraph"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <choice>
+                    <ref name="book_p"/>
+                    <ref name="book_list"/>
+                    <ref name="book_figure_div"/>
+                    <element name="dateline">
+                        <ref name="book_paragraph_attrs"/>
+                        <ref name="book_paragraph_content"/>
+                    </element>
+                    <element name="signed">
+                        <ref name="book_paragraph_attrs"/>
+                        <ref name="book_paragraph_content"/>
+                    </element>
+                    <element name="lg">
+                        <oneOrMore>
+                            <element name="l">
+                                <ref name="book_paragraph_attrs"/>
+                                <ref name="book_paragraph_content"/>
+                            </element>
+                        </oneOrMore>
+                    </element>
+                    <element name="quote">
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-ed-ch(-\d+)+-p-\d+</param>
+                            </data>
+                        </attribute>
+                        <attribute name="rendition">
+                            <value>#block</value>
+                        </attribute>
+                        <choice>
+                            <oneOrMore>
+                                <element name="lg">
+                                    <oneOrMore>
+                                        <element name="l">
+                                            <ref name="book_paragraph_attrs"/>
+                                            <ref name="book_paragraph_content"/>
+                                        </element>
+                                    </oneOrMore>
+                                </element>
+                            </oneOrMore>
+                            <oneOrMore>
+                                <element name="p">
+                                    <ref name="book_paragraph_attrs"/>
+                                    <ref name="book_paragraph_content"/>
+                                </element>
+                            </oneOrMore>
+                        </choice>
+                    </element>
+                </choice>
+            </zeroOrMore>
+            <optional>
+                <ref name="page_modern"/>
+            </optional>
+            <zeroOrMore>
+                <ref name="book_div"/>
+            </zeroOrMore>
+        </define>
+        <define name="book_paragraph_attrs">
+            <ref name="core_space_preserve"/>
+            <attribute name="xml:id">
+                <data type="ID">
+                    <param name="pattern" xml:space="preserve">s\d\d-ed-ch(-\d+)+-p-\d+</param>
+                </data>
+            </attribute>
+            <optional>
+                <ref name="rendition_value"/>
+            </optional>
+        </define>
+        <define name="book_paragraph_content">
+            <oneOrMore>
+                <choice>
+                    <text/>
+                    <zeroOrMore>
+                        <element name="rs">
+                            <choice>
+                                <ref name="annotation_object_attrs"/>
+                                <ref name="annotation_org_attrs"/>
+                                <ref name="annotation_person_attrs"/>
+                                <ref name="annotation_place_attrs"/>
+                            </choice>
+                            <ref name="book_paragraph_content"/>
+                        </element>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <element name="bibl">
+                            <ref name="annotation_bibl_attrs"/>
+                            <ref name="book_paragraph_content"/>
+                        </element>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <ref name="page_modern"/>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <ref name="page_original"/>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <ref name="book_comment"/>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <ref name="book_footnote"/>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <element name="choice">
+                            <optional>
+                                <element name="seg">
+                                    <attribute name="type">
+                                        <value>explanation</value>
+                                    </attribute>
+                                    <ref name="book_comment_paragraph_content"/>
+                                </element>
+                            </optional>
+                            <optional>
+                                <element name="sic">
+                                    <attribute name="n">
+                                        <ref name="issue_original_ed"/>
+                                    </attribute>
+                                    <ref name="book_paragraph_content"/>
+                                </element>
+                            </optional>
+                            <optional>
+                                <element name="sic">
+                                    <attribute name="n">
+                                        <ref name="issue_modern_ed"/>
+                                    </attribute>
+                                    <ref name="book_paragraph_content"/>
+                                </element>
+                            </optional>
+                            <element name="corr">
+                                <ref name="book_paragraph_content"/>
+                            </element>
+                        </element>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <element name="figure">
+                            <ref name="book_figure_content"/>
+                        </element>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <element name="ptr">
+                            <attribute name="type">
+                                <value>new image position</value>
+                            </attribute>
+                            <attribute name="target">
+                                <data type="anyURI">
+                                    <param name="pattern" xml:space="preserve">#s\d\d-ed-img-\d+</param>
+                                </data>
+                            </attribute>
+                        </element>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <element name="hi">
+                            <ref name="rendition_value"/>
+                            <ref name="book_paragraph_content"/>
+                        </element>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <element name="space">
+                            <attribute name="unit">
+                                <choice>
+                                    <value>chars</value>
+                                </choice>
+                            </attribute>
+                            <attribute name="extent">
+                                <data type="integer"/>
+                            </attribute>
+                        </element>
+                    </zeroOrMore>
+                </choice>
+            </oneOrMore>
+        </define>
+        <define name="book_footnote_paragraph_content">
+            <oneOrMore>
+                <choice>
+                    <text/>
+                    <zeroOrMore>
+                        <element name="rs">
+                            <choice>
+                                <ref name="annotation_object_attrs"/>
+                                <ref name="annotation_org_attrs"/>
+                                <ref name="annotation_person_attrs"/>
+                                <ref name="annotation_place_attrs"/>
+                            </choice>
+                            <ref name="book_footnote_paragraph_content"/>
+                        </element>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <element name="bibl">
+                            <ref name="annotation_bibl_attrs"/>
+                            <ref name="book_footnote_paragraph_content"/>
+                        </element>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <element name="hi">
+                            <ref name="rendition_value"/>
+                            <ref name="book_footnote_paragraph_content"/>
+                        </element>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <ref name="book_comment"/>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <ref name="page_original_footnote"/>
+                    </zeroOrMore>
+                </choice>
+            </oneOrMore>
+        </define>
+        <define name="book_list">
+            <element name="list">
+                <oneOrMore>
+                    <optional>
+                        <element name="label">
+                            <ref name="core_space_preserve"/>
+                            <ref name="book_paragraph_content"/>
+                        </element>
+                    </optional>
+                    <choice>
+                        <element name="item">
+                            <optional>
+                                <ref name="rendition_value"/>
+                            </optional>
+                            <ref name="book_paragraph_content"/>
+                            <ref name="book_list"/>
+                        </element>
+                        <element name="item">
+                            <optional>
+                                <ref name="core_space_preserve"/>
+                            </optional>
+                            <optional>
+                                <ref name="rendition_value"/>
+                            </optional>
+                            <ref name="book_paragraph_content"/>
+                            <optional>
+                                <element name="seg">
+                                    <attribute name="type">
+                                        <value>tab</value>
+                                    </attribute>
+                                    <element name="ref">
+                                        <ref name="link_ref_attrs"/>
+                                        <ref name="book_paragraph_content"/>
+                                    </element>
+                                </element>
+                            </optional>
+                        </element>
+                    </choice>
+                </oneOrMore>
+            </element>
+        </define>
+        <define name="book_epigraph">
+            <element name="epigraph">
+                <ref name="book_paragraph_attrs"/>
+                <ref name="book_paragraph_content"/>
+            </element>
+        </define>
+        <define name="book_figure_div">
+            <element name="figure">
+                <attribute name="rend">
+                    <value>block</value><!-- todo: use rend? -->
+                </attribute>
+                <optional>
+                    <ref name="rendition_value"/>
+                </optional>
+                <ref name="book_figure_content"/>
+            </element>
+        </define>
+        <define name="book_figure_content">
+            <attribute name="xml:id">
+                <data type="ID">
+                    <param name="pattern" xml:space="preserve">s\d\d-ed-img-\d+</param>
+                </data>
+            </attribute>
+            <attribute name="n">
+                <data type="integer"/>
+            </attribute>
+            <optional>
+                <attribute name="type">
+                    <value>moved</value>
+                </attribute>
+            </optional>
+            <element name="graphic">
+                <attribute name="url">
+                    <data type="anyURI"/>
+                </attribute>
+                <attribute name="n">
+                    <data type="integer"/>
+                </attribute>
+            </element>
+            <optional>
+                <choice>
+                    <ref name="book_comment"/>
+                    <element name="head">
+                        <ref name="book_paragraph_content"/>
+                    </element>
+                </choice>
+            </optional>
+            <element name="figDesc">
+                <ref name="core_space_preserve"/>
+                <attribute name="xml:id">
+                    <data type="ID">
+                        <param name="pattern" xml:space="preserve">s\d\d-ed-img-\d+-desc</param>
+                    </data>
+                </attribute>
+                <ref name="book_comment_paragraph_content"/>
+            </element>
+        </define>
+    </div>
+    <div xml:id="secondary">
+        <define name="book_comment">
+            <element name="note">
+                <attribute name="type">
+                    <value>comment</value>
+                </attribute>
+                <attribute name="n">
+                    <data type="integer"/>
+                </attribute>
+                <attribute name="xml:id">
+                    <data type="ID">
+                        <param name="pattern" xml:space="preserve">s\d\d-ed-comment-\d+</param>
+                    </data>
+                </attribute>
+                <oneOrMore>
+                    <element name="p">
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-ed-comment-\d+-p-\d+</param>
+                            </data>
+                        </attribute>
+                        <ref name="book_comment_paragraph_content"/>
+                    </element>
+                </oneOrMore>
+            </element>
+        </define>
+        <define name="book_comment_paragraph_content">
+            <oneOrMore>
+                <choice>
+                    <text/>
+                    <element name="rs">
+                        <choice>
+                            <ref name="annotation_object_attrs"/>
+                            <ref name="annotation_org_attrs"/>
+                            <ref name="annotation_person_attrs"/>
+                            <ref name="annotation_place_attrs"/>
+                        </choice>
+                        <ref name="book_comment_paragraph_content"/>
+                    </element>
+                    <element name="bibl">
+                        <ref name="annotation_bibl_attrs"/>
+                        <ref name="book_comment_paragraph_content"/>
+                    </element>
+                    <element name="ref">
+                        <ref name="link_ref_attrs"/>
+                        <text/>
+                    </element>
+                    <element name="emph">
+                        <ref name="book_comment_paragraph_content"/>
+                    </element>
+                    <element name="hi">
+                        <ref name="rendition_value"/>
+                        <ref name="book_comment_paragraph_content"/>
+                    </element>
+                    <element name="del">
+                        <ref name="book_comment_paragraph_content"/>
+                    </element>
+                    <element name="add">
+                        <ref name="book_comment_paragraph_content"/>
+                    </element>
+                    <element name="choice">
+                        <optional>
+                            <element name="seg">
+                                <attribute name="type">
+                                    <value>explanation</value>
+                                </attribute>
+                                <ref name="book_comment_paragraph_content"/>
+                            </element>
+                        </optional>
+                        <optional>
+                            <element name="sic">
+                                <attribute name="n">
+                                    <ref name="issue_original_ed"/>
+                                </attribute>
+                                <ref name="book_comment_paragraph_content"/>
+                            </element>
+                        </optional>
+                        <optional>
+                            <element name="sic">
+                                <attribute name="n">
+                                    <ref name="issue_modern_ed"/>
+                                </attribute>
+                                <ref name="book_comment_paragraph_content"/>
+                            </element>
+                        </optional>
+                        <element name="corr">
+                            <ref name="book_comment_paragraph_content"/>
+                        </element>
+                    </element>
+                </choice>
+            </oneOrMore>
+        </define>
+    </div>
+</grammar>

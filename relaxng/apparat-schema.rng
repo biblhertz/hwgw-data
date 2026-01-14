@@ -1,0 +1,835 @@
+<?xml version="1.0"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         ns="http://www.tei-c.org/ns/1.0"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <include href="core-schema.rng"/>
+
+    <start>
+        <element name="TEI">
+            <attribute name="n">
+                <data type="string">
+                    <param name="pattern" xml:space="preserve">\d\d\.03</param>
+                </data>
+            </attribute>
+            <optional>
+                <attribute name="xsi:schemaLocation"/>
+            </optional>
+            <element name="teiHeader">
+                <element name="fileDesc">
+                    <element name="titleStmt">
+                        <element name="title">
+                            <attribute name="level"><value>a</value></attribute>
+                            <attribute name="type"><value>short</value></attribute>
+                            <value>Apparat</value>
+                        </element>
+                        <element name="title">
+                            <attribute name="level"><value>m</value></attribute>
+                            <choice>
+                                <value>Prolegomena zu einer Psychologie der Architektur</value>
+                                <value>Renaissance und Barock. Eine Untersuchung über Wesen und Entstehung des Barockstils in Italien</value>
+                                <value>Salomon Geßner</value>
+                                <value>Die Jugendwerke des Michelangelo</value>
+                                <value>tba 5</value>
+                                <value>Die Kunst Albrecht Dürers</value>
+                                <value>tba 7</value>
+                                <value>Italien und das deutsche Formgefühl</value>
+                            </choice>
+                        </element>
+                        <element name="title">
+                            <attribute name="n">
+                                <data type="string">
+                                    <param name="pattern" xml:space="preserve">s\d\d</param>
+                                </data>
+                            </attribute>
+                            <attribute name="type"><value>volume</value></attribute>
+                            <data type="string">
+                                <param name="pattern" xml:space="preserve">Schriften \d+</param>
+                            </data>
+                        </element>
+                        <element name="title">
+                            <attribute name="type"><value>year</value></attribute>
+                            <data type="gYear"/>
+                        </element>
+                        <element name="respStmt">
+                            <element name="resp">
+                                <value>Gesammelt und kommentiert von</value>
+                            </element>
+                            <element name="name">
+                                <text/>
+                            </element>
+                        </element>
+                    </element>
+                    <ref name="header_edition_stmt"/>
+                    <ref name="header_publication_stmt"/>
+                    <ref name="header_series_stmt"/>
+                    <element name="sourceDesc">
+                        <ref name="header_modern_book"/>
+                    </element>
+                </element>
+                <element name="profileDesc">
+                    <element name="textClass">
+                        <element name="catRef">
+                            <attribute name="scheme">
+                                <value>#genre</value>
+                            </attribute>
+                            <attribute name="target">
+                                <value>#apparatus</value>
+                            </attribute>
+                        </element>
+                    </element>
+                    <element name="langUsage">
+                        <element name="language">
+                            <attribute name="ident">
+                                <data type="language"/>
+                            </attribute>
+                            <text/>
+                        </element>
+                    </element>
+                </element>
+                <element name="encodingDesc">
+                    <optional>
+                        <element name="ab">
+                            <attribute name="n">
+                                <value>images</value>
+                            </attribute>
+                            <element name="ref">
+                                <attribute name="target">
+                                    <data type="anyURI"/>
+                                </attribute>
+                                <text/>
+                            </element>
+                            <text/>
+                        </element>
+                    </optional>
+                    <ref name="rendition_tags_decl"/>
+                </element>
+                <ref name="header_revision_desc"/>
+            </element>
+            <element name="text">
+                <element name="body">
+                    <element name="div">
+                        <a:documentation>
+                            Editorische Notiz
+                        </a:documentation>
+                        <attribute name="type">
+                            <value>chapter</value>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-app-ch-1</param>
+                            </data>
+                        </attribute>
+                        <ref name="page_modern"/>
+                        <ref name="app_head"/>
+                        <zeroOrMore>
+                            <element name="div">
+                                <attribute name="type">
+                                    <value>subchapter</value>
+                                </attribute>
+                                <attribute name="xml:id">
+                                    <data type="ID">
+                                        <param name="pattern" xml:space="preserve">s\d\d-app-ch-1-\d+</param>
+                                    </data>
+                                </attribute>
+                                <optional>
+                                    <ref name="page_modern"/>
+                                </optional>
+                                <ref name="app_head"/>
+                                <zeroOrMore>
+                                    <choice>
+                                        <element name="p">
+                                            <ref name="core_space_preserve"/>
+                                            <attribute name="xml:id">
+                                                <data type="ID">
+                                                    <param name="pattern" xml:space="preserve">s\d\d-app-ch-1-\d+-p-\d+</param>
+                                                </data>
+                                            </attribute>
+                                            <ref name="app_paragraph_content"/>
+                                        </element>
+                                        <ref name="app_gloss_list"/>
+                                        <ref name="app_item_list"/>
+                                    </choice>
+                                </zeroOrMore>
+                                <zeroOrMore>
+                                    <element name="div">
+                                        <attribute name="type">
+                                            <value>subsubchapter</value>
+                                        </attribute>
+                                        <attribute name="xml:id">
+                                            <data type="ID">
+                                                <param name="pattern" xml:space="preserve">s\d\d-app-ch-1-\d+-\d+</param>
+                                            </data>
+                                        </attribute>
+                                        <optional>
+                                            <ref name="page_modern"/>
+                                        </optional>
+                                        <element name="head">
+                                            <ref name="core_space_preserve"/>
+                                            <text/>
+                                        </element>
+                                        <oneOrMore>
+                                            <choice>
+                                                <element name="p">
+                                                    <ref name="core_space_preserve"/>
+                                                    <attribute name="xml:id">
+                                                        <data type="ID">
+                                                            <param name="pattern" xml:space="preserve">s\d\d-app-ch-1-\d+-\d+-p-\d+</param>
+                                                        </data>
+                                                    </attribute>
+                                                    <ref name="app_paragraph_content"/>
+                                                </element>
+                                                <ref name="app_gloss_list"/>
+                                                <ref name="app_item_list"/>
+                                            </choice>
+                                        </oneOrMore>
+                                    </element>
+                                </zeroOrMore>
+                            </element>
+                        </zeroOrMore>
+                        <element name="div">
+                            <attribute name="type">
+                                <value>subchapter</value>
+                            </attribute>
+                            <attribute name="xml:id">
+                                <data type="ID">
+                                    <param name="pattern" xml:space="preserve">s\d\d-app-ch-1-\d+</param>
+                                </data>
+                            </attribute>
+                            <optional>
+                                <ref name="page_modern"/>
+                            </optional>
+                            <ref name="app_head"/>
+                            <element name="ab">
+                                <attribute name="type">
+                                    <value>collected-comments</value>
+                                </attribute>
+                                <oneOrMore>
+                                    <choice>
+                                        <element name="ptr">
+                                            <attribute name="type">
+                                                <value>endnote-link</value>
+                                            </attribute>
+                                            <attribute name="n">
+                                                <data type="integer"/>
+                                            </attribute>
+                                            <attribute name="target">
+                                                <data type="string">
+                                                    <param name="pattern" xml:space="preserve">#s\d\d-app-ch-1-note-\d+</param>
+                                                </data>
+                                            </attribute>
+                                        </element>
+                                        <ref name="page_modern"/>
+                                    </choice>
+                                </oneOrMore>
+                            </element>
+                        </element>
+                    </element>
+                    <element name="div">
+                        <a:documentation>Abbildungsnachweis</a:documentation>
+                        <attribute name="type">
+                            <value>chapter</value>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-app-ch-2</param>
+                            </data>
+                        </attribute>
+                        <optional>
+                            <ref name="page_modern"/>
+                        </optional>
+                        <ref name="app_head"/>
+                        <oneOrMore>
+                            <element name="p">
+                                <attribute name="xml:id">
+                                    <data type="ID">
+                                        <param name="pattern" xml:space="preserve">s\d\d-app-ch-2-p-\d+</param>
+                                    </data>
+                                </attribute>
+                                <ref name="core_space_preserve"/>
+                                <ref name="app_paragraph_content"/>
+                            </element>
+                            <ref name="app_gloss_list"/>
+                        </oneOrMore>
+                    </element>
+                    <element name="div">
+                        <a:documentation>Kommentar</a:documentation>
+                        <attribute name="type">
+                            <value>chapter</value>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-app-ch-3</param>
+                            </data>
+                        </attribute>
+                        <optional>
+                            <ref name="page_modern"/>
+                        </optional>
+                        <ref name="app_head"/>
+                        <element name="ab">
+                            <attribute name="type">
+                                <value>collected-comments</value>
+                            </attribute>
+                            <oneOrMore>
+                                <choice>
+                                    <element name="ptr">
+                                        <attribute name="type">
+                                            <value>endnote-external</value>
+                                        </attribute>
+                                        <attribute name="n">
+                                            <data type="integer"/>
+                                        </attribute>
+                                        <attribute name="target">
+                                            <data type="string">
+                                                <param name="pattern" xml:space="preserve">#s\d\d-ed-comment-\d+</param>
+                                            </data>
+                                        </attribute>
+                                    </element>
+                                    <ref name="page_modern"/>
+                                </choice>
+                            </oneOrMore>
+                        </element>
+                    </element>
+                    <element name="div">
+                        <a:documentation>Dokumente</a:documentation>
+                        <attribute name="type">
+                            <value>chapter</value>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-app-ch-4</param>
+                            </data>
+                        </attribute>
+                        <optional>
+                            <ref name="page_modern"/>
+                        </optional>
+                        <ref name="app_head"/>
+                        <element name="table">
+                            <oneOrMore>
+                                <element name="row">
+                                    <element name="cell">
+                                        <ref name="core_space_preserve"/>
+                                        <data type="string">
+                                            <param name="pattern" xml:space="preserve">Dok\. \d+</param>
+                                        </data>
+                                    </element>
+                                    <element name="cell">
+                                        <ref name="core_space_preserve"/>
+                                        <ref name="app_paragraph_content"/>
+                                    </element>
+                                    <element name="cell">
+                                        <ref name="core_space_preserve"/>
+                                        <element name="ref">
+                                            <ref name="link_ref_attrs"/>
+                                            <data type="integer"/>
+                                        </element>
+                                    </element>
+                                </element>
+                            </oneOrMore>
+                        </element>
+                        <oneOrMore>
+                            <element name="div">
+                                <attribute name="type">
+                                    <value>document</value>
+                                </attribute>
+                                <attribute name="xml:id">
+                                    <data type="ID">
+                                        <param name="pattern" xml:space="preserve">s\d\d-doc-\d+</param>
+                                    </data>
+                                </attribute>
+                                <optional>
+                                    <ref name="page_modern"/>
+                                </optional>
+                                <element name="head">
+                                    <ref name="core_space_preserve"/>
+                                    <attribute name="n"/>
+                                    <ref name="app_paragraph_content"/>
+                                </element>
+                                <zeroOrMore>
+                                    <element name="p">
+                                        <ref name="core_space_preserve"/>
+                                        <attribute name="rendition">
+                                            <value>document_description</value>
+                                        </attribute>
+                                        <attribute name="xml:id">
+                                            <data type="ID">
+                                                <param name="pattern" xml:space="preserve">s\d\d-doc-\d+-desc</param>
+                                            </data>
+                                        </attribute>
+                                        <ref name="app_paragraph_content"/>
+                                    </element>
+                                </zeroOrMore>
+                                <element name="floatingText">
+                                    <element name="body">
+                                        <oneOrMore>
+                                            <choice>
+                                                <element name="p">
+                                                    <ref name="core_space_preserve"/>
+                                                    <attribute name="xml:id">
+                                                        <data type="ID">
+                                                            <param name="pattern" xml:space="preserve">s\d\d-doc-\d+-p-\d+</param>
+                                                        </data>
+                                                    </attribute>
+                                                    <ref name="app_doc_paragraph_content"/>
+                                                </element>
+                                            </choice>
+                                        </oneOrMore>
+                                    </element>
+                                </element>
+                            </element>
+                        </oneOrMore>
+                        <element name="div">
+                            <attribute name="type">
+                                <value>subchapter</value>
+                            </attribute>
+                            <attribute name="xml:id">
+                                <data type="ID">
+                                    <param name="pattern" xml:space="preserve">s\d\d-app-ch-4-\d+</param>
+                                </data>
+                            </attribute>
+                            <optional>
+                                <ref name="page_modern"/>
+                            </optional>
+                            <ref name="app_head"/>
+                            <element name="ab">
+                                <attribute name="type">
+                                    <value>collected-comments</value>
+                                </attribute>
+                                <oneOrMore>
+                                    <choice>
+                                        <element name="ptr">
+                                            <attribute name="type">
+                                                <value>endnote-link</value>
+                                            </attribute>
+                                            <attribute name="n">
+                                                <data type="integer"/>
+                                            </attribute>
+                                            <attribute name="target">
+                                                <data type="string">
+                                                    <param name="pattern" xml:space="preserve">#s\d\d-doc-comment-\d+</param>
+                                                </data>
+                                            </attribute>
+                                        </element>
+                                        <ref name="page_modern"/>
+                                    </choice>
+                                </oneOrMore>
+                            </element>
+                        </element>
+                    </element>
+                    <element name="div">
+                        <a:documentation>Literatur (HW)</a:documentation>
+                        <attribute name="type">
+                            <value>chapter</value>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-app-ch-\d+</param>
+                            </data>
+                        </attribute>
+                        <optional>
+                            <ref name="page_modern"/>
+                        </optional>
+                        <ref name="app_head"/>
+                        <element name="list">
+                            <attribute name="rend">
+                                <value>hanging</value>
+                            </attribute>
+                            <oneOrMore>
+                                <element name="item">
+                                    <optional>
+                                    <!-- todo remove optional -->
+                                    <element name="bibl">
+                                        <ref name="annotation_bibl_attrs"/>
+                                        <ref name="app_paragraph_content"/>
+                                    </element>
+                                    </optional>
+                                    <ref name="app_paragraph_content"/>
+                                </element>
+                            </oneOrMore>
+                        </element>
+                    </element>
+                    <element name="div">
+                        <a:documentation>Objekte (HW)</a:documentation>
+                        <attribute name="type">
+                            <value>chapter</value>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-app-ch-\d+</param>
+                            </data>
+                        </attribute>
+                        <optional>
+                            <ref name="page_modern"/>
+                        </optional>
+                        <ref name="app_head"/>
+                        <ref name="app_object_list"/>
+                    </element>
+                    <element name="div">
+                        <a:documentation>Literatur</a:documentation>
+                        <attribute name="type">
+                            <value>chapter</value>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-app-ch-\d+</param>
+                            </data>
+                        </attribute>
+                        <optional>
+                            <ref name="page_modern"/>
+                        </optional>
+                        <ref name="app_head"/>
+                        <element name="list">
+                            <attribute name="rend">
+                                <value>hanging</value>
+                            </attribute>
+                            <oneOrMore>
+                                <element name="item">
+                                    <optional>
+                                        <ref name="page_modern"/>
+                                    </optional>
+                                    <element name="bibl">
+                                        <ref name="annotation_bibl_attrs"/>
+                                        <ref name="app_paragraph_content"/>
+                                    </element>
+                                    <optional>
+                                        <text/>
+                                    </optional>
+                                    <element name="ab">
+                                        <ref name="core_space_preserve"/>
+                                        <ref name="app_paragraph_content"/>
+                                    </element>
+                                </element>
+                            </oneOrMore>
+                        </element>
+                    </element>
+                    <element name="div">
+                        <a:documentation>Personen</a:documentation>
+                        <attribute name="type">
+                            <value>chapter</value>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-app-ch-\d+</param>
+                            </data>
+                        </attribute>
+                        <optional>
+                            <ref name="page_modern"/>
+                        </optional>
+                        <ref name="app_head"/>
+                        <element name="list">
+                            <attribute name="rend">
+                                <value>hanging</value>
+                            </attribute>
+                            <oneOrMore>
+                                <element name="item">
+                                    <optional>
+                                        <ref name="page_modern"/>
+                                    </optional>
+                                    <ref name="app_paragraph_content"/>
+                                </element>
+                            </oneOrMore>
+                        </element>
+                    </element>
+                </element>
+            </element>
+        </element>
+    </start>
+    <div>
+        <define name="app_head">
+            <element name="head">
+                <ref name="core_space_preserve"/>
+                <attribute name="n">
+                    <text/>
+                </attribute>
+                <oneOrMore>
+                    <choice>
+                        <element name="rs">
+                            <choice>
+                                <ref name="annotation_object_attrs"/>
+                                <ref name="annotation_org_attrs"/>
+                                <ref name="annotation_person_attrs"/>
+                                <ref name="annotation_place_attrs"/>
+                            </choice>
+                            <text/>
+                        </element>
+                        <text/>
+                    </choice>
+                </oneOrMore>
+            </element>
+        </define>
+        <define name="app_paragraph_content">
+            <oneOrMore>
+                <choice>
+                    <element name="emph">
+                        <ref name="app_paragraph_content"/>
+                    </element>
+                    <ref name="app_note"/>
+                    <ref name="app_doc_note"/>
+                    <element name="rs">
+                        <choice>
+                            <ref name="annotation_object_attrs"/>
+                            <ref name="annotation_org_attrs"/>
+                            <ref name="annotation_person_attrs"/>
+                            <ref name="annotation_place_attrs"/>
+                        </choice>
+                        <ref name="app_paragraph_content"/>
+                    </element>
+                    <element name="bibl">
+                        <ref name="annotation_bibl_attrs"/>
+                        <ref name="app_paragraph_content"/>
+                    </element>
+                    <element name="del">
+                        <ref name="app_paragraph_content"/>
+                    </element>
+                    <element name="add">
+                        <ref name="app_paragraph_content"/>
+                    </element>
+                    <element name="hi">
+                        <ref name="rendition_value"/>
+                        <ref name="app_paragraph_content"/>
+                    </element>
+                    <ref name="page_modern"/>
+                    <element name="ref">
+                        <ref name="link_ref_attrs"/>
+                        <ref name="app_paragraph_content"/>
+                    </element>
+                    <element name="choice">
+                        <element name="seg">
+                            <attribute name="type">
+                                <value>explanation</value>
+                            </attribute>
+                            <ref name="app_paragraph_content"/>
+                        </element>
+                        <oneOrMore>
+                            <element name="sic">
+                                <attribute name="n">
+                                    <ref name="issue_modern_ed"/>
+                                </attribute>
+                                <ref name="app_paragraph_content"/>
+                            </element>
+                        </oneOrMore>
+                        <element name="corr">
+                            <ref name="app_paragraph_content"/>
+                        </element>
+                    </element>
+                    <text/>
+                </choice>
+            </oneOrMore>
+        </define>
+        <define name="app_doc_paragraph_content">
+            <oneOrMore>
+                <choice>
+                    <element name="rs">
+                        <choice>
+                            <ref name="annotation_object_attrs"/>
+                            <ref name="annotation_org_attrs"/>
+                            <ref name="annotation_person_attrs"/>
+                            <ref name="annotation_place_attrs"/>
+                        </choice>
+                        <ref name="app_doc_paragraph_content"/>
+                    </element>
+                    <element name="bibl">
+                        <ref name="annotation_bibl_attrs"/>
+                        <ref name="app_doc_paragraph_content"/>
+                    </element>
+                    <element name="del">
+                        <ref name="app_doc_paragraph_content"/>
+                    </element>
+                    <element name="add">
+                        <ref name="app_doc_paragraph_content"/>
+                    </element>
+                    <element name="hi">
+                        <ref name="rendition_value"/>
+                        <ref name="app_doc_paragraph_content"/>
+                    </element>
+                    <element name="choice">
+                        <element name="seg">
+                            <attribute name="type">
+                                <value>explanation</value>
+                            </attribute>
+                            <text/>
+                        </element>
+                        <element name="sic">
+                            <attribute name="n">
+                                <ref name="issue_modern_ed"/>
+                            </attribute>
+                            <text/>
+                        </element>
+                        <element name="corr">
+                            <text/>
+                        </element>
+                    </element>
+                    <element name="note">
+                        <attribute name="place">
+                            <value>foot</value>
+                        </attribute>
+                        <attribute name="n">
+                            <data type="string">
+                                <param name="pattern" xml:space="preserve">([XVI]+|\d+)</param>
+                            </data>
+                        </attribute>
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-doc-\d+-note-\d+</param>
+                            </data>
+                        </attribute>
+                        <oneOrMore>
+                            <element name="p">
+                                <attribute name="xml:id">
+                                    <data type="ID">
+                                        <param name="pattern" xml:space="preserve">s\d\d-doc-\d+-note-\d+-p-\d+</param>
+                                    </data>
+                                </attribute>
+                                <ref name="app_doc_paragraph_content"/>
+                            </element>
+                        </oneOrMore>
+                    </element>
+                    <ref name="app_doc_note"/>
+                    <ref name="page_modern"/>
+                    <text/>
+                </choice>
+            </oneOrMore>
+        </define>
+        <define name="app_item_list">
+            <element name="list">
+                <oneOrMore>
+                    <choice>
+                        <element name="item">
+                            <ref name="app_paragraph_content"/>
+                            <ref name="app_item_list"/>
+                        </element>
+                        <element name="item">
+                            <ref name="core_space_preserve"/>
+                            <ref name="app_paragraph_content"/>
+                        </element>
+                    </choice>
+                </oneOrMore>
+            </element>
+        </define>
+        <define name="app_gloss_list">
+            <element name="list">
+                <attribute name="type">
+                    <value>gloss</value>
+                </attribute>
+                <oneOrMore>
+                    <element name="label">
+                        <ref name="core_space_preserve"/>
+                        <ref name="app_paragraph_content"/>
+                    </element>
+                    <element name="item">
+                        <ref name="core_space_preserve"/>
+                        <ref name="app_paragraph_content"/>
+                    </element>
+                </oneOrMore>
+            </element>
+        </define>
+        <define name="app_object_list">
+            <element name="list">
+                <attribute name="rend">
+                    <value>plain</value>
+                </attribute>
+                <oneOrMore>
+                    <element name="item">
+                        <attribute name="rend">
+                            <choice>
+                                <value>list-plain</value>
+                                <value>list-stroke</value>
+                            </choice>
+                        </attribute>
+                        <ref name="app_paragraph_content"/>
+                        <optional>
+                            <ref name="app_object_list"/>
+                        </optional>
+                    </element>
+                </oneOrMore>
+            </element>
+        </define>
+        <define name="app_note">
+            <element name="note">
+                <attribute name="n">
+                    <data type="integer"/>
+                </attribute>
+                <attribute name="type">
+                    <value>note</value>
+                </attribute>
+                <attribute name="xml:id">
+                    <data type="ID">
+                        <param name="pattern" xml:space="preserve">s\d\d-app-ch-1-note-\d+</param>
+                    </data>
+                </attribute>
+                <oneOrMore>
+                    <element name="p">
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-app-ch-1-note-\d+-p-\d+</param>
+                            </data>
+                        </attribute>
+                        <ref name="app_comment_paragraph_content"/>
+                    </element>
+                </oneOrMore>
+            </element>
+        </define>
+        <define name="app_doc_note">
+            <element name="note">
+                <attribute name="type">
+                    <value>comment</value>
+                </attribute>
+                <attribute name="xml:id">
+                    <data type="ID">
+                        <param name="pattern" xml:space="preserve">s\d\d-doc-comment-\d+</param>
+                    </data>
+                </attribute>
+                <attribute name="n">
+                    <data type="integer"/>
+                </attribute>
+                <oneOrMore>
+                    <element name="p">
+                        <attribute name="xml:id">
+                            <data type="ID">
+                                <param name="pattern" xml:space="preserve">s\d\d-doc-comment-\d+-p-\d+</param>
+                            </data>
+                        </attribute>
+                        <ref name="app_paragraph_content"/>
+                    </element>
+                </oneOrMore>
+            </element>
+        </define>
+        <define name="app_comment_paragraph_content">
+            <oneOrMore>
+                <choice>
+                    <element name="rs">
+                        <choice>
+                            <ref name="annotation_object_attrs"/>
+                            <ref name="annotation_org_attrs"/>
+                            <ref name="annotation_person_attrs"/>
+                            <ref name="annotation_place_attrs"/>
+                        </choice>
+                        <ref name="app_comment_paragraph_content"/>
+                    </element>
+                    <element name="bibl">
+                        <ref name="annotation_bibl_attrs"/>
+                        <ref name="app_comment_paragraph_content"/>
+                    </element>
+                    <element name="ref">
+                        <ref name="link_ref_attrs"/>
+                        <ref name="app_comment_paragraph_content"/>
+                    </element>
+                    <element name="del">
+                        <ref name="app_comment_paragraph_content"/>
+                    </element>
+                    <element name="add">
+                        <ref name="app_comment_paragraph_content"/>
+                    </element>
+                    <element name="hi">
+                        <ref name="rendition_value"/>
+                        <ref name="app_comment_paragraph_content"/>
+                    </element>
+                    <ref name="page_modern"/>
+                    <text/>
+                </choice>
+            </oneOrMore>
+        </define>
+    </div>
+
+</grammar>
