@@ -1,185 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://www.tei-c.org/ns/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <start>
-      <element name="TEI">
-          <attribute name="n"/>
-          <externalRef href="register_header.rng"/>
-          <element name="text">
-              <element name="body">
-                  <empty/>
-              </element>
-              <element name="back">
-                  <element name="div">
-                      <attribute name="xml:id">
-                          <value>index-obj</value>
-                      </attribute>
-                      <element name="head">
-                          <value>Objektverzeichnis</value>
-                      </element>
-                      <element name="listObject">
-                          <oneOrMore>
-                              <ref name="listObject_place"/>
-                          </oneOrMore>
-                      </element>
-                  </element>
-              </element>
+    <element name="TEI">
+      <attribute name="n"/>
+      <externalRef href="https://raw.githubusercontent.com/biblhertz/hwgw-data/refs/heads/schema/relaxng/register_header.rng"/>
+      <element name="text">
+        <element name="body">
+          <empty/>
+        </element>
+        <element name="back">
+          <element name="div">
+            <attribute name="xml:id">
+              <value>index-obj</value>
+            </attribute>
+            <element name="head">
+              <value>Objektverzeichnis</value>
+            </element>
+            <element name="listObject">
+              <oneOrMore>
+                <ref name="listObject_place"/>
+              </oneOrMore>
+            </element>
           </element>
+        </element>
       </element>
+    </element>
   </start>
-    <div>
-        <define name="listObject_place">
-            <element name="listObject">
-                <attribute name="corresp"/>
-                <attribute name="n"/>
-                <attribute name="type">
-                    <value>place</value>
-                </attribute>
-                <oneOrMore>
-                    <choice>
-                        <ref name="listObject_place"/>
-                        <ref name="listObject_org"/>
-                        <ref name="listObject_obj"/>
-                        <ref name="listObject_bibl"/>
-                        <ref name="object"/>
-                    </choice>
-                </oneOrMore>
-            </element>
-        </define>
-        <define name="listObject_org">
-            <element name="listObject">
-                <attribute name="corresp"/>
-                <attribute name="n"/>
-                <attribute name="type">
-                    <value>organisation</value>
-                </attribute>
-                <oneOrMore>
-                    <choice>
-                        <ref name="listObject_org"/>
-                        <ref name="listObject_obj"/>
-                        <ref name="object"/>
-                    </choice>
-                </oneOrMore>
-            </element>
-        </define>
-        <define name="listObject_obj">
-            <element name="listObject">
-                <optional>
-                    <attribute name="corresp"/>
-                </optional>
-                <attribute name="n"/>
-                <attribute name="type">
-                    <value>object</value>
-                </attribute>
-                <oneOrMore>
-                    <choice>
-                        <ref name="listObject_org"/>
-                        <ref name="listObject_obj"/>
-                        <ref name="object"/>
-                    </choice>
-                </oneOrMore>
-            </element>
-        </define>
-        <define name="listObject_bibl">
-            <element name="listObject">
-                <optional>
-                    <attribute name="corresp"/>
-                </optional>
-                <attribute name="n"/>
-                <attribute name="type">
-                    <value>bibl</value>
-                </attribute>
-                <oneOrMore>
-                    <choice>
-                        <ref name="object"/>
-                    </choice>
-                </oneOrMore>
-            </element>
-        </define>
-        <define name="object">
-            <element name="object">
-                <attribute name="xml:id"/>
-                <element name="head">
-                    <attribute name="type">
-                        <value>main</value>
-                    </attribute>
-                    <text/>
+  <div>
+    <define name="listObject_place">
+      <element name="listObject">
+        <attribute name="corresp"/>
+        <attribute name="n"/>
+        <attribute name="type">
+          <value>place</value>
+        </attribute>
+        <oneOrMore>
+          <choice>
+            <ref name="listObject_place"/>
+            <ref name="listObject_org"/>
+            <ref name="listObject_obj"/>
+            <ref name="listObject_bibl"/>
+            <ref name="object"/>
+          </choice>
+        </oneOrMore>
+      </element>
+    </define>
+    <define name="listObject_org">
+      <element name="listObject">
+        <attribute name="corresp"/>
+        <attribute name="n"/>
+        <attribute name="type">
+          <value>organisation</value>
+        </attribute>
+        <oneOrMore>
+          <choice>
+            <ref name="listObject_org"/>
+            <ref name="listObject_obj"/>
+            <ref name="object"/>
+          </choice>
+        </oneOrMore>
+      </element>
+    </define>
+    <define name="listObject_obj">
+      <element name="listObject">
+        <optional>
+          <attribute name="corresp"/>
+        </optional>
+        <attribute name="n"/>
+        <attribute name="type">
+          <value>object</value>
+        </attribute>
+        <oneOrMore>
+          <choice>
+            <ref name="listObject_org"/>
+            <ref name="listObject_obj"/>
+            <ref name="object"/>
+          </choice>
+        </oneOrMore>
+      </element>
+    </define>
+    <define name="listObject_bibl">
+      <element name="listObject">
+        <optional>
+          <attribute name="corresp"/>
+        </optional>
+        <attribute name="n"/>
+        <attribute name="type">
+          <value>bibl</value>
+        </attribute>
+        <oneOrMore>
+          <choice>
+            <ref name="object"/>
+          </choice>
+        </oneOrMore>
+      </element>
+    </define>
+    <define name="object">
+      <element name="object">
+        <attribute name="xml:id"/>
+        <element name="head">
+          <attribute name="type">
+            <value>main</value>
+          </attribute>
+          <text/>
+        </element>
+        <optional>
+          <element name="head">
+            <attribute name="type">
+              <value>short</value>
+            </attribute>
+            <text/>
+          </element>
+        </optional>
+        <optional>
+          <element name="head">
+            <attribute name="type">
+              <value>alternative</value>
+            </attribute>
+            <text/>
+          </element>
+        </optional>
+        <optional>
+          <element name="head">
+            <attribute name="type">
+              <value>hw</value>
+            </attribute>
+            <text/>
+          </element>
+        </optional>
+        <optional>
+          <element name="note">
+            <mixed>
+              <zeroOrMore>
+                <element name="persName">
+                  <attribute name="role">
+                    <value>author</value>
+                  </attribute>
+                  <optional>
+                    <attribute name="ref"/>
+                  </optional>
+                  <text/>
                 </element>
-                <optional>
-                    <element name="head">
-                        <attribute name="type">
-                            <value>short</value>
-                        </attribute>
+              </zeroOrMore>
+              <optional>
+                <element name="date">
+                  <text/>
+                </element>
+              </optional>
+              <optional>
+                <element name="p">
+                  <mixed>
+                    <optional>
+                      <element name="material">
                         <text/>
-                    </element>
-                </optional>
-                <optional>
-                    <element name="head">
-                        <attribute name="type">
-                            <value>alternative</value>
-                        </attribute>
+                      </element>
+                    </optional>
+                    <optional>
+                      <element name="dim">
                         <text/>
-                    </element>
-                </optional>
-                <optional>
-                    <element name="head">
-                        <attribute name="type">
-                            <value>hw</value>
-                        </attribute>
+                      </element>
+                    </optional>
+                    <optional>
+                      <element name="idno">
                         <text/>
-                    </element>
-                </optional>
-                <optional>
-                    <element name="note">
-                        <mixed>
-                            <zeroOrMore>
-                                <element name="persName">
-                                    <attribute name="role">
-                                        <value>author</value>
-                                    </attribute>
-                                    <optional>
-                                        <attribute name="ref"/>
-                                    </optional>
-                                    <text/>
-                                </element>
-                            </zeroOrMore>
-                            <optional>
-                                <element name="date">
-                                    <text/>
-                                </element>
-                            </optional>
-                            <optional>
-                                <element name="p">
-                                    <mixed>
-                                        <optional>
-                                            <element name="material">
-                                                <text/>
-                                            </element>
-                                        </optional>
-                                        <optional>
-                                            <element name="dim">
-                                                <text/>
-                                            </element>
-                                        </optional>
-                                        <optional>
-                                            <element name="idno">
-                                                <text/>
-                                            </element>
-                                        </optional>
-                                    </mixed>
-                                </element>
-                            </optional>
-                            <optional>
-                                <element name="idno">
-                                    <attribute name="type">
-                                        <value>GND</value>
-                                    </attribute>
-                                    <text/>
-                                </element>
-                            </optional>
-                        </mixed>
-                    </element>
-                </optional>
-            </element>
-        </define>
-    </div>
+                      </element>
+                    </optional>
+                  </mixed>
+                </element>
+              </optional>
+              <optional>
+                <element name="idno">
+                  <attribute name="type">
+                    <value>GND</value>
+                  </attribute>
+                  <text/>
+                </element>
+              </optional>
+            </mixed>
+          </element>
+        </optional>
+      </element>
+    </define>
+  </div>
 </grammar>

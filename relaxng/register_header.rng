@@ -1,104 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://www.tei-c.org/ns/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-    <start>
-
-        <element name="teiHeader">
-            <element name="fileDesc">
-                <element name="titleStmt">
-                    <element name="title">
-                        <choice>
-                            <value>Bibliografie</value>
-                            <value>Objektverzeichnis</value>
-                            <value>Organisationsverzeichnis</value>
-                            <value>Ortsverzeichnis</value>
-                            <value>Personenverzeichnis</value>
-                        </choice>
-                    </element>
-                    <element name="funder">
-                        <attribute name="ref">
-                            <value>http://p3.snf.ch/Project-198243</value>
-                        </attribute>
-                        <value>Schweizerischer Nationalfonds zur Förderung der wissenschaftlichen Forschung</value>
-                    </element>
-                </element>
-                <element name="editionStmt">
-                    <element name="edition">
-                        <element name="title">
-                            <value>Online-Edition</value>
-                        </element>
-                    </element>
-                </element>
-                <element name="publicationStmt">
-                    <element name="publisher">
-                        <value>Universität Zürich: Kunsthistorisches Institut</value>
-                    </element>
-                    <element name="pubPlace">
-                        <value>Zürich</value>
-                    </element>
-                    <element name="availability">
-                        <value>Lizenz zu definieren</value>
-                    </element>
-                    <element name="date">
-                        <attribute name="when"/>
-                    </element>
-                </element>
-                <element name="seriesStmt">
-                    <element name="title">
-                        <value>Heinrich Wölfflin: Gesammelte Werke</value>
-                    </element>
-                    <element name="respStmt">
-                        <element name="resp">
-                            <value>Herausgegeben von</value>
-                        </element>
-                        <element name="name">
-                            <value>Tristan Weddigen</value>
-                        </element>
-                        <element name="name">
-                            <value>Oskar Bätschmann</value>
-                        </element>
-                    </element>
-                    <element name="biblScope">
-                        <attribute name="unit">
-                            <value>volume</value>
-                        </attribute>
-                        <text/>
-                    </element>
-                </element>
-                <element name="sourceDesc">
-                    <element name="p">
-                        <empty/>
-                    </element>
-                </element>
-            </element>
-            <element name="profileDesc">
-                <element name="textClass">
-                    <element name="catRef">
-                        <attribute name="scheme">
-                            <value>#genre</value>
-                        </attribute>
-                        <attribute name="target">
-                            <value>#index</value>
-                        </attribute>
-                    </element>
-                </element>
-                <element name="langUsage">
-                    <element name="language">
-                        <attribute name="ident">
-                            <value>de</value>
-                        </attribute>
-                        <value>Deutsch</value>
-                    </element>
-                </element>
-            </element>
-            <element name="revisionDesc">
-                <element name="listChange">
-                    <zeroOrMore>
-                        <element name="change">
-                            <attribute name="when"/>
-                        </element>
-                    </zeroOrMore>
-                </element>
-            </element>
+  <start>
+    <element name="teiHeader">
+      <element name="fileDesc">
+        <element name="titleStmt">
+          <element name="title">
+            <choice>
+              <value>Bibliografie</value>
+              <value>Objektverzeichnis</value>
+              <value>Organisationsverzeichnis</value>
+              <value>Ortsverzeichnis</value>
+              <value>Personenverzeichnis</value>
+            </choice>
+          </element>
+          <element name="funder">
+            <attribute name="ref">
+              <value>http://p3.snf.ch/Project-198243</value>
+            </attribute>
+            <value>Schweizerischer Nationalfonds zur Förderung der wissenschaftlichen Forschung</value>
+          </element>
         </element>
-    </start>
+        <element name="editionStmt">
+          <element name="edition">
+            <element name="title">
+              <value>Online-Edition</value>
+            </element>
+          </element>
+        </element>
+        <element name="publicationStmt">
+          <element name="publisher">
+            <value>Universität Zürich: Kunsthistorisches Institut</value>
+          </element>
+          <element name="pubPlace">
+            <value>Zürich</value>
+          </element>
+          <element name="availability">
+            <value>Lizenz zu definieren</value>
+          </element>
+          <element name="date">
+            <attribute name="when"/>
+          </element>
+        </element>
+        <element name="seriesStmt">
+          <element name="title">
+            <value>Heinrich Wölfflin: Gesammelte Werke</value>
+          </element>
+          <element name="respStmt">
+            <element name="resp">
+              <value>Herausgegeben von</value>
+            </element>
+            <element name="name">
+              <value>Tristan Weddigen</value>
+            </element>
+            <element name="name">
+              <value>Oskar Bätschmann</value>
+            </element>
+          </element>
+          <element name="biblScope">
+            <attribute name="unit">
+              <value>volume</value>
+            </attribute>
+            <text/>
+          </element>
+        </element>
+        <element name="sourceDesc">
+          <element name="p">
+            <empty/>
+          </element>
+        </element>
+      </element>
+      <element name="profileDesc">
+        <element name="textClass">
+          <element name="catRef">
+            <attribute name="scheme">
+              <value>#genre</value>
+            </attribute>
+            <attribute name="target">
+              <value>#index</value>
+            </attribute>
+          </element>
+        </element>
+        <element name="langUsage">
+          <element name="language">
+            <attribute name="ident">
+              <value>de</value>
+            </attribute>
+            <value>Deutsch</value>
+          </element>
+        </element>
+      </element>
+      <element name="revisionDesc">
+        <element name="listChange">
+          <zeroOrMore>
+            <element name="change">
+              <attribute name="when"/>
+            </element>
+          </zeroOrMore>
+        </element>
+      </element>
+    </element>
+  </start>
 </grammar>
