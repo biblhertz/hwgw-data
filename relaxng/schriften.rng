@@ -873,6 +873,72 @@
                 </element>
               </element>
             </element>
+            <optional>
+              <element name="div">
+                <a:documentation>Optional 'Abbilungsanhang'</a:documentation>
+                <attribute name="type">
+                  <value>chapter</value>
+                </attribute>
+                <attribute name="xml:id">
+                  <data type="ID">
+                    <param name="pattern" xml:space="preserve">s\d\d-app-ch-\d+</param>
+                  </data>
+                </attribute>
+                <optional>
+                  <ref name="page_modern"/>
+                </optional>
+                <ref name="app_head"/>
+                <oneOrMore>
+                  <element name="p">
+                    <ref name="core_space_preserve"/>
+                    <attribute name="xml:id">
+                      <data type="ID">
+                        <param name="pattern" xml:space="preserve">s\d\d-app-ch-\d+-p-\d+</param>
+                      </data>
+                    </attribute>
+                    <ref name="app_paragraph_content"/>
+                  </element>
+                </oneOrMore>
+                <oneOrMore>
+                  <choice>
+                    <element name="figure">
+                      <attribute name="n">
+                        <data type="string">
+                          <param name="pattern" xml:space="preserve">(Fig\.|Taf\.) \d+</param>
+                        </data>
+                      </attribute>
+                      <attribute name="xml:id">
+                        <data type="ID">
+                          <param name="pattern" xml:space="preserve">s\d\d-app-(fig|taf)-\d+</param>
+                        </data>
+                      </attribute>
+                      <element name="graphic">
+                        <attribute name="n">
+                          <data type="integer"/>
+                        </attribute>
+                        <attribute name="url">
+                          <data type="anyURI"/>
+                        </attribute>
+                      </element>
+                      <element name="head">
+                        <ref name="core_space_preserve"/>
+                        <ref name="app_paragraph_content"/>
+                      </element>
+                      <element name="figDesc">
+                        <ref name="core_space_preserve"/>
+                        <attribute name="xml:id">
+                          <data type="ID">
+                            <param name="pattern" xml:space="preserve">s\d\d-app-(fig|taf)-\d+-desc</param>
+                          </data>
+                        </attribute>
+                        <ref name="app_paragraph_content"/>
+                      </element>
+                    </element>
+                    <ref name="page_modern"/>
+                  </choice>
+                </oneOrMore>
+              </element>
+            </optional>
             <element name="div">
               <a:documentation>Literatur (HW)</a:documentation>
               <attribute name="type">
