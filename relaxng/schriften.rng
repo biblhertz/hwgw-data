@@ -1533,6 +1533,11 @@
                 </oneOrMore>
               </choice>
             </element>
+            <element name="fw">
+              <attribute name="type">
+                <value>line</value>
+              </attribute>
+            </element>
           </choice>
         </zeroOrMore>
         <optional>
