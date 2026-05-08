@@ -664,7 +664,9 @@
     </define>
     <define name="listObject_org">
       <element name="listObject">
-        <attribute name="corresp"/>
+        <optional>
+          <attribute name="corresp"/>
+        </optional>
         <attribute name="n"/>
         <attribute name="type">
           <value>organisation</value>
@@ -713,90 +715,229 @@
       </element>
     </define>
     <define name="object">
-      <element name="object">
-        <attribute name="xml:id"/>
-        <element name="head">
-          <attribute name="type">
-            <value>main</value>
+      <choice>
+        <element name="object">
+          <a:documentation>Objekt mit GND-Nummer</a:documentation>
+          <attribute name="xml:id">
+            <data type="ID">
+              <param name="pattern" xml:space="preserve">gnd-(\d|X|-)+</param>
+            </data>
           </attribute>
-          <text/>
+          <ref name="object_type"/>
+          <element name="head">
+            <attribute name="type">
+              <value>main</value>
+            </attribute>
+            <text/>
+          </element>
+          <optional>
+            <element name="head">
+              <attribute name="type">
+                <value>sub</value>
+              </attribute>
+              <oneOrMore>
+                <choice>
+                  <text/>
+                  <element name="emph">
+                    <text/>
+                  </element>
+                </choice>
+              </oneOrMore>
+            </element>
+          </optional>
+          <optional>
+            <element name="head">
+              <attribute name="type">
+                <value>short</value>
+              </attribute>
+              <text/>
+            </element>
+          </optional>
+          <optional>
+            <element name="head">
+              <attribute name="type">
+                <value>alternative</value>
+              </attribute>
+              <text/>
+            </element>
+          </optional>
+          <optional>
+            <element name="head">
+              <attribute name="type">
+                <value>hw</value>
+              </attribute>
+              <text/>
+            </element>
+          </optional>
+          <optional>
+            <element name="note">
+              <mixed>
+                <zeroOrMore>
+                  <element name="persName">
+                    <attribute name="role">
+                      <value>creator</value>
+                    </attribute>
+                    <optional>
+                      <attribute name="ref"/>
+                    </optional>
+                    <text/>
+                  </element>
+                </zeroOrMore>
+                <optional>
+                  <element name="date">
+                    <text/>
+                  </element>
+                </optional>
+                <optional>
+                  <element name="p">
+                    <mixed>
+                      <optional>
+                        <element name="material">
+                          <text/>
+                        </element>
+                      </optional>
+                      <optional>
+                        <element name="dim">
+                          <text/>
+                        </element>
+                      </optional>
+                      <optional>
+                        <element name="idno">
+                          <text/>
+                        </element>
+                      </optional>
+                    </mixed>
+                  </element>
+                </optional>
+                <optional>
+                  <element name="idno">
+                    <attribute name="type">
+                      <value>GND</value>
+                    </attribute>
+                    <data type="string">
+                      <param name="pattern" xml:space="preserve">(\d|X|-)+</param>
+                    </data>
+                  </element>
+                </optional>
+              </mixed>
+            </element>
+          </optional>
         </element>
-        <optional>
+        <element name="object">
+          <a:documentation>Objekt nicht im GND-Verzeichnis</a:documentation>
+          <attribute name="xml:id">
+            <data type="ID">
+              <param name="pattern" xml:space="preserve">object-(\d|\w|-)+</param>
+            </data>
+          </attribute>
+          <ref name="object_type"/>
           <element name="head">
             <attribute name="type">
-              <value>short</value>
+              <value>main</value>
             </attribute>
             <text/>
           </element>
-        </optional>
-        <optional>
-          <element name="head">
-            <attribute name="type">
-              <value>alternative</value>
-            </attribute>
-            <text/>
-          </element>
-        </optional>
-        <optional>
-          <element name="head">
-            <attribute name="type">
-              <value>hw</value>
-            </attribute>
-            <text/>
-          </element>
-        </optional>
-        <optional>
-          <element name="note">
-            <mixed>
-              <zeroOrMore>
-                <element name="persName">
-                  <attribute name="role">
-                    <value>author</value>
-                  </attribute>
-                  <optional>
-                    <attribute name="ref"/>
-                  </optional>
+          <optional>
+            <element name="head">
+              <attribute name="type">
+                <value>sub</value>
+              </attribute>
+              <oneOrMore>
+                <choice>
                   <text/>
-                </element>
-              </zeroOrMore>
-              <optional>
-                <element name="date">
-                  <text/>
-                </element>
-              </optional>
-              <optional>
-                <element name="p">
-                  <mixed>
+                  <element name="emph">
+                    <text/>
+                  </element>
+                </choice>
+              </oneOrMore>
+            </element>
+          </optional>
+          <optional>
+            <element name="head">
+              <attribute name="type">
+                <value>short</value>
+              </attribute>
+              <text/>
+            </element>
+          </optional>
+          <optional>
+            <element name="head">
+              <attribute name="type">
+                <value>alternative</value>
+              </attribute>
+              <text/>
+            </element>
+          </optional>
+          <optional>
+            <element name="head">
+              <attribute name="type">
+                <value>hw</value>
+              </attribute>
+              <text/>
+            </element>
+          </optional>
+          <optional>
+            <element name="note">
+              <mixed>
+                <zeroOrMore>
+                  <element name="persName">
+                    <attribute name="role">
+                      <value>creator</value>
+                    </attribute>
                     <optional>
-                      <element name="material">
-                        <text/>
-                      </element>
+                      <attribute name="ref"/>
                     </optional>
-                    <optional>
-                      <element name="dim">
-                        <text/>
-                      </element>
-                    </optional>
-                    <optional>
-                      <element name="idno">
-                        <text/>
-                      </element>
-                    </optional>
-                  </mixed>
-                </element>
-              </optional>
-              <optional>
-                <element name="idno">
-                  <attribute name="type">
-                    <value>GND</value>
-                  </attribute>
-                  <text/>
-                </element>
-              </optional>
-            </mixed>
-          </element>
-        </optional>
-      </element>
+                    <text/>
+                  </element>
+                </zeroOrMore>
+                <optional>
+                  <element name="date">
+                    <text/>
+                  </element>
+                </optional>
+                <optional>
+                  <element name="p">
+                    <mixed>
+                      <optional>
+                        <element name="material">
+                          <text/>
+                        </element>
+                      </optional>
+                      <optional>
+                        <element name="dim">
+                          <text/>
+                        </element>
+                      </optional>
+                      <optional>
+                        <element name="idno">
+                          <text/>
+                        </element>
+                      </optional>
+                    </mixed>
+                  </element>
+                </optional>
+              </mixed>
+            </element>
+          </optional>
+        </element>
+      </choice>
+    </define>
+    <define name="object_type">
+      <attribute name="type">
+        <choice>
+          <value>altarpiece</value>
+          <value>built_work</value>
+          <value>drawing</value>
+          <value>fountain</value>
+          <value>fresco</value>
+          <value>furniture</value>
+          <value>open_space</value>
+          <value>painting</value>
+          <value>print</value>
+          <value>relief</value>
+          <value>sculpture</value>
+        </choice>
+      </attribute>
     </define>
   </div>
 </grammar>
