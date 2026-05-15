@@ -724,102 +724,20 @@
             </data>
           </attribute>
           <ref name="object_type"/>
-          <element name="head">
-            <attribute name="type">
-              <value>main</value>
-            </attribute>
-            <text/>
-          </element>
-          <optional>
-            <element name="head">
-              <attribute name="type">
-                <value>sub</value>
-              </attribute>
-              <oneOrMore>
-                <choice>
-                  <text/>
-                  <element name="emph">
-                    <text/>
-                  </element>
-                </choice>
-              </oneOrMore>
-            </element>
-          </optional>
-          <optional>
-            <element name="head">
-              <attribute name="type">
-                <value>short</value>
-              </attribute>
-              <text/>
-            </element>
-          </optional>
-          <optional>
-            <element name="head">
-              <attribute name="type">
-                <value>alternative</value>
-              </attribute>
-              <text/>
-            </element>
-          </optional>
-          <optional>
-            <element name="head">
-              <attribute name="type">
-                <value>hw</value>
-              </attribute>
-              <text/>
-            </element>
-          </optional>
+          <ref name="object_heads"/>
           <optional>
             <element name="note">
-              <mixed>
-                <zeroOrMore>
-                  <element name="persName">
-                    <attribute name="role">
-                      <value>creator</value>
-                    </attribute>
-                    <optional>
-                      <attribute name="ref"/>
-                    </optional>
-                    <text/>
-                  </element>
-                </zeroOrMore>
-                <optional>
-                  <element name="date">
-                    <text/>
-                  </element>
-                </optional>
-                <optional>
-                  <element name="p">
-                    <mixed>
-                      <optional>
-                        <element name="material">
-                          <text/>
-                        </element>
-                      </optional>
-                      <optional>
-                        <element name="dim">
-                          <text/>
-                        </element>
-                      </optional>
-                      <optional>
-                        <element name="idno">
-                          <text/>
-                        </element>
-                      </optional>
-                    </mixed>
-                  </element>
-                </optional>
-                <optional>
-                  <element name="idno">
-                    <attribute name="type">
-                      <value>GND</value>
-                    </attribute>
-                    <data type="string">
-                      <param name="pattern" xml:space="preserve">(\d|X|-)+</param>
-                    </data>
-                  </element>
-                </optional>
-              </mixed>
+              <ref name="object_description"/>
+              <optional>
+                <element name="idno">
+                  <attribute name="type">
+                    <value>GND</value>
+                  </attribute>
+                  <data type="string">
+                    <param name="pattern" xml:space="preserve">(\d|X|-)+</param>
+                  </data>
+                </element>
+              </optional>
             </element>
           </optional>
         </element>
@@ -831,96 +749,177 @@
             </data>
           </attribute>
           <ref name="object_type"/>
-          <element name="head">
-            <attribute name="type">
-              <value>main</value>
-            </attribute>
-            <text/>
-          </element>
-          <optional>
-            <element name="head">
-              <attribute name="type">
-                <value>sub</value>
-              </attribute>
-              <oneOrMore>
-                <choice>
-                  <text/>
-                  <element name="emph">
-                    <text/>
-                  </element>
-                </choice>
-              </oneOrMore>
-            </element>
-          </optional>
-          <optional>
-            <element name="head">
-              <attribute name="type">
-                <value>short</value>
-              </attribute>
-              <text/>
-            </element>
-          </optional>
-          <optional>
-            <element name="head">
-              <attribute name="type">
-                <value>alternative</value>
-              </attribute>
-              <text/>
-            </element>
-          </optional>
-          <optional>
-            <element name="head">
-              <attribute name="type">
-                <value>hw</value>
-              </attribute>
-              <text/>
-            </element>
-          </optional>
+          <ref name="object_heads"/>
           <optional>
             <element name="note">
-              <mixed>
-                <zeroOrMore>
-                  <element name="persName">
-                    <attribute name="role">
-                      <value>creator</value>
-                    </attribute>
-                    <optional>
-                      <attribute name="ref"/>
-                    </optional>
-                    <text/>
-                  </element>
-                </zeroOrMore>
-                <optional>
-                  <element name="date">
-                    <text/>
-                  </element>
-                </optional>
-                <optional>
-                  <element name="p">
-                    <mixed>
-                      <optional>
-                        <element name="material">
-                          <text/>
-                        </element>
-                      </optional>
-                      <optional>
-                        <element name="dim">
-                          <text/>
-                        </element>
-                      </optional>
-                      <optional>
-                        <element name="idno">
-                          <text/>
-                        </element>
-                      </optional>
-                    </mixed>
-                  </element>
-                </optional>
-              </mixed>
+              <ref name="object_description"/>
+              <optional>
+                <element name="idno">
+                  <attribute name="type">
+                    <value>URL</value>
+                  </attribute>
+                  <data type="anyURI"/>
+                </element>
+              </optional>
             </element>
           </optional>
         </element>
       </choice>
+    </define>
+    <define name="object_heads">
+      <element name="head">
+        <attribute name="type">
+          <value>main</value>
+        </attribute>
+        <oneOrMore>
+          <choice>
+            <text/>
+            <element name="emph">
+              <text/>
+            </element>
+          </choice>
+        </oneOrMore>
+      </element>
+      <optional>
+        <element name="head">
+          <attribute name="type">
+            <value>sub</value>
+          </attribute>
+          <oneOrMore>
+            <choice>
+              <text/>
+              <element name="emph">
+                <text/>
+              </element>
+            </choice>
+          </oneOrMore>
+        </element>
+      </optional>
+      <optional>
+        <element name="head">
+          <attribute name="type">
+            <value>short</value>
+          </attribute>
+          <text/>
+        </element>
+      </optional>
+      <zeroOrMore>
+        <element name="head">
+          <attribute name="type">
+            <value>alternative</value>
+          </attribute>
+          <text/>
+        </element>
+      </zeroOrMore>
+      <optional>
+        <element name="head">
+          <attribute name="type">
+            <value>hw</value>
+          </attribute>
+          <text/>
+        </element>
+      </optional>
+    </define>
+    <define name="object_description">
+      <zeroOrMore>
+        <element name="persName">
+          <attribute name="role">
+            <value>creator</value>
+          </attribute>
+          <optional>
+            <attribute name="ref"/>
+          </optional>
+          <text/>
+        </element>
+      </zeroOrMore>
+      <zeroOrMore>
+        <element name="persName">
+          <attribute name="role">
+            <value>contributor</value>
+          </attribute>
+          <optional>
+            <attribute name="ref"/>
+          </optional>
+          <text/>
+        </element>
+      </zeroOrMore>
+      <zeroOrMore>
+        <element name="persName">
+          <attribute name="role">
+            <value>draft</value>
+          </attribute>
+          <optional>
+            <attribute name="ref"/>
+          </optional>
+          <text/>
+        </element>
+      </zeroOrMore>
+      <zeroOrMore>
+        <element name="persName">
+          <attribute name="role">
+            <value>attributed</value>
+          </attribute>
+          <optional>
+            <attribute name="ref"/>
+          </optional>
+          <text/>
+        </element>
+      </zeroOrMore>
+      <zeroOrMore>
+        <element name="persName">
+          <attribute name="role">
+            <value>after</value>
+          </attribute>
+          <optional>
+            <attribute name="ref"/>
+          </optional>
+          <text/>
+        </element>
+      </zeroOrMore>
+      <optional>
+        <element name="p">
+          <ref name="space_preserve"/>
+          <text/>
+        </element>
+      </optional>
+      <optional>
+        <element name="date">
+          <text/>
+        </element>
+      </optional>
+      <optional>
+        <element name="p">
+          <ref name="space_preserve"/>
+          <mixed>
+            <optional>
+              <element name="material">
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="dim">
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="idno">
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="emph">
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="bibl">
+                <attribute name="corresp"/>
+                <text/>
+              </element>
+            </optional>
+          </mixed>
+        </element>
+      </optional>
     </define>
     <define name="object_type">
       <attribute name="type">
@@ -937,6 +936,11 @@
           <value>relief</value>
           <value>sculpture</value>
         </choice>
+      </attribute>
+    </define>
+    <define name="space_preserve">
+      <attribute name="xml:space">
+        <value>preserve</value>
       </attribute>
     </define>
   </div>
