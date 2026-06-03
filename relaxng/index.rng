@@ -175,7 +175,7 @@
                           <optional>
                             <element name="rs">
                               <attribute name="type">
-                                <value>org</value>
+                                <value>organisation</value>
                               </attribute>
                             </element>
                           </optional>
