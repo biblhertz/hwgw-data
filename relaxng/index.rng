@@ -165,18 +165,21 @@
                         <text />
                       </element>
                     </optional>
-                    <element name="placeName">
-                      <attribute name="ref" />
-                      <text />
-                    </element>
+                    <oneOrMore>
+                      <element name="placeName">
+                        <attribute name="ref" />
+                        <text />
+                      </element>
+                    </oneOrMore>
                     <optional>
-                      <element name="p">
+                      <element name="note">
                         <mixed>
                           <optional>
                             <element name="rs">
                               <attribute name="type">
                                 <value>organisation</value>
                               </attribute>
+                              <attribute name="ref"/>
                             </element>
                           </optional>
                         </mixed>
