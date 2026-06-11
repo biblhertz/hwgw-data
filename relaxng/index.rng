@@ -180,6 +180,7 @@
                                 <value>organisation</value>
                               </attribute>
                               <attribute name="ref"/>
+                              <text />
                             </element>
                           </optional>
                         </mixed>
