@@ -663,6 +663,7 @@
             <ref name="listObject_org" />
             <ref name="listObject_obj" />
             <ref name="listObject_bibl" />
+            <ref name="listObject_grouping" />
             <ref name="object" />
           </choice>
         </oneOrMore>
@@ -715,6 +716,21 @@
         </attribute>
         <oneOrMore>
           <choice>
+            <ref name="object" />
+          </choice>
+        </oneOrMore>
+      </element>
+    </define>
+    <define name="listObject_grouping">
+      <element name="listObject">
+        <attribute name="n" />
+        <attribute name="type">
+          <value>grouping</value>
+        </attribute>
+        <oneOrMore>
+          <choice>
+            <ref name="listObject_bibl" />
+            <ref name="listObject_obj" />
             <ref name="object" />
           </choice>
         </oneOrMore>
@@ -814,7 +830,14 @@
           <attribute name="type">
             <value>alternative</value>
           </attribute>
-          <text />
+          <oneOrMore>
+            <choice>
+              <text />
+              <element name="emph">
+                <text />
+              </element>
+            </choice>
+          </oneOrMore>
         </element>
       </zeroOrMore>
       <optional>
@@ -822,7 +845,14 @@
           <attribute name="type">
             <value>hw</value>
           </attribute>
-          <text />
+          <oneOrMore>
+            <choice>
+              <text />
+              <element name="emph">
+                <text />
+              </element>
+            </choice>
+          </oneOrMore>
         </element>
       </optional>
     </define>
@@ -884,8 +914,22 @@
       </zeroOrMore>
       <optional>
         <element name="p">
+          <attribute name="type">
+            <value>creation</value>
+          </attribute>
           <ref name="space_preserve" />
-          <text />
+          <oneOrMore>
+            <choice>
+              <element name="rs">
+                <attribute name="type">
+                  <value>person</value>
+                </attribute>
+                <attribute name="ref"/>
+                <text/>
+              </element>
+              <text />
+            </choice>
+          </oneOrMore>
         </element>
       </optional>
       <optional>
@@ -895,6 +939,9 @@
       </optional>
       <optional>
         <element name="p">
+          <attribute name="type">
+            <value>description</value>
+          </attribute>
           <ref name="space_preserve" />
           <mixed>
             <optional>
@@ -912,9 +959,21 @@
                 <text />
               </element>
             </optional>
-            <optional>
+            <zeroOrMore>
               <element name="emph">
                 <text />
+              </element>
+            </zeroOrMore>
+            <optional>
+              <element name="rs">
+                <attribute name="type">
+                  <choice>
+                    <value>organisation</value>
+                    <value>object</value>
+                  </choice>
+                </attribute>
+                <attribute name="ref"/>
+                <text/>
               </element>
             </optional>
             <optional>
@@ -936,11 +995,14 @@
           <value>fountain</value>
           <value>fresco</value>
           <value>furniture</value>
+          <value>medal</value>
           <value>open_space</value>
           <value>painting</value>
           <value>print</value>
           <value>relief</value>
           <value>sculpture</value>
+          <value>tapestry</value>
+          <value>tomb</value>
         </choice>
       </attribute>
     </define>
