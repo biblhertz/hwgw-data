@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<grammar xmlns="http://relaxng.org/ns/structure/1.0"
-  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.tei-c.org/ns/1.0"
-  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.tei-c.org/ns/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <start>
     <element name="TEI">
-      <attribute name="n" />
+      <attribute name="n"/>
       <element name="teiHeader">
         <element name="fileDesc">
           <element name="titleStmt">
@@ -42,7 +40,7 @@
               <value>Lizenz zu definieren</value>
             </element>
             <element name="date">
-              <attribute name="when" />
+              <attribute name="when"/>
             </element>
           </element>
           <element name="seriesStmt">
@@ -64,12 +62,12 @@
               <attribute name="unit">
                 <value>volume</value>
               </attribute>
-              <text />
+              <text/>
             </element>
           </element>
           <element name="sourceDesc">
             <element name="p">
-              <empty />
+              <empty/>
             </element>
           </element>
         </element>
@@ -93,11 +91,23 @@
             </element>
           </element>
         </element>
+        <optional>
+          <element name="encodingDesc">
+            <element name="tagsDecl">
+              <oneOrMore>
+                <element name="rendition">
+                  <attribute name="xml:id"/>
+                  <text/>
+                </element>
+              </oneOrMore>
+            </element>
+          </element>
+        </optional>
         <element name="revisionDesc">
           <element name="listChange">
             <zeroOrMore>
               <element name="change">
-                <attribute name="when" />
+                <attribute name="when"/>
               </element>
             </zeroOrMore>
           </element>
@@ -105,7 +115,7 @@
       </element>
       <element name="text">
         <element name="body">
-          <empty />
+          <empty/>
         </element>
         <element name="back">
           <choice>
@@ -118,12 +128,12 @@
               </element>
               <element name="listBibl">
                 <oneOrMore>
-                  <ref name="lit_entry" />
+                  <ref name="lit_entry"/>
                 </oneOrMore>
               </element>
               <element name="listBibl">
                 <oneOrMore>
-                  <ref name="nh_entry" />
+                  <ref name="nh_entry"/>
                 </oneOrMore>
               </element>
             </element>
@@ -136,7 +146,7 @@
               </element>
               <element name="listObject">
                 <oneOrMore>
-                  <ref name="listObject_place" />
+                  <ref name="listObject_place"/>
                 </oneOrMore>
               </element>
             </element>
@@ -150,25 +160,25 @@
               <element name="listOrg">
                 <oneOrMore>
                   <element name="org">
-                    <attribute name="xml:id" />
+                    <attribute name="xml:id"/>
                     <element name="orgName">
                       <attribute name="type">
                         <value>main</value>
                       </attribute>
-                      <text />
+                      <text/>
                     </element>
                     <optional>
                       <element name="orgName">
                         <attribute name="type">
                           <value>short</value>
                         </attribute>
-                        <text />
+                        <text/>
                       </element>
                     </optional>
                     <oneOrMore>
                       <element name="placeName">
-                        <attribute name="ref" />
-                        <text />
+                        <attribute name="ref"/>
+                        <text/>
                       </element>
                     </oneOrMore>
                     <optional>
@@ -180,7 +190,7 @@
                                 <value>organisation</value>
                               </attribute>
                               <attribute name="ref"/>
-                              <text />
+                              <text/>
                             </element>
                           </optional>
                         </mixed>
@@ -190,7 +200,7 @@
                       <attribute name="type">
                         <value>GND</value>
                       </attribute>
-                      <text />
+                      <text/>
                     </element>
                   </element>
                 </oneOrMore>
@@ -206,19 +216,19 @@
               <element name="listPerson">
                 <oneOrMore>
                   <element name="person">
-                    <attribute name="xml:id" />
+                    <attribute name="xml:id"/>
                     <element name="persName">
                       <attribute name="type">
                         <value>main</value>
                       </attribute>
-                      <text />
+                      <text/>
                     </element>
                     <optional>
                       <element name="persName">
                         <attribute name="type">
                           <value>nee</value>
                         </attribute>
-                        <text />
+                        <text/>
                       </element>
                     </optional>
                     <zeroOrMore>
@@ -226,7 +236,7 @@
                         <attribute name="type">
                           <value>alternative</value>
                         </attribute>
-                        <text />
+                        <text/>
                       </element>
                     </zeroOrMore>
                     <choice>
@@ -240,7 +250,7 @@
                                     <param name="pattern" xml:space="preserve">[12]\d\d\d</param>
                                   </data>
                                 </attribute>
-                                <empty />
+                                <empty/>
                               </group>
                               <group>
                                 <attribute name="when">
@@ -248,9 +258,9 @@
                                     <param name="pattern" xml:space="preserve">0\d\d\d|-\d+</param>
                                   </data>
                                 </attribute>
-                                <text />
+                                <text/>
                               </group>
-                              <text />
+                              <text/>
                             </choice>
                           </element>
                         </optional>
@@ -263,7 +273,7 @@
                                     <param name="pattern" xml:space="preserve">[12]\d\d\d</param>
                                   </data>
                                 </attribute>
-                                <empty />
+                                <empty/>
                               </group>
                               <group>
                                 <attribute name="when">
@@ -271,15 +281,15 @@
                                     <param name="pattern" xml:space="preserve">0\d\d\d|-\d+</param>
                                   </data>
                                 </attribute>
-                                <text />
+                                <text/>
                               </group>
-                              <text />
+                              <text/>
                             </choice>
                           </element>
                         </optional>
                       </group>
                       <element name="note">
-                        <text />
+                        <text/>
                       </element>
                     </choice>
                     <optional>
@@ -287,7 +297,7 @@
                         <attribute name="type">
                           <value>GND</value>
                         </attribute>
-                        <text />
+                        <text/>
                       </element>
                     </optional>
                     <optional>
@@ -295,7 +305,7 @@
                         <attribute name="type">
                           <value>ULAN</value>
                         </attribute>
-                        <text />
+                        <text/>
                       </element>
                     </optional>
                     <optional>
@@ -303,7 +313,7 @@
                         <attribute name="type">
                           <value>VIAF</value>
                         </attribute>
-                        <text />
+                        <text/>
                       </element>
                     </optional>
                   </element>
@@ -320,19 +330,19 @@
               <element name="listPlace">
                 <oneOrMore>
                   <element name="place">
-                    <attribute name="xml:id" />
+                    <attribute name="xml:id"/>
                     <element name="placeName">
                       <attribute name="type">
                         <value>main</value>
                       </attribute>
-                      <text />
+                      <text/>
                     </element>
                     <optional>
                       <element name="placeName">
                         <attribute name="type">
                           <value>short</value>
                         </attribute>
-                        <text />
+                        <text/>
                       </element>
                     </optional>
                     <optional>
@@ -340,7 +350,7 @@
                         <attribute name="type">
                           <value>alternative</value>
                         </attribute>
-                        <text />
+                        <text/>
                       </element>
                     </optional>
                     <optional>
@@ -360,7 +370,7 @@
                       <attribute name="type">
                         <value>GND</value>
                       </attribute>
-                      <text />
+                      <text/>
                     </element>
                   </element>
                 </oneOrMore>
@@ -384,7 +394,7 @@
           <attribute name="type">
             <value>short</value>
           </attribute>
-          <text />
+          <text/>
         </element>
         <element name="bibl">
           <attribute name="type">
@@ -394,55 +404,59 @@
             <value>preserve</value>
           </attribute>
           <choice>
-            <ref name="monograph" />
-            <ref name="inBook" />
-            <ref name="journalArticle" />
+            <ref name="monograph"/>
+            <ref name="inBook"/>
+            <ref name="journalArticle"/>
+            <ref name="exhibitionCatalogue"/>
             <mixed>
               <element name="author">
                 <optional>
-                  <attribute name="ref" />
+                  <attribute name="ref"/>
                 </optional>
-                <text />
+                <text/>
               </element>
               <optional>
                 <element name="title">
                   <attribute name="level">
                     <value>a</value>
                   </attribute>
-                  <text />
+                  <text/>
                 </element>
               </optional>
               <element name="title">
                 <attribute name="level">
                   <value>m</value>
                 </attribute>
-                <text />
+                <text/>
               </element>
               <choice>
                 <element name="title">
                   <attribute name="level">
                     <value>j</value>
                   </attribute>
-                  <text />
+                  <text/>
                 </element>
                 <group>
                   <element name="pubPlace">
-                    <text />
+                    <text/>
                   </element>
                   <element name="publisher">
-                    <text />
+                    <text/>
                   </element>
                 </group>
               </choice>
               <element name="date">
-                <text />
+                <text/>
               </element>
+              <optional>
+                <ref name="bibl_first"/>
+              </optional>
               <optional>
                 <element name="biblScope">
                   <attribute name="unit">
                     <value>part</value>
                   </attribute>
-                  <text />
+                  <text/>
                 </element>
               </optional>
               <optional>
@@ -450,7 +464,7 @@
                   <attribute name="unit">
                     <value>page</value>
                   </attribute>
-                  <text />
+                  <text/>
                 </element>
               </optional>
             </mixed>
@@ -460,23 +474,33 @@
     </define>
     <define name="monograph">
       <mixed>
-        <oneOrMore>
+        <zeroOrMore>
           <element name="author">
             <optional>
-              <attribute name="ref" />
+              <attribute name="ref"/>
             </optional>
-            <text />
+            <text/>
           </element>
-        </oneOrMore>
+        </zeroOrMore>
         <element name="title">
           <attribute name="level">
             <value>m</value>
           </attribute>
-          <text />
+          <text/>
         </element>
+        <optional>
+          <element name="extent">
+            <text/>
+          </element>
+        </optional>
+        <optional>
+          <element name="edition">
+            <text/>
+          </element>
+        </optional>
         <zeroOrMore>
           <element name="editor">
-            <text />
+            <text/>
           </element>
         </zeroOrMore>
         <optional>
@@ -484,24 +508,37 @@
             <attribute name="level">
               <value>s</value>
             </attribute>
-            <text />
+            <text/>
           </element>
+          <optional>
+            <element name="biblScope">
+              <attribute name="unit">
+                <value>volume</value>
+              </attribute>
+              <text/>
+            </element>
+          </optional>
+        </optional>
+        <optional>
           <element name="biblScope">
             <attribute name="unit">
               <value>volume</value>
             </attribute>
-            <text />
+            <text/>
           </element>
         </optional>
         <element name="pubPlace">
-          <text />
+          <text/>
         </element>
         <element name="publisher">
-          <text />
+          <text/>
         </element>
         <element name="date">
-          <text />
+          <text/>
         </element>
+        <optional>
+          <ref name="bibl_first"/>
+        </optional>
       </mixed>
     </define>
     <define name="inBook">
@@ -509,50 +546,77 @@
         <oneOrMore>
           <element name="author">
             <optional>
-              <attribute name="ref" />
+              <attribute name="ref"/>
             </optional>
-            <text />
+            <text/>
           </element>
         </oneOrMore>
         <element name="title">
           <attribute name="level">
             <value>a</value>
           </attribute>
-          <text />
+          <text/>
         </element>
-        <element name="title">
-          <attribute name="level">
-            <value>m</value>
+        <element name="bibl">
+          <mixed>
+            <attribute name="type">
+              <value>book</value>
+            </attribute>
+            <element name="title">
+              <attribute name="level">
+                <value>m</value>
+              </attribute>
+              <text/>
+            </element>
+            <zeroOrMore>
+              <element name="editor">
+                <text/>
+              </element>
+            </zeroOrMore>
+            <optional>
+              <element name="title">
+                <attribute name="level">
+                  <value>s</value>
+                </attribute>
+                <text/>
+              </element>
+              <element name="biblScope">
+                <attribute name="unit">
+                  <value>volume</value>
+                </attribute>
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="biblScope">
+                <attribute name="unit">
+                  <value>volume</value>
+                </attribute>
+                <text/>
+              </element>
+            </optional>
+            <element name="pubPlace">
+              <text/>
+            </element>
+            <element name="publisher">
+              <text/>
+            </element>
+            <element name="date">
+              <text/>
+            </element>
+            <optional>
+              <ref name="bibl_first"/>
+            </optional>
+          </mixed>
+        </element>
+        <element name="biblScope">
+          <attribute name="unit">
+            <choice>
+              <value>column</value>
+              <value>page</value>
+            </choice>
           </attribute>
-          <text />
-        </element>
-        <zeroOrMore>
-          <element name="editor">
-            <text />
-          </element>
-        </zeroOrMore>
-        <optional>
-          <element name="title">
-            <attribute name="level">
-              <value>s</value>
-            </attribute>
-            <text />
-          </element>
-          <element name="biblScope">
-            <attribute name="unit">
-              <value>volume</value>
-            </attribute>
-            <text />
-          </element>
-        </optional>
-        <element name="pubPlace">
-          <text />
-        </element>
-        <element name="publisher">
-          <text />
-        </element>
-        <element name="date">
-          <text />
+          <text/>
         </element>
       </mixed>
     </define>
@@ -560,38 +624,102 @@
       <mixed>
         <element name="author">
           <optional>
-            <attribute name="ref" />
+            <attribute name="ref"/>
           </optional>
-          <text />
+          <text/>
         </element>
         <element name="title">
           <attribute name="level">
             <value>a</value>
           </attribute>
-          <text />
+          <text/>
         </element>
+        <element name="bibl">
+          <mixed>
+            <attribute name="type">
+              <value>book</value>
+            </attribute>
+            <element name="title">
+              <attribute name="level">
+                <value>j</value>
+              </attribute>
+              <text/>
+            </element>
+            <element name="date">
+              <text/>
+            </element>
+            <optional>
+              <element name="biblScope">
+                <attribute name="unit">
+                  <value>volume</value>
+                </attribute>
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="biblScope">
+                <attribute name="unit">
+                  <value>part</value>
+                </attribute>
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="biblScope">
+                <attribute name="unit">
+                  <value>issue</value>
+                </attribute>
+                <text/>
+              </element>
+            </optional>
+          </mixed>
+        </element>
+        <element name="biblScope">
+          <attribute name="unit">
+            <choice>
+              <value>column</value>
+              <value>page</value>
+            </choice>
+          </attribute>
+          <text/>
+        </element>
+      </mixed>
+    </define>
+    <define name="exhibitionCatalogue">
+      <mixed>
         <element name="title">
           <attribute name="level">
-            <value>j</value>
+            <value>m</value>
           </attribute>
-          <text />
+          <text/>
         </element>
-        <element name="date">
-          <text />
-        </element>
+        <oneOrMore>
+          <element name="editor">
+            <text/>
+          </element>
+        </oneOrMore>
         <optional>
+          <element name="title">
+            <attribute name="level">
+              <value>s</value>
+            </attribute>
+            <text/>
+          </element>
           <element name="biblScope">
             <attribute name="unit">
               <value>volume</value>
             </attribute>
-            <text />
+            <text/>
           </element>
         </optional>
-        <element name="biblScope">
-          <attribute name="unit">
-            <value>page</value>
-          </attribute>
-          <text />
+        <element name="pubPlace">
+          <text/>
+        </element>
+        <element name="publisher">
+          <text/>
+        </element>
+        <element name="date">
+          <text/>
         </element>
       </mixed>
     </define>
@@ -620,51 +748,104 @@
           <mixed>
             <element name="author">
               <optional>
-                <attribute name="ref" />
+                <attribute name="ref"/>
               </optional>
-              <text />
+              <text/>
             </element>
             <element name="title">
               <attribute name="level">
                 <value>m</value>
               </attribute>
-              <text />
+              <text/>
             </element>
             <element name="pubPlace">
-              <text />
+              <text/>
             </element>
             <element name="publisher">
-              <text />
+              <text/>
             </element>
             <element name="ref">
               <attribute name="type">
                 <value>doi</value>
               </attribute>
-              <attribute name="target" />
-              <text />
+              <attribute name="target"/>
+              <text/>
             </element>
           </mixed>
         </element>
       </element>
+    </define>
+    <define name="bibl_first">
+      <choice>
+        <element name="bibl">
+          <attribute name="type">
+            <value>first</value>
+          </attribute>
+          <attribute name="corresp"/>
+          <text/>
+        </element>
+        <element name="bibl">
+          <attribute name="type">
+            <value>first</value>
+          </attribute>
+          <text/>
+          <mixed>
+            <optional>
+              <element name="title">
+                <attribute name="level">
+                  <value>a</value>
+                </attribute>
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="title">
+                <attribute name="level">
+                  <value>m</value>
+                </attribute>
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="extent">
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="pubPlace">
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="publisher">
+                <text/>
+              </element>
+            </optional>
+            <element name="date">
+              <text/>
+            </element>
+          </mixed>
+        </element>
+      </choice>
     </define>
   </div>
   <div>
     <a:documentation>Types for the object index</a:documentation>
     <define name="listObject_place">
       <element name="listObject">
-        <attribute name="corresp" />
-        <attribute name="n" />
+        <attribute name="corresp"/>
+        <attribute name="n"/>
         <attribute name="type">
           <value>place</value>
         </attribute>
         <oneOrMore>
           <choice>
-            <ref name="listObject_place" />
-            <ref name="listObject_org" />
-            <ref name="listObject_obj" />
-            <ref name="listObject_bibl" />
-            <ref name="listObject_grouping" />
-            <ref name="object" />
+            <ref name="listObject_place"/>
+            <ref name="listObject_org"/>
+            <ref name="listObject_obj"/>
+            <ref name="listObject_bibl"/>
+            <ref name="listObject_grouping"/>
+            <ref name="object"/>
           </choice>
         </oneOrMore>
       </element>
@@ -672,17 +853,17 @@
     <define name="listObject_org">
       <element name="listObject">
         <optional>
-          <attribute name="corresp" />
+          <attribute name="corresp"/>
         </optional>
-        <attribute name="n" />
+        <attribute name="n"/>
         <attribute name="type">
           <value>organisation</value>
         </attribute>
         <oneOrMore>
           <choice>
-            <ref name="listObject_org" />
-            <ref name="listObject_obj" />
-            <ref name="object" />
+            <ref name="listObject_org"/>
+            <ref name="listObject_obj"/>
+            <ref name="object"/>
           </choice>
         </oneOrMore>
       </element>
@@ -690,17 +871,17 @@
     <define name="listObject_obj">
       <element name="listObject">
         <optional>
-          <attribute name="corresp" />
+          <attribute name="corresp"/>
         </optional>
-        <attribute name="n" />
+        <attribute name="n"/>
         <attribute name="type">
           <value>object</value>
         </attribute>
         <oneOrMore>
           <choice>
-            <ref name="listObject_org" />
-            <ref name="listObject_obj" />
-            <ref name="object" />
+            <ref name="listObject_org"/>
+            <ref name="listObject_obj"/>
+            <ref name="object"/>
           </choice>
         </oneOrMore>
       </element>
@@ -708,30 +889,30 @@
     <define name="listObject_bibl">
       <element name="listObject">
         <optional>
-          <attribute name="corresp" />
+          <attribute name="corresp"/>
         </optional>
-        <attribute name="n" />
+        <attribute name="n"/>
         <attribute name="type">
           <value>bibl</value>
         </attribute>
         <oneOrMore>
           <choice>
-            <ref name="object" />
+            <ref name="object"/>
           </choice>
         </oneOrMore>
       </element>
     </define>
     <define name="listObject_grouping">
       <element name="listObject">
-        <attribute name="n" />
+        <attribute name="n"/>
         <attribute name="type">
           <value>grouping</value>
         </attribute>
         <oneOrMore>
           <choice>
-            <ref name="listObject_bibl" />
-            <ref name="listObject_obj" />
-            <ref name="object" />
+            <ref name="listObject_bibl"/>
+            <ref name="listObject_obj"/>
+            <ref name="object"/>
           </choice>
         </oneOrMore>
       </element>
@@ -745,11 +926,11 @@
               <param name="pattern" xml:space="preserve">gnd-(\d|X|-)+</param>
             </data>
           </attribute>
-          <ref name="object_type" />
-          <ref name="object_heads" />
+          <ref name="object_type"/>
+          <ref name="object_heads"/>
           <optional>
             <element name="note">
-              <ref name="object_description" />
+              <ref name="object_description"/>
               <optional>
                 <element name="idno">
                   <attribute name="type">
@@ -770,17 +951,17 @@
               <param name="pattern" xml:space="preserve">object-(\d|\w|-)+</param>
             </data>
           </attribute>
-          <ref name="object_type" />
-          <ref name="object_heads" />
+          <ref name="object_type"/>
+          <ref name="object_heads"/>
           <optional>
             <element name="note">
-              <ref name="object_description" />
+              <ref name="object_description"/>
               <optional>
                 <element name="idno">
                   <attribute name="type">
                     <value>URL</value>
                   </attribute>
-                  <data type="anyURI" />
+                  <data type="anyURI"/>
                 </element>
               </optional>
             </element>
@@ -795,9 +976,9 @@
         </attribute>
         <oneOrMore>
           <choice>
-            <text />
+            <text/>
             <element name="emph">
-              <text />
+              <text/>
             </element>
           </choice>
         </oneOrMore>
@@ -809,9 +990,9 @@
           </attribute>
           <oneOrMore>
             <choice>
-              <text />
+              <text/>
               <element name="emph">
-                <text />
+                <text/>
               </element>
             </choice>
           </oneOrMore>
@@ -822,7 +1003,7 @@
           <attribute name="type">
             <value>short</value>
           </attribute>
-          <text />
+          <text/>
         </element>
       </optional>
       <zeroOrMore>
@@ -832,9 +1013,9 @@
           </attribute>
           <oneOrMore>
             <choice>
-              <text />
+              <text/>
               <element name="emph">
-                <text />
+                <text/>
               </element>
             </choice>
           </oneOrMore>
@@ -847,9 +1028,9 @@
           </attribute>
           <oneOrMore>
             <choice>
-              <text />
+              <text/>
               <element name="emph">
-                <text />
+                <text/>
               </element>
             </choice>
           </oneOrMore>
@@ -863,9 +1044,9 @@
             <value>creator</value>
           </attribute>
           <optional>
-            <attribute name="ref" />
+            <attribute name="ref"/>
           </optional>
-          <text />
+          <text/>
         </element>
       </zeroOrMore>
       <zeroOrMore>
@@ -874,9 +1055,9 @@
             <value>contributor</value>
           </attribute>
           <optional>
-            <attribute name="ref" />
+            <attribute name="ref"/>
           </optional>
-          <text />
+          <text/>
         </element>
       </zeroOrMore>
       <zeroOrMore>
@@ -885,9 +1066,9 @@
             <value>draft</value>
           </attribute>
           <optional>
-            <attribute name="ref" />
+            <attribute name="ref"/>
           </optional>
-          <text />
+          <text/>
         </element>
       </zeroOrMore>
       <zeroOrMore>
@@ -896,9 +1077,9 @@
             <value>attributed</value>
           </attribute>
           <optional>
-            <attribute name="ref" />
+            <attribute name="ref"/>
           </optional>
-          <text />
+          <text/>
         </element>
       </zeroOrMore>
       <zeroOrMore>
@@ -907,9 +1088,9 @@
             <value>after</value>
           </attribute>
           <optional>
-            <attribute name="ref" />
+            <attribute name="ref"/>
           </optional>
-          <text />
+          <text/>
         </element>
       </zeroOrMore>
       <optional>
@@ -917,7 +1098,7 @@
           <attribute name="type">
             <value>creation</value>
           </attribute>
-          <ref name="space_preserve" />
+          <ref name="space_preserve"/>
           <oneOrMore>
             <choice>
               <element name="rs">
@@ -927,14 +1108,14 @@
                 <attribute name="ref"/>
                 <text/>
               </element>
-              <text />
+              <text/>
             </choice>
           </oneOrMore>
         </element>
       </optional>
       <optional>
         <element name="date">
-          <text />
+          <text/>
         </element>
       </optional>
       <optional>
@@ -942,26 +1123,26 @@
           <attribute name="type">
             <value>description</value>
           </attribute>
-          <ref name="space_preserve" />
+          <ref name="space_preserve"/>
           <mixed>
             <optional>
               <element name="material">
-                <text />
+                <text/>
               </element>
             </optional>
             <optional>
               <element name="dim">
-                <text />
+                <text/>
               </element>
             </optional>
             <optional>
               <element name="idno">
-                <text />
+                <text/>
               </element>
             </optional>
             <zeroOrMore>
               <element name="emph">
-                <text />
+                <text/>
               </element>
             </zeroOrMore>
             <optional>
@@ -978,8 +1159,8 @@
             </optional>
             <optional>
               <element name="bibl">
-                <attribute name="corresp" />
-                <text />
+                <attribute name="corresp"/>
+                <text/>
               </element>
             </optional>
           </mixed>
